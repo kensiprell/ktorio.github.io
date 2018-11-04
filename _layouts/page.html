@@ -85,6 +85,10 @@ layout: default
                 {% else %}
                 {{ content }}
                 {% endif %}
+
+                {% if page.category != null %}
+                    {% include prev-next.html %}
+                {% endif %}
             </div>
         </div>
     </div>

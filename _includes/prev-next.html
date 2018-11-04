@@ -1,0 +1,33 @@
+{% assign entries = site.pages | sort: "path" %}
+{% for entry in entries %}
+    {% if entry.url == page.url %}
+        {% assign prevIndex = forloop.index0 | minus: 1 %}
+        {% assign nextIndex = forloop.index0 | plus: 1 %}
+        <div class="container-fluid col-sm-12" style="padding-top:2rem;border-top:1px solid #ddd;">
+            <div class="row">
+                <div class="col-sm-6">
+                    {% if prevIndex %}
+                        {% if entries[prevIndex].category == page.category %}
+                            <a href="{{ entries[prevIndex].permalink }}">
+                                &larr; {{ entries[prevIndex].title }}
+                            </a>
+                        {% else %}
+                            First page in {{ page.category | capitalize }}
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="col-sm-6 text-right">
+                    {% if nextIndex %}
+                        {% if entries[nextIndex].category == page.category %}
+                            <a href="{{ entries[nextIndex].permalink }}">
+                                {{ entries[nextIndex].title }} &rarr;
+                            </a>
+                        {% else %}
+                            Last page in {{ page.category | capitalize }}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
