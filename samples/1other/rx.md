@@ -2,6 +2,7 @@
 title: RX
 category: samples
 caption: Reactive eXtensions
+permalink: /samples/other/rx.html
 ---
 
 Browse the source code on GitHub: [ktor-samples-rx](https://github.com/ktorio/ktor-samples/tree/master/other/rx)

@@ -2,6 +2,7 @@
 title: Structured Logging
 category: samples
 caption: Structured Logging
+permalink: /samples/other/structured-logging.html
 ---
 
 Browse the source code on GitHub: [ktor-samples-structured-logging](https://github.com/ktorio/ktor-samples/tree/master/other/structured-logging)

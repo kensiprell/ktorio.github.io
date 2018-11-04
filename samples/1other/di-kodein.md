@@ -2,6 +2,7 @@
 title: Kodein DI
 category: samples
 caption: Kodein DI
+permalink: /samples/other/di-kodein.html
 ---
 
 Browse the source code on GitHub: [ktor-samples-di-kodein](https://github.com/ktorio/ktor-samples/tree/master/other/di-kodein)

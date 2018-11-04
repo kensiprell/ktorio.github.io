@@ -2,6 +2,7 @@
 title: Redirect with Exception
 category: samples
 caption: Redirect with Exception
+permalink: /samples/other/redirect-with-exception.html
 ---
 
 Browse the source code on GitHub: [ktor-samples-redirect-with-exception](https://github.com/ktorio/ktor-samples/tree/master/other/redirect-with-exception)

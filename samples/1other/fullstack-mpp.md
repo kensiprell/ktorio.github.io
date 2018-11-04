@@ -2,6 +2,7 @@
 title: Fullstack MPP
 category: samples
 caption: Fullstack MPP
+permalink: /samples/other/fullstack-mpp.html
 ---
 
 Browse the source code on GitHub: [ktor-samples-fullstack-mpp](https://github.com/ktorio/ktor-samples/tree/master/other/fullstack-mpp)
