@@ -2,6 +2,7 @@
 title: WebSockets
 category: clients
 caption: WebSockets
+permalink: /clients/http-client/features/websockets.html
 feature:
   artifact: io.ktor:ktor-client-websocket:$ktor_version
   class: io.ktor.client.features.websocket.ClientWebSocketSession

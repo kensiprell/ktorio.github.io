@@ -2,6 +2,7 @@
 title: BasicAuth
 category: clients
 caption: BasicAuth 
+permalink: /clients/http-client/features/basic-auth.html
 feature:
   artifact: io.ktor:ktor-client-auth-basic:$ktor_version
   class: io.ktor.client.features.auth.basic.BasicAuth

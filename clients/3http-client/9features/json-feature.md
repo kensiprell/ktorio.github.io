@@ -2,6 +2,7 @@
 title: JsonFeature
 category: clients
 caption: JsonFeature
+permalink: /clients/http-client/features/json-feature.html
 feature:
   artifact: io.ktor:ktor-client-json:$ktor_version
   class: io.ktor.client.features.json.JsonFeature

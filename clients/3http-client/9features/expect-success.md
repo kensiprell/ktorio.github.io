@@ -2,6 +2,7 @@
 title: ExceptSuccess
 category: clients
 caption: ExceptSuccess 
+permalink: /clients/http-client/features/expect-success.html
 feature:
   artifact: io.ktor:ktor-client-core:$ktor_version
   class: io.ktor.client.features.ExpectSuccess

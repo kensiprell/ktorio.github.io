@@ -2,6 +2,7 @@
 title: HttpRedirect
 category: clients
 caption: HttpRedirect 
+permalink: /clients/http-client/features/http-redirect.html
 feature:
   artifact: io.ktor:ktor-client-core:$ktor_version
   class: io.ktor.client.features.HttpRedirect

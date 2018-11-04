@@ -2,6 +2,7 @@
 title: HttpPlainText
 category: clients
 caption: HttpPlainText
+permalink: /clients/http-client/features/http-plain-text.html
 feature:
   artifact: io.ktor:ktor-client-core:$ktor_version
   class: io.ktor.client.features.HttpPlainText

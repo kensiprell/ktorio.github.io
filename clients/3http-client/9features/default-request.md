@@ -2,6 +2,7 @@
 title: DefaultRequest
 category: clients
 caption: DefaultRequest
+permalink: /clients/http-client/features/default-request.html
 feature:
   artifact: io.ktor:ktor-client-core:$ktor_version
   class: io.ktor.client.features.DefaultRequest

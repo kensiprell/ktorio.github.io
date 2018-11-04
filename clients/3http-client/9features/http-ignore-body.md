@@ -2,6 +2,7 @@
 title: HttpIgnoreBody
 category: clients
 caption: HttpIgnoreBody 
+permalink: /clients/http-client/features/http-ignore-body.html
 feature:
   artifact: io.ktor:ktor-client-core:$ktor_version
   class: io.ktor.client.features.HttpIgnoreBody
