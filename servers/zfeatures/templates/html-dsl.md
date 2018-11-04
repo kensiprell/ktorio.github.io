@@ -2,6 +2,7 @@
 title: HTML DSL
 caption: Emit HTML with a DSL
 category: servers
+permalink: /servers/features/templates/html-dsl.html
 feature:
   artifact: io.ktor:ktor-html-builder:$ktor_version
   class: io.ktor.html.HtmlContent

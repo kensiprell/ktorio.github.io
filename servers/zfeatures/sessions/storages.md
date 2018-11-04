@@ -2,6 +2,7 @@
 title: Storages
 caption: Session Storages
 category: servers
+permalink: /servers/features/sessions/storages.html
 redirect_from:
 - /features/sessions/storages.html
 ---

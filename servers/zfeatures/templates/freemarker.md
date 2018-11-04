@@ -3,6 +3,7 @@ title: Freemarker
 caption: Using Freemarker Templates
 category: servers
 keywords: html
+permalink: /servers/features/templates/freemarker.html
 feature:
   artifact: io.ktor:ktor-freemarker:$ktor_version
   class: io.ktor.freemarker.FreeMarker

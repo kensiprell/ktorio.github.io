@@ -2,6 +2,7 @@
 title: Cookie/Header
 caption: Cookie/Header Sessions
 category: servers
+permalink: /servers/features/sessions/cookie-header.html
 redirect_from:
 - /features/sessions/cookie-header.html
 ---

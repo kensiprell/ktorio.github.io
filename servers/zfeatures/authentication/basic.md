@@ -2,6 +2,7 @@
 title: Basic and Form
 caption: Basic and Form authentication
 category: servers
+permalink: /servers/features/authentication/basic.html
 redirect_from:
 - /features/authentication/basic.html
 ---

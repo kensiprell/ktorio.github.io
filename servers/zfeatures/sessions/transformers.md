@@ -2,6 +2,7 @@
 title: Transformers
 caption: Session Transformers
 category: servers
+permalink: /servers/features/sessions/transformers.html
 redirect_from:
 - /features/sessions/transformers.html
 ---

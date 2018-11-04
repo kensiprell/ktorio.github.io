@@ -2,6 +2,7 @@
 title: OAuth
 caption: OAuth authentication
 category: servers
+permalink: /servers/features/authentication/oauth.html
 redirect_from:
 - /features/authentication/oauth.html
 ---

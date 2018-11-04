@@ -2,6 +2,7 @@
 title: Serializers
 caption: Session Serializers
 category: servers
+permalink: /servers/features/sessions/serializers.html
 redirect_from:
 - /features/sessions/serializers.html
 ---

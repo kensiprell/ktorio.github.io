@@ -3,6 +3,7 @@ title: Velocity
 caption: Using Velocity Templates
 category: servers
 keywords: html
+permalink: /servers/features/templates/velocity.html
 feature:
   artifact: io.ktor:ktor-velocity:$ktor_version
   class: io.ktor.velocity.Velocity

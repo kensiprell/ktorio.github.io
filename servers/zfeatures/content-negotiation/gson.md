@@ -2,6 +2,7 @@
 title: Gson
 caption: JSON support using Gson
 category: servers
+permalink: /servers/features/content-negotiation/gson.html
 feature:
   artifact: io.ktor:ktor-gson:$ktor_version
   class: io.ktor.gson.GsonConverter

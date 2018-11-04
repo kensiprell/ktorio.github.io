@@ -2,6 +2,7 @@
 title: Digest
 caption: Digest authentication
 category: servers
+permalink: /servers/features/authentication/digest.html
 redirect_from:
 - /features/authentication/digest.html
 ---

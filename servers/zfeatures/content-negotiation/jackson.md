@@ -2,6 +2,7 @@
 title: Jackson
 caption: JSON support using Jackson
 category: servers
+permalink: /servers/features/content-negotiation/jackson.html
 feature:
   artifact: io.ktor:ktor-jackson:$ktor_version
   class: io.ktor.jackson.JacksonConverter

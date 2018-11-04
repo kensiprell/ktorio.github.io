@@ -3,6 +3,7 @@ title: JWT and JWK
 caption: JWT and JWK authentication
 category: servers
 keywords: jwt authentication jwt
+permalink: /servers/features/authentication/jwt.html
 feature:
   artifact: io.ktor:ktor-auth-jwt:$ktor_version
   method: io.ktor.auth.jwt.jwt

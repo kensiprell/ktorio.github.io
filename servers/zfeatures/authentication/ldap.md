@@ -2,6 +2,7 @@
 title: LDAP
 caption: LDAP authentication
 category: servers
+permalink: /servers/features/authentication/ldap.html
 feature:
   artifact: io.ktor:ktor-auth-ldap:$ktor_version
   package: io.ktor.auth.ldap

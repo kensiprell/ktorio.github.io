@@ -2,6 +2,7 @@
 title: Client/Server
 caption: Client/Server Sessions
 category: servers
+permalink: /servers/features/sessions/client-server.html
 redirect_from:
 - /features/sessions/client-server.html
 ---
