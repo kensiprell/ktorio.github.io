@@ -3,9 +3,11 @@ title: Quick Start
 caption: QuickStart
 category: quickstart
 toc: true
-permalink: /quickstart/index.html
+permalink: /quickstart/quickstart.html
 children: /quickstart/quickstart/
 priority: -100
+redirect_from: 
+ - /quickstart/index.html
 ---
 
 ![Ktor logo](/assets/images/ktor_logo.svg){:style="width:134px;height:56px;"}

@@ -2,6 +2,7 @@
 title: HTTP API
 caption: "Guides: How to create an API using ktor"
 category: quickstart
+permalink: /quickstart/guides/api.html
 ---
 
 {::options toc_levels="1..2" /}

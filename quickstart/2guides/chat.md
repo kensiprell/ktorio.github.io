@@ -2,6 +2,7 @@
 title: Chat
 caption: "Guides: How to implement a chat with WebSockets"
 category: quickstart
+permalink: /quickstart/guides/chat.html
 ---
 
 In this tutorial, you will learn to make a Chat application using Ktor.

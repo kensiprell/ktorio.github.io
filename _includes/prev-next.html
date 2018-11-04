@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     {% if prevIndex %}
                         {% if entries[prevIndex].category == page.category %}
-                            <a href="{{ entries[prevIndex].permalink }}">
+                            <a href="{{ entries[prevIndex].url }}">
                                 &larr; {{ entries[prevIndex].title }}
                             </a>
                         {% else %}
@@ -19,7 +19,7 @@
                 <div class="col-sm-6 text-right">
                     {% if nextIndex %}
                         {% if entries[nextIndex].category == page.category %}
-                            <a href="{{ entries[nextIndex].permalink }}">
+                            <a href="{{ entries[nextIndex].url }}">
                                 {{ entries[nextIndex].title }} &rarr;
                             </a>
                         {% else %}

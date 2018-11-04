@@ -2,6 +2,7 @@
 title: Google OAuth
 caption: "Guides: How to implement an OAuth login with Google"
 category: quickstart
+permalink: /quickstart/guides/oauth.html
 ---
 
 {::options toc_levels="1..2" /}

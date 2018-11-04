@@ -3,6 +3,7 @@ title: SSL
 caption: "Guides: How to get a free certificate and use SSL with Ktor"
 category: quickstart
 keywords: tls ssl https let's encrypt letsencrypt
+permalink: /quickstart/guides/ssl.html
 ---
 
 {::options toc_levels="1..2" /}

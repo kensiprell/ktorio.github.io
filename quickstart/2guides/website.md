@@ -2,6 +2,7 @@
 title: Website
 caption: "Guides: How to create a plain website using ktor"
 category: quickstart
+permalink: /quickstart/guides/website.html
 ---
 
 {::options toc_levels="1..2" /}
