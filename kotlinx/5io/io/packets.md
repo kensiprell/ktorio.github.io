@@ -4,6 +4,7 @@ caption: Packets
 category: kotlinx
 toc: true
 priority: 2
+permalink: /kotlinx/io/io/packets.html
 ---
 
 Packets are small chunks of data representing messages, packets or chunks of information.

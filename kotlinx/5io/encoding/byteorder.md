@@ -3,6 +3,7 @@ title: ByteOrder
 caption: ByteOrder
 category: kotlinx
 toc: true
+permalink: /kotlinx/io/encoding/byteorder.html
 ---
 
 When encoding fixed-size values larger than 8-bits/byte/octet, there are two standard ways of doing so:

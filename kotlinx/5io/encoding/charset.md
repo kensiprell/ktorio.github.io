@@ -4,6 +4,7 @@ caption: Charset
 category: kotlinx
 toc: true
 priority: 1
+permalink: /kotlinx/io/encoding/charset.html
 ---
 
 A Charset is a class that is in charge of serializing and deserializing characters.

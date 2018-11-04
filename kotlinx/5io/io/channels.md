@@ -4,6 +4,7 @@ caption: Byte Channels
 category: kotlinx
 toc: true
 priority: 1
+permalink: /kotlinx/io/io/channels.html
 ---
 
 ByteChannels are asynchronous streams, potentially large without seeking capabilities.

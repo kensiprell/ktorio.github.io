@@ -4,6 +4,7 @@ caption: Encoding
 category: kotlinx
 toc: false
 children: /kotlinx/io/encoding/
+permalink: /kotlinx/io/encoding.html
 ---
 
 When dealing with I/O, either files and sockets, you have to encode and decode numbers and strings in different

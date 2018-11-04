@@ -3,6 +3,7 @@ title: Tools
 caption: Tools
 category: kotlinx
 toc: false
+permalink: /kotlinx/io/tools.html
 ---
 
 ## ObjectPool

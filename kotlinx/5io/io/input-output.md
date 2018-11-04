@@ -4,6 +4,7 @@ caption: Input/Output
 category: kotlinx
 toc: true
 priority: 0
+permalink: /kotlinx/io/io/input-output.html
 ---
 
 [Input](#input) and [Output](#output) interfaces are synchronous interfaces for reading and writing binary data.
