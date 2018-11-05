@@ -7,5 +7,5 @@ permalink: /kotlinx/atomicfu.html
 priority: 1
 ---
 
-`kotlinx.atomicfu` is OpenSource and you can find it at GitHub: <https://github.com/Kotlin/kotlinx.atomicfu>{: target="_blank"}
+`kotlinx.atomicfu` is OpenSource and you can find it on GitHub: <https://github.com/Kotlin/kotlinx.atomicfu>{: target="_blank"}
 

@@ -6,7 +6,7 @@ toc: true
 priority: 0
 ---
 
-Fixed size buffers in memory implementing the [Input and Output](/kotlinx/io/io/input-output.html) interfaces.
+Fixed-size buffers in memory implementing the [Input and Output](/kotlinx/io/io/input-output.html) interfaces.
 
 ### IOBuffer
 

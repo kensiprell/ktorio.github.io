@@ -6,7 +6,7 @@ toc: false
 permalink: /kotlinx/io/platforms.html
 ---
 
-Platform-specific functionality to deal with each platform APIs.
+Platform-specific functionality to deal with each platform's APIs.
 
 ## JVM
 {: #jvm }
@@ -50,8 +50,6 @@ fun InputStream.asInput(pool: ObjectPool<IoBuffer> = IoBuffer.Pool): Input = Inp
 fun OutputStream.asOutput(): Output = OutputStreamAdapter(IoBuffer.Pool, this)
 ```
 
-
-
 ## JavaScript
 {: #js }
 
@@ -83,8 +81,6 @@ fun XMLHttpRequest.sendPacket(block: BytePacketBuilder.() -> Unit)
 fun XMLHttpRequest.sendPacket(packet: ByteReadPacket)
 fun XMLHttpRequest.responsePacket(): ByteReadPacket = when (responseType)
 ```
-
-
 
 ## Native
 

@@ -8,13 +8,13 @@ priority: 1
 
 A Charset is a class that is in charge of serializing and deserializing characters.
 It mimics the Java [java.nio.charset.Charset](https://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html) class,
-and it's equivalent in .NET would be the [Encoding](https://msdn.microsoft.com/es-es/library/system.text.encoding(v=vs.110).aspx) class.
+and its equivalent in .NET would be the [Encoding](https://msdn.microsoft.com/es-es/library/system.text.encoding(v=vs.110).aspx) class.
 
-Some example of charsets could be `UTF-8`, `ASCII`, `ISO-8859-1`(`LATIN1`), or `SHIFT_JIS`, among others.
+Some charset examples are `UTF-8`, `ASCII`, `ISO-8859-1`(`LATIN1`), and `SHIFT_JIS`, among others.
 
 ### Instantiating a Charset
 
-kotlinx-io has a object called Charsets with some common used charsets (right now only UTF-8):
+kotlinx-io has an object called Charsets with some commonly used charsets (right now only UTF-8):
 
 ```kotlin
 val charset = Charsets.UTF_8
@@ -26,11 +26,11 @@ It is also possible to construct a charset from its name:
 val charset = Charset.forName("utf-8")
 ```
 
-### Encoding a decoding Strings
+### Encoding and Decoding Strings
 
-The easiest way for encoding/decoding Strings using charsets is to use the extension methods available for String and ByteArray.
+The easiest way for encoding and decoding Strings using charsets is to use the extension methods available for String and ByteArray.
 
-For example, if we have a `ByteArray` representing a UTF-8 encoded string, you can:
+For example, if you have a `ByteArray` representing a UTF-8 encoded string, you can:
 
 > This API is not yet available.
 
@@ -47,7 +47,7 @@ val substring = String(utf8Encoded, 0, 10, charset = Charsets.UTF_8)
 ```
 
 
-And from a String, you can generate a ByteArray representing it in the specific charset:
+Also from a String, you can generate a ByteArray representing it in a specific charset:
 
 ```kotlin
 val string = "今日は！"
@@ -56,10 +56,9 @@ val utf8Encoded = string.toByteArray(Charsets.UTF_8)
 
 ### Performance-aware API
 
-In order to be able to reuse memory, reduce copying, reuse of object and reduce garbage collection, the Charset API
-offers a way to create encoders and decoders offering APIs to encode from `CharSequence` to `Output`, and vice versa.
+In order to reuse memory, reduce copying, reuse objects, and reduce garbage collection, the Charset API offers a way to create encoders and decoders offering APIs to encode from `CharSequence` to `Output`, and vice versa.
 
-For encoding a slice of a String without slicing it into a Output, you can:
+For encoding a slice of a String without slicing it into an Output, you can:
 
 ```kotlin
 val output: Output
@@ -68,20 +67,16 @@ val charsetEncoder = charset.newEncoder()
 charsetEncoder.encode("HELLO", 1, 2, output)
 ``` 
 
-### Further details about Charsets
+### Further Details about Charsets
 
-Some charsets represent characters as single-byte, other represents characters with several fixed bytes per characters,
-and others are variable.
-Not all the charsets can represent the whole Unicode character sets.
+Some charsets represent characters as single-byte, others represent characters with several fixed bytes per character, and others are variable. Not all the charsets can represent the whole of Unicode character sets.
 
-The most widely used charset is UTF-8, which allows to represent most 7-bit ASCII characters as single byte,
-but allows to represent the whole Unicode character sets. By being encoded by a variable length of bytes,
-getting the length of a String represented as UTF-8 requires decoding the whole content, thus making
-seeking, slicing and getting length linear-time.
+The most widely used charset is UTF-8, which allows you to represent not only most 7-bit ASCII characters as a single byte, but it also allows you to represent the whole of Unicode character sets. By being encoded by a variable length of bytes, getting the length of a String represented as UTF-8 requires decoding the whole content, thus making
+seeking, slicing, and getting length time-linear.
 
-JavaScript exposes Strings with 32-bit CodePoints, while Java and Native exposes 16-bit Chars using [Surrogate Pairs](https://en.wikipedia.org/wiki/UTF-16#U+10000_to_U+10FFFF) for higher values.  
+JavaScript exposes Strings with 32-bit CodePoints, while Java and Native expose 16-bit Chars using [Surrogate Pairs](https://en.wikipedia.org/wiki/UTF-16#U+10000_to_U+10FFFF) for higher values.  
 
-For now, kotlinx-io only implements UTF_8, but allows to add custom charsets by extending the Charset class.
+For now, kotlinx-io only implements UTF_8, but it allows you to add custom charsets by extending the Charset class.
 
 ### Exposed API
 

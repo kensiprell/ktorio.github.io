@@ -7,5 +7,5 @@ permalink: /kotlinx/coroutines.html
 priority: 1
 ---
 
-`kotlinx.coroutines` is OpenSource and you can find it at GitHub:
+`kotlinx.coroutines` is OpenSource and you can find it on GitHub:
 <https://github.com/Kotlin/kotlinx.coroutines>{: target="_blank"}

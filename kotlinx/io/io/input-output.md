@@ -6,8 +6,7 @@ toc: true
 priority: 0
 ---
 
-[Input](#input) and [Output](#output) interfaces are synchronous interfaces for reading and writing binary data.
-They are implemented by [IOBuffer](/kotlinx/io/io/iobuffer.html#iobuffer), [BytePacketBuilder](/kotlinx/io/io/packets.html#building-packets) and [ByteReadPacket](/kotlinx/io/io/packets.html#reading-packets).
+[Input](#input) and [Output](#output) interfaces are synchronous interfaces for reading and writing binary data. They are implemented by [IOBuffer](/kotlinx/io/io/iobuffer.html#iobuffer), [BytePacketBuilder](/kotlinx/io/io/packets.html#building-packets), and [ByteReadPacket](/kotlinx/io/io/packets.html#reading-packets).
 
 ### Input 
 {: #input}

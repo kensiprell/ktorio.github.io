@@ -5,10 +5,9 @@ category: kotlinx
 toc: true
 ---
 
-When encoding fixed-size values larger than 8-bits/byte/octet, there are two standard ways of doing so:
-by storing less significant bytes first (LITTLE endian) or by storing most significant bytes first (BIG endian).
+When encoding fixed-size values larger than 8-bits/byte/octet, there are two standard ways of doing so: by storing less significant bytes first (LITTLE endian) or by storing most significant bytes first (BIG endian).
 
-The nativeOrder represents the order the your main CPU uses.
+The nativeOrder represents the order that your main CPU uses.
 
 ```kotlin
 expect enum class ByteOrder {
@@ -25,34 +24,31 @@ expect enum class ByteOrder {
 Little endian is the native order of x86 processors and most ARM processors.
 This is the most popular native order of CPUs.
 
-* **BENEFIT:** for small numbers, you get the most relevant information first, and can be read in a meaninful way without knowing the bit-width beforehand  
+* **BENEFIT:** for small numbers, you get the most relevant information first, which can be read in a meaninful way without knowing the bit-width beforehand  
 * **DISADVANTAGE:** cannot be read naturally from left to right
 
 ### BIG Endian
 
-Big endian, also called the network endian or motorola endian.
+Big endian, also called the network endian or Motorola endian.
 This is the most used endian order for network protocols.
-Some CPUs used it as native endian in the past including Motorla,
-some MIPS and ARM, PowerPCs, SPARC among others.
+Some CPUs used it as native endian in the past including Motorola, some MIPS and ARM, PowerPCs, and SPARC, among others.
 
 * **BENEFIT:** can be read naturally from left to right even in HEX representation
-* **DISADVANTAGE:** you need to know the width of the data beforehand to be able to meanigful read it
-
+* **DISADVANTAGE:** you need to know the width of the data beforehand to be able to read it meaningfully
 
 ### Tools
 
-#### Converting values between endians:
+#### Converting Values Between Endians:
 
-You can of course, serialize the value in a view or a packet with one endian,
-and then deserialize it with another endian.
+You can, of course, serialize the value in a view or a packet with one endian and then deserialize it with another endian.
 
-But there are more efficient ways. For `Short`, `Int` and `Long`, you have:
+However, there are more efficient ways. For `Short`, `Int`, and `Long`, you have:
 
 * `java.lang.Short.reverseBytes(10.toShort())` - `(16 bits, 2 octets) AA BB <-> BB AA`
 * `java.lang.Integer.reverseBytes(10)` - `(32 bits, 4 octets) AA BB CC DD <-> DD CC BB AA`
 * `java.lang.Long.reverseBytes(10L)` - `(64 bits, 8 octets) AA BB CC DD EE FF GG HH <-> HH GG FF EE DD CC BB AA`
 
-`Float` and `Double` can be reversed by getting their bits and reconstructing from their bits:
+`Float` and `Double` can be reversed by getting their bits and then reconstructing from them:
 
 * `Float.fromBits(java.lang.Integer.reverseBytes(10f.toBits()))` - `(32 bits, 4 octets)`
 * `Double.fromBits(java.lang.Long.reverseBytes(10.0.toBits()))` - `(64 bits, 8 octets)`
@@ -62,7 +58,7 @@ But there are more efficient ways. For `Short`, `Int` and `Long`, you have:
 > In octets: `seeeeeee-efffffff-ffffffff-ffffffff`, and thus reversing bytes would produce very strange
 > floating point values.
 
-#### Extensions methods in pure Kotlin for byte-reversing integral types
+#### Extensions Methods in Pure Kotlin for Byte-reversing Integral Types
 {: kotlin-byte-reversing }
 
 ```kotlin
