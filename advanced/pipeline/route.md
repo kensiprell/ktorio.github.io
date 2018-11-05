@@ -4,7 +4,7 @@ category: advanced
 caption: Interception per route
 ---
 
-If you want to just intercept some calls for a specific route, you have to create a Route node and intercept that node.
+If you just want to intercept some calls for a specific route, you have to create a `Route` node and intercept that node.
 
 For example, for creating a timeout for a route, you could do the following:
 
@@ -30,25 +30,24 @@ fun Route.routeTimeout(time: Long, unit: TimeUnit = TimeUnit.SECONDS, callback: 
 }
 ```
 
-### Intercepting any Route node
+### Intercepting any `Route` Node
 
-Route class defines an intercept method, that applies to that route node or any other inner route:
+The `Route` class defines an intercept method that applies to that route node or any other inner route:
 
 ```kotlin
 /// Installs an interceptor into this route which will be called when this or a child route is selected for a call
 fun Route.intercept(phase: PipelinePhase, block: PipelineInterceptor<Unit, ApplicationCall>)
 ```
 
-### Getting the route being handled
+### Get the Route Being Handled
 {: #route-from-call }
 
-You can get the route being handled by casting the `call: ApplicationCall` to `RoutingApplicationCall` that 
-has a `route: Route` property.
+You can get the route being handled by casting the `call: ApplicationCall` to `RoutingApplicationCall` that has a `route: Route` property.
 
-### Getting the route path
+### Get the Route Path
 {: #route-path }
 
-`Route` overrides the `toString()` to generate a path to the route of the toString, looking something like:
+`Route` overrides the `toString()` method to generate a path to the route, something like:
 
 ```kotlin
 override fun Route.toString() = when {
@@ -58,7 +57,7 @@ override fun Route.toString() = when {
 }
 ```
 
-### How to intercept route truncation processing
+### How to Intercept Route Truncation Processing
 ```kotlin
     intercept(ApplicationCallPipeline.Setup) {
 
@@ -76,7 +75,7 @@ override fun Route.toString() = when {
     }
 ```
 
-### Hooking before and after routing 
+### Hooking Before and After Routing 
 
 You can globally intercept the routing calls by using the events `Routing.RoutingCallStarted` and `Routing.RoutingCallFinished`:
 

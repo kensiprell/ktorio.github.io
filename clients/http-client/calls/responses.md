@@ -5,28 +5,27 @@ category: clients
 permalink: /clients/http-client/calls/responses.html
 ---
 
-## Receiving the body of a response
+## Receiving the Body of a Response
 {: #receive}
 
 By default you can use `HttpResponse` or `String` as possible types for typed
-HttpClient requests. So for example:
+`HttpClient` requests. For example:
 
 ```kotlin
 val htmlContent = client.get<String>("https://en.wikipedia.org/wiki/Main_Page")
 val response = client.get<HttpResponse>("https://en.wikipedia.org/wiki/Main_Page")
 ```
 
-If *JsonFeature* is configured, and the server returns the header `Content-Type: application/json`,
-you can also specify a class for deserializing it.
+If *JsonFeature* is configured and the server returns the header `Content-Type: application/json`, you can also specify a class for deserializing it.
 
 ```kotlin
 val helloWorld = client.get<HelloWorld>("http://127.0.0.1:8080/")
 ```
 
-#### The `HttpResponse` class
+#### The `HttpResponse` Class
 {: #HttpResponse }
 
-From an `HttpResponse`, you can get the response content easily:
+From an `HttpResponse` you can get the response content easily:
  
 * `val readChannel: ByteReadChannel = response.content`
 * `val bytes: ByteArray = response.readBytes()`

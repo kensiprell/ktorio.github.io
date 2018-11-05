@@ -9,6 +9,6 @@ feature:
 
 {% include feature.html %}
 
-## Install
+## Installation
 
 This feature is always installed.

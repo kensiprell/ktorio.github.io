@@ -5,40 +5,35 @@ permalink: /clients/http-client/engines.html
 caption: HTTP Client Engines 
 ---
 
-Ktor HTTP Client has a common interface for performing HTTP Requests,
-but allows to specify an engine that does the internal job.
-Different engines has different configurations, dependencies an supporting features.
+The Ktor HTTP Client has a common interface for performing HTTP requests, but it allows you to specify an engine that does the internal work. Different engines have different configurations, dependencies, and supporting features.
 
 **Table of contents:**
 
 * TOC
 {:toc}
 
-## Default engine
+## Default Engine
 {: #default}
 
-By calling to the `HttpClient` method without specifying an engine, it uses a default engine.
+When calling an `HttpClient` method without specifying an engine, it uses a default engine.
 
 ```kotlin
 val client = HttpClient()
 ```
 
-In the case of the JVM, the default engine is resolved with a ServiceLoader, getting the first one available.
-Thus depends on the artifacts you have included.
+In the case of the JVM, the default engine is resolved using a ServiceLoader, getting the first one available. It therefore depends on the artifacts you have included.
 
-For native, it uses the predefined one.
+For native, it uses a predefined one.
 
-## Configuring engines
+## Configuring Engines
 {: #configuring}
 
-Ktor HttpClient lets you configure the parameters of each engine by calling `Engine.config { }`, but since 0.9.4,
-the preferred way is to use `HttpClient(MyHttpEngine) { engine { ... } }` instead.
+The Ktor HTTP Client lets you configure the parameters of each engine by calling `Engine.config { }`, but since 0.9.4 the preferred way is to use `HttpClient(MyHttpEngine) { engine { ... } }` instead.
 
 Every engine config has two common properties that can be set:
 
 * The `dispatcher` property is the `CoroutineDispatcher` used when processing client requests.
-* The `sslContext` is a [`javax.net.ssl.SSLContext`](https://docs.oracle.com/javase/7/docs/api/javax/net/ssl/SSLContext.html)
-allowing you to set custom keys, a trust manager or custom source for secure random data.
+* The `sslContext` is a [`javax.net.ssl.SSLContext`](https://docs.oracle.com/javase/7/docs/api/javax/net/ssl/SSLContext.html) allowing you to set custom keys, a trust manager, and custom source for secure random data.
 
 ```kotlin
 val client = HttpClient(MyHttpEngine) {
@@ -49,17 +44,14 @@ val client = HttpClient(MyHttpEngine) {
 }
 ```
 
-You can also adjust maximum total connections and maximum connections
-per route in Apache and CIO clients (but not Jetty).
+You can also adjust the maximum total connections and maximum connections per route in Apache and CIO clients (but not Jetty).
 
 ## JVM
 
 ### Apache
 {: #apache}
 
-Apache is the most configurable HTTP client about right now. It supports HTTP/1.1 and HTTP/2.
-It is the only one that supports following redirects and allows you to configure timeouts,
-proxies among other things it is supported by `org.apache.httpcomponents:httpasyncclient`.
+Apache is currently the most configurable HTTP client. It supports HTTP/1.1 and HTTP/2. It is the only one that supports following redirects, and it allows you to configure timeouts and proxies among other things. It is supported by `org.apache.httpcomponents:httpasyncclient`.
 
 A sample configuration would look like:
 
@@ -93,10 +85,9 @@ val client = HttpClient(Apache) {
 ### CIO
 {: #cio}
 
-CIO (Coroutine-based I/O) is a Ktor implementation with no additional dependencies and is fully asynchronous.
-It only supports HTTP/1.x for now.
+CIO (Coroutine-based I/O) is a Ktor implementation with no additional dependencies and is fully asynchronous. It only supports HTTP/1.x for now.
 
-CIO provides `maxConnectionsCount` and a `endpointConfig` for configuring.
+CIO provides `maxConnectionsCount` and a `endpointConfig` for configuration.
 
 A sample configuration would look like:
 
@@ -121,7 +112,7 @@ val client = HttpClient(CIO) {
 ### Jetty
 {: #jetty}
 
-Jetty provides an additional `sslContextFactory` for configuring. It only supports HTTP/2 for now.
+Jetty provides an additional `sslContextFactory` for configuration. It only supports HTTP/2 for now.
 
 A sample configuration would look like:
 
@@ -140,7 +131,7 @@ val client = HttpClient(Jetty) {
 ### OkHttp
 {: #okhttp }
 
-Since Ktor 0.9.4, there is a engine based on OkHttp.
+Since Ktor 0.9.4 there is an engine based on OkHttp.
 
 ```kotlin
 val client = HttpClient(OkHttp) {
@@ -166,8 +157,7 @@ val client = HttpClient(OkHttp) {
 ## Android
 {: #android }
 
-The Android engine, doesn't have additional dependencies, and uses a ThreadPool with a normal HttpURLConnection,
-to perform the requests. And can be configured like this:
+The Android engine doesn't have additional dependencies and uses a ThreadPool with a normal HttpURLConnection to perform the requests. It can be configured like this:
 
 ```kotlin
 val client = HttpClient(Android) {
@@ -183,7 +173,7 @@ val client = HttpClient(Android) {
 ## iOS
 {: #ios }
 
-The iOS engine, uses the asynchronous `NSURLSession` internally. And have no additional configuration.
+The iOS engine uses the asynchronous `NSURLSession` internally. It has no additional configuration.
 
 ```kotlin
 val client = HttpClient(Ios) {
@@ -197,4 +187,4 @@ val client = HttpClient(Ios) {
 
 ### MockEngine
 
-There is a engine specific for testing described in its own page: [MockEngine for testing](/clients/http-client/testing.html).
+There is an engine specifically for testing described on its own page: [MockEngine for testing](/clients/http-client/testing.html).
