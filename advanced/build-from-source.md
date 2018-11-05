@@ -15,7 +15,7 @@ We usually provide binary version previews at bintray:
 Additionally, you can use jitpack to get bleeding edge artifacts compiled from master:
 <https://jitpack.io/#ktorio/ktor>
 
-## Downloading the source
+## Downloading the Source
 {: #get-git-sources}
 
 You can get the latest version of Ktor using git to clone Ktor's repository:
@@ -39,7 +39,7 @@ which should work with any supported system with a JDK installed:
 Ktor doesn't yet compile with Java 9, so you should stick with Java 8.
 {: .note }
 
-## Installing locally
+## Installing Locally
 {: #installing}
 
 Ktor provides a gradle install task that installs Ktor artifacts in your

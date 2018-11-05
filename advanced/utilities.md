@@ -7,7 +7,7 @@ keywords: >-
     utilities formUrlEncode url-encoded application/x-www-form-urlencoded map to URL encoded string list to url encoded string Parameters parametersOf ApplicationCall.respondUrlEncoded
 ---
 
-## Handling URL-encoded properties
+## Handling URL-encoded Properties
 {: #url-encoded}
 
 Ktor exposes a few extension methods for parsing and generating url-encoded strings (`application/x-www-form-urlencoded`).

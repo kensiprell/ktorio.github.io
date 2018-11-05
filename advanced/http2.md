@@ -15,7 +15,7 @@ Key requirements:
 * ALPN implementation suitable for a particular engine (see corresponding sections for Netty, Jetty, and Tomcat)
 * HTTP/2 compliant browsers (all major browsers have supported it since the end of 2015 according to [caniuse.com](http://caniuse.com/#search=http2))
 
-## SSL certificate
+## SSL Certificate
 
 As per the specification, HTTP/2 does not require encryption, but all browsers will require encrypted connections to be used with HTTP/2. That's why a working TLS environment is a prerequisite for enabling HTTP/2. Therefore, a certificate is required to enable encryption. For testing purposes, it can be generated with `keytool` from the JDK:
 
@@ -141,7 +141,7 @@ where `tc.native.classifier` should be one of the following: `linux-x86_64`, `os
 
 Once all dependencies have been provided, Ktor will enable HTTP/2 support on the SSL port.
 
-### Tomcat and other servlet containers
+### Tomcat and other Servlet Containers
 
 Similar to Netty, to get HTTP/2 working in Tomcat you need native OpenSSL bindings. Unfortunately, Tomcat's tcnative is not completely compatible with the Netty one.
 This is why you need a slightly different binary. You can get it here (http://tomcat.apache.org/native-doc/), or you can try Netty's tcnative. However, you'll have to guess which exact version is compatible with your specific Tomcat version.

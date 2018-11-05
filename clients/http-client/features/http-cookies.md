@@ -8,7 +8,7 @@ feature:
   method: io.ktor.client.features.defaultRequest
 ---
 
-This feature keeps cookies between calls or forces specific cookies.
+This feature retains cookies between calls or forces specific cookies.
 
 {% include feature.html %}
 

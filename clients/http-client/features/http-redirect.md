@@ -7,18 +7,16 @@ feature:
   class: io.ktor.client.features.HttpRedirect
 ---
 
-By default, Ktor HTTP client doesn't follow redirections (except for Apache and configuring it), this feature
-allows to follow `Location` redirects in a way that works with any HTTP engine. Its usage is pretty straightforward
-and the only configurable property is the `maxJumps` (20 by default) that limits how many redirects are tried
+By default, the Ktor HTTP Client doesn't follow redirections (except for Apache). This feature allows you to follow `Location` redirects in a way that works with any HTTP engine. Its usage is pretty straightforward, and the only configurable property is the `maxJumps` (20 by default) that limits how many redirects are tried
 before giving up (to prevent infinite redirects).
 
 {% include feature.html %}
 
-## Install
+## Installation
 
 This feature is installed by default.
 
-## Prevent installing
+## Prevent Installation
 
 ```kotlin
 val client = HttpClient(HttpClientEngine) {
@@ -26,5 +24,5 @@ val client = HttpClient(HttpClientEngine) {
 }
 ``` 
 
-This feature is included in the core of the HttpClient so it is available always along the client.
+This feature is included in the `HttpClient` core, so it is always available with the client.
 {: .note}

@@ -5,10 +5,10 @@ category: clients
 permalink: /clients/http-client/calls/requests.html
 ---
 
-## Simple requests
+## Simple Requests
 
 The basic usage is *super* simple: you just have to instantiate an `HttpClient` instance,
-specifying an engine, for example
+specify an engine, for example,
 [`Apache`](/clients/http-client/engines.html#apache),
 [`OkHttp`](/clients/http-client/engines.html#okhttp),
 [`Android`](/clients/http-client/engines.html#android),
@@ -17,8 +17,7 @@ specifying an engine, for example
 or [`CIO`](/clients/http-client/engines.html#cio),
 and start making requests using one of the many convenience methods available.
 
-Since Ktor 0.9.3, you can omit the engine, and Ktor will choose an engine among the ones that are available
-from the included artifacts using a ServiceLoader. 
+Since Ktor 0.9.3 you can omit the engine, and Ktor will choose an engine among the ones that are available from the included artifacts using a ServiceLoader. 
 
 First you need to instantiate the client:   
 
@@ -26,7 +25,7 @@ First you need to instantiate the client:
 val client = HttpClient(Apache)
 ```
 
-Then, to perform a `GET` request fully reading a `String`:
+Then, to perform a `GET` request and fully read a `String`:
 
 ```kotlin
 val htmlContent = client.get<String>("https://en.wikipedia.org/wiki/Main_Page")
@@ -38,10 +37,7 @@ And in the case you are interested in the raw bits, you can read a `ByteArray`:
 val bytes: ByteArray = client.call("http://127.0.0.1:8080/").response.readBytes()
 ```
 
-It is possible to customize the request a lot and
-to stream the request and response payloads, but you can also just call a convenience
-extension method like `HttpClient.get` to do a `GET` request to receive
-the specified type directly (for example `String`).
+It is possible to customize the request and to stream the request and response payloads, but you can also just call a convenience extension method like `HttpClient.get` to do a `GET` request to receive the specified type directly (for example `String`).
 {: .note}
 
 After you finish working with the client, it should be closed in order to properly stop the underlying engine.
@@ -50,7 +46,7 @@ After you finish working with the client, it should be closed in order to proper
 client.close()
 ```
 
-If you want to use a client to make only one request consider `use`-ing it. The client will be automatically closed once the passed block has been executed.
+If you want to use a client to make only one request, consider `use`ing it. The client will be automatically closed once the passed block has been executed.
 
 ```kotlin
 val bytes = HttpClient(Apache).use { client ->
@@ -58,19 +54,18 @@ val bytes = HttpClient(Apache).use { client ->
 }
 ```
 
-## Custom requests
+## Custom Requests
 
-We cannot live only on *get* requests, Ktor allows you to build complex
-requests with any of the HTTP verbs, with the flexibility to process responses in many ways.
+We cannot rely only on *get* requests, and Ktor allows you to build complex
+requests with any of the HTTP verbs with the flexibility to process responses in many ways.
 
-### The `call` method
+### The `call` Method
 {: #call-method }
 
-The HttpClient `call` method, returns an `HttpClientCall` and allows you to perform
+The HttpClient `call` method returns an `HttpClientCall` and allows you to perform
 simple untyped requests.
 
-You can read the content using `response: HttpResponse`.
-For further information, check out the [receiving content using HttpResponse](/clients/http-client/calls/responses.html) section. 
+You can read the content using `response: HttpResponse`. For further information, check out the [receiving content using HttpResponse](/clients/http-client/calls/responses.html) section. 
 
 ```kotlin
 val call = client.call("http://127.0.0.1:8080/") {
@@ -79,12 +74,11 @@ val call = client.call("http://127.0.0.1:8080/") {
 println(call.response.readText())
 ```
 
-### The `request` method
+### The `request` Method
 {: #request-method }
 
-In addition to call, there is a `request` method for performing a typed request,
-[receiving a specific type](/clients/http-client/calls/responses.html#receive) like String, HttpResponse, or an arbitrary class.
-You have to specify the URL and the method when building the request. 
+In addition to `call`, there is a `request` method for performing a typed request,
+[receiving a specific type](/clients/http-client/calls/responses.html#receive) like String, HttpResponse, or an arbitrary class. You have to specify the URL and the method when building the request. 
 
 ```kotlin
 val call = client.request<String> {
@@ -93,23 +87,19 @@ val call = client.request<String> {
 }
 ```
 
-### The `get`, `post`, `put` and `delete` methods
+### The `get`, `post`, `put`, and `delete` Methods
 {: #shortcut-methods }
 
-Similar to `request`, there are several extension methods to perform requests
-with the most common HTTP verbs: `GET`, `POST`, `PUT` and `DELETE`.
+Similar to `request`, there are several extension methods to perform requests with the most common HTTP verbs: `GET`, `POST`, `PUT` and `DELETE`.
 
-`PATCH`, `HEAD` and `OPTIONS` have special HTTP semantics, and they do not have shortcut methods, though you can use
-the [`request`](#request-method) and [`call`](#call-method) methods to perform requests with those verbs. 
+`PATCH`, `HEAD` and `OPTIONS` have special HTTP semantics, and they do not have shortcut methods although you can use the [`request`](#request-method) and [`call`](#call-method) methods to perform requests with those verbs. 
 {: .note }
 
 ```kotlin
 val text = client.post<String>("http://127.0.0.1:8080/")
 ```
 
-When calling request methods, you can provide a lambda to build the request
-parameters like the URL, the HTTP method (verb), the body, or the headers.
-The `HttpRequestBuilder` looks like this:
+When calling request methods, you can provide a lambda to build the request parameters like the URL, the HTTP method (verb), the body, and the headers. The `HttpRequestBuilder` looks like this:
 
 ```kotlin
 class HttpRequestBuilder : HttpMessageBuilder {
@@ -124,11 +114,10 @@ class HttpRequestBuilder : HttpMessageBuilder {
 }
 ```
 
-The `HttpClient` class only offers some basic functionality, and all the methods for building requests are exposed as extensions.\\
-You can check the standard available [HttpClient build extension methods](https://github.com/ktorio/ktor/blob/master/ktor-client/ktor-client-core/src/io/ktor/client/request/builders.kt).
+The `HttpClient` class only offers some basic functionality, and all the methods for building requests are exposed as extensions. You can check out the standard available [HttpClient build extension methods](https://github.com/ktorio/ktor/blob/master/ktor-client/ktor-client-core/src/io/ktor/client/request/builders.kt).
 {: .note.api}
 
-### The `submitForm` and `submitFormWithBinaryData` methods
+### The `submitForm` and `submitFormWithBinaryData` Methods
 {: #submit-form }
 
 There are a couple of convenience extension methods for submitting form information.
@@ -137,17 +126,16 @@ The `submitForm` method:
 
 `submitForm(formData: Parameters = Parameters.Empty, encodeInQuery: Boolean = false, block: HttpRequestBuilder.() -> Unit = {})`
 
-It allows to do a request with the `Parameters` encoded in the querystring (`GET` by default),
-or to do a request with the `Parameters` encoded as multipart (`POST` by default) depending on the `encodeInQuery` parameter.
+It allows you to make a request with the `Parameters` encoded in the query string (`GET` by default) or to make a request with the `Parameters` encoded as multipart (`POST` by default), depending on the `encodeInQuery` parameter.
 
 The `submitFormWithBinaryData` method:
 
 `submitFormWithBinaryData(formData: List<PartData>, block: HttpRequestBuilder.() -> Unit = {}): T`
 
-It allows to generate a multipart POST request from a list of `PartData`.
-`PartData` can be `PartData.FormItem`, `PartData.BinaryItem` or `PartData.FileItem`.
+It allows you to generate a multipart POST request from a list of `PartData`.
+`PartData` can be `PartData.FormItem`, `PartData.BinaryItem`, or `PartData.FileItem`.
 
-To build a list of `PartData`, you can use the `formData` builder:
+You can use the `formData` builder to build a list of `PartData`:
 
 ```kotlin
 val data: List<PartData> = formData {
@@ -161,12 +149,11 @@ val data: List<PartData> = formData {
 }
 ```
 
-### Specifying custom headers
+### Specifying Custom Headers
 {: #custom-headers}
 
 When building requests with `HttpRequestBuilder`, you can set custom headers.
-There is a final property `val headers: HeadersBuilder` that inherits from `StringValuesBuilder`.
-You can add or remove headers using it, or with the `header` convenience methods.
+There is a final property `val headers: HeadersBuilder` that inherits from `StringValuesBuilder`. You can add or remove headers using it or with the `header` convenience methods.
 
 ```kotlin
 // this : HttpMessageBuilder
@@ -190,7 +177,7 @@ headers { // this: HeadersBuilder
 ``` 
 
 
-## Specifying a body for requests
+## Specifying a Body for Requests
 
 For `POST` and `PUT` requests, you can set the `body` property:
 
@@ -210,7 +197,7 @@ The `HttpRequestBuilder.body` property can be a subtype of `OutgoingContent` as 
 * `body = JarFileContent(File("myjar.jar"), "test.txt", ContentType.fromFileExtension("txt").first())`
 * `body = URIFileContent(URL("https://en.wikipedia.org/wiki/Main_Page"))`
 
-If you install the *JsonFeature*, and set the content type to `application/json`
+If you install the *JsonFeature* and set the content type to `application/json`,
 you can use arbitrary instances as the `body`, and they will be serialized as JSON:
 
 ```kotlin
@@ -252,14 +239,13 @@ client.post<Unit> {
 }
 ```
 
-Remember that your classes must be *top-level* to be recognized by `Gson`. \\
-If you try to send a class that is inside a function, the feature will send a *null*.
+Remember that your classes must be *top-level* to be recognized by `Gson`. If you try to send a class that is inside a function, the feature will send a *null*.
 {: .note}
 
 ## Uploading multipart/form-data
 {: #multipart-form-data }
 
-Starting with 0.9.4, Ktor HTTP Client has support for making MultiPart requests.
+Starting with 0.9.4 Ktor HTTP Client has support for making MultiPart requests.
 The idea is to use the `MultiPartFormDataContent(parts: List<PartData>)` as `OutgoingContent` for the body of the request.
 
 The easiest way is to use the [`submitFormWithBinaryData` method](#submit-form).

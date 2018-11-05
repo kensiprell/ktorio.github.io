@@ -11,7 +11,7 @@ This feature sends an `Authorization: Basic` with the specified credentials:
 
 {% include feature.html %}
 
-## Install
+## Installation
 
 ```kotlin
 val client = HttpClient(HttpClientEngine) {

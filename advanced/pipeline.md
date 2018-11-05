@@ -149,7 +149,7 @@ All interceptors from pipeline merging are added to the receiving pipeline accor
 
 Pipelines are merged when there are different points where interceptors can be installed. One example is the response pipeline that can be intercepted at the application level, call level, or per route. Before we execute a response pipeline, we merge them all.
 
-## Ktor pipelines
+## Ktor Pipelines
 
 ### ApplicationCallPipeline
 {: #ApplicationCallPipeline }

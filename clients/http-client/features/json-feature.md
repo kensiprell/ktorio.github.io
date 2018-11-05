@@ -7,8 +7,7 @@ feature:
   class: io.ktor.client.features.json.JsonFeature
 ---
 
-Processes the request and the response payload as JSON, serializing
-and de-serializing them using a specific `serializer: JsonSerializer`.
+This feature processes the request and the response payloads as JSON, serializing and de-serializing them using a specific `serializer: JsonSerializer`.
 
 ```kotlin
 val client = HttpClient(HttpClientEngine) {
@@ -16,13 +15,13 @@ val client = HttpClient(HttpClientEngine) {
 }
 ```
 
-You have a [full example using JSON](/clients/http-client/examples.html#example-json).
+See the [complete example using JSON](/clients/http-client/examples.html#example-json).
 
 {% include feature.html %}
 
 ## Serializers
 
-The `JsonFeature` has a default serializer based on a ServiceLoader on JVM,
+The `JsonFeature` has a default serializer based on a ServiceLoader on the JVM
 and a serializer based on [kotlinx.serialization](/kotlinx/serialization.html) for Native.
 
 You can also get the default serializer by calling `io.ktor.client.features.json.defaultSerializer()`
@@ -38,7 +37,7 @@ val client = HttpClient(HttpClientEngine) {
 }
 ```
 
-To use this feature, you need to include `io.ktor:ktor-client-gson` artifact.
+To use this feature, you need to include the `io.ktor:ktor-client-gson` artifact.
 {: .note.artifact }
 
 ### Jackson
@@ -52,7 +51,7 @@ val client = HttpClient(HttpClientEngine) {
 }
 ```
 
-To use this feature, you need to include `io.ktor:ktor-client-jackson` artifact.
+To use this feature, you need to include the `io.ktor:ktor-client-jackson` artifact.
 {: .note.artifact }
 
 ### Kotlinx.Serialization
@@ -66,5 +65,5 @@ val client = HttpClient(HttpClientEngine) {
 }
 ```
 
-To use this feature, you need to include `io.ktor:ktor-client-json-jvm` artifact on the jvm.
+To use this feature, you need to include the `io.ktor:ktor-client-json-jvm` artifact on the JVM.
 {: .note.artifact }
