@@ -6,11 +6,10 @@ toc: true
 priority: 2
 ---
 
-Packets are small chunks of data representing messages, packets or chunks of information.
-They are built and consumed synchronously. And they implement the [Input/Output](/kotlinx/io/io/input-output.html) interfaces.
-In difference with IOBuffers, you can build packets without having to know their size beforehand. 
+Packets are small chunks of data representing messages, packets, or chunks of information.
+They are built and consumed synchronously. They implement the [Input/Output](/kotlinx/io/io/input-output.html) interfaces. Contrary to IOBuffers, you can build packets without having to know their size beforehand. 
 
-## Building packets
+## Building Packets
 
 ```kotlin
 // To make this less verbose:
@@ -64,7 +63,7 @@ class BytePacketBuilder(headerSizeHint: Int, pool: ObjectPool<IoBuffer>) : Appen
 val PACKET_MAX_COPY_SIZE: Int
 ```
 
-## Reading packets
+## Reading Packets
 
 ```kotlin
 class ByteReadPacket(head: IoBuffer, pool: ObjectPool<IoBuffer>) : Input {

@@ -9,7 +9,7 @@ permalink: /kotlinx/io/setup.html
 
 ## Gradle
 
-You can use kotlinx-io, with gradle.
+You can use kotlinx-io with gradle.
 
 Artifacts live in jcenter:
 
