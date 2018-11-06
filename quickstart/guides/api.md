@@ -6,11 +6,10 @@ category: quickstart
 
 {::options toc_levels="1..2" /}
 
-In this guide you will learn how to create an API using ktor.
-We are going to create a simple API to store simple text snippets (like a small pastebin-like API).
+In this guide you will learn how to create an API using Ktor.
+We are going to create a simple API to store text snippets (similar to a small pastebin-like API).
 
-To achieve this, we are going to use the [Routing], [StatusPages], [Authentication], [JWT Authentication],
-[CORS], [ContentNegotiation] and [Jackson] features.
+To achieve this we are going to use the [Routing], [StatusPages], [Authentication], [JWT Authentication], [CORS], [ContentNegotiation], and [Jackson] features.
 
 [Routing]: /servers/features/routing.html
 [StatusPages]: /servers/features/status-pages.html
@@ -20,10 +19,7 @@ To achieve this, we are going to use the [Routing], [StatusPages], [Authenticati
 [ContentNegotiation]: /servers/features/content-negotiation.html
 [Jackson]: /servers/features/content-negotiation/jackson.html
 
-While many frameworks advocate how to create REST API's the majority aren't actually talking about REST APIs but HTTP APIs.
-Ktor, much like many other frameworks can be used to create systems that comply with REST constraints. However,
-this tutorial is not talking about REST but HTTP APIs, i.e. endpoints using HTTP verbs that may or may not return JSON, XML or any other format.
-If you want to learn more about RESTful systems, you can start reading <https://en.wikipedia.org/wiki/Representational_state_transfer>{:target="_blank"}.
+While many frameworks advocate how to create REST APIs, the majority aren't actually referring to REST APIs but HTTP APIs. Ktor, like many other frameworks, can be used to create systems that comply with REST constraints. However, this tutorial is not dealing with REST but HTTP APIs, i.e. endpoints using HTTP verbs that may or may not return JSON, XML, or any other format. If you want to learn more about RESTful systems, you can read about them using <https://en.wikipedia.org/wiki/Representational_state_transfer>{:target="_blank"}.
 {: .note }
 
 **Table of contents:**
@@ -31,18 +27,15 @@ If you want to learn more about RESTful systems, you can start reading <https://
 * TOC
 {:toc}
 
-## Setting up the project
+## Setting Up the Project
 
-The first step is to set up a project. You can follow the [Quick Start](/quickstart/index.html) guide, or use the following form to create one:
+The first step is to set up a project. You can follow the [Quick Start](/quickstart/index.html) guide or use the following tool to create one:
 
 {% include preconfigured-form.html hash="dependency=auth&dependency=auth-jwt&dependency=ktor-jackson&dependency=cors&artifact-group=com.example&artifact-name=api-example" %}
 
-## Simple routing
+## Simple Routing
 
-First of all, we are going to use the routing feature. This feature is part of the Ktor's core, so you won't need
-to include any additional artifact.
-
-This feature is installed automatically when using the `routing { }` block.
+First of all, we are going to use the routing feature. This feature is part of Ktor's core, so you won't need to include any additional artifacts. This feature is installed automatically when using the `routing { }` block.
 
 Let's start creating a simple GET route that responds with 'OK':
 
@@ -56,9 +49,9 @@ fun Application.module() {
 }
 ```
 
-## Serving JSON content
+## Serving JSON Content
 
-A HTTP API usually responds with JSON. You can use the *Content Negotiation* feature with *Jackson* for this:
+An HTTP API usually responds with JSON. You can use the *Content Negotiation* feature with *Jackson* for this:
 
 ```kotlin
 fun Application.module() {
@@ -72,7 +65,7 @@ fun Application.module() {
 }
 ```
 
-To respond to a call with a JSON. You have to call the `call.respond` method with an arbitrary object.
+To respond to a call with JSON, you have to call the `call.respond` method with an arbitrary object.
 
 ```kotlin
 routing {
@@ -84,12 +77,10 @@ routing {
 
 Now the browser should respond to `http://127.0.0.1:8080/snippets` with `{"OK":true}`
 
-If you get an error like `Response pipeline couldn't transform '...' to the OutgoingContent`, check that you have
-installed the ContentNegotiation feature with Jackson.
+If you receive an error similar to `Response pipeline couldn't transform '...' to the OutgoingContent`, check that you have installed the ContentNegotiation feature with Jackson.
 {: .note}
 
-You can also use typed objects as part of the reply (but ensure that your classes are not defined
-inside a function or it won't work). So for example:
+You can also use typed objects as part of the reply, but you should ensure that your classes are not defined inside a function or it won't work. For example:
 
 ```kotlin
 data class Snippet(val text: String)
@@ -117,11 +108,9 @@ Would reply with:
 
 ![](/quickstart/guides/api/snippets_get.png){:.rounded-shadow}
 
-## Handling other HTTP methods
+## Handling Other HTTP Methods
 
-HTTP APIs use most of the HTTP methods/verbs (_HEAD_, _GET_, _POST_, _PUT_, _PATCH_, _DELETE_, _OPTIONS_) to perform operations.
-Let's create a route to add new snippets. For this, we will need to read the JSON body of the POST request.
-For this we will use `call.receive<Type>()`:
+HTTP APIs use most of the HTTP methods and verbs (_HEAD_, _GET_, _POST_, _PUT_, _PATCH_, _DELETE_, _OPTIONS_) to perform operations. Let's create a route to add new snippets. We will need to read the JSON body of the POST request. For this we will use `call.receive<Type>()`:
 
 ```kotlin
 data class PostSnippet(val snippet: PostSnippet.Text) {
@@ -144,19 +133,20 @@ routing {
 
 Now it is time to actually try our backend.
 
-If you have IntelliJ IDEA Ultimate, you can use its built-in powerful HTTP Request client,
-if not, you can also use postman or curl:
+If you have IntelliJ IDEA Ultimate, you can use its powerful built-in HTTP Request client.
+If not, you can also use Postman or curl:
 
 ### IntelliJ IDEA Ultimate:
 {: #first-request-intellij }
 
-IntelliJ IDEA Ultimate, along PhpStorm and other IDEs from JetBrains include a
+IntelliJ IDEA Ultimate, along with PhpStorm and other IDEs from JetBrains, includes a
 very nice [Editor-Based Rest Client](https://blog.jetbrains.com/phpstorm/2017/09/editor-based-rest-client/){:target="_blank"}.
 
-First you have to create a HTTP Request file (either `api` or `http` extensions)
+First you have to create an HTTP Request file (either `api` or `http` extensions):
+
 ![](/quickstart/guides/api/IU-http-new-file.png)
 
-Then you have to type the method, url, headers and payload like this:
+Then you have to enter the method, url, headers, and payload like this:
 
 ![](/quickstart/guides/api/IU-http-request.png)
 
@@ -167,22 +157,17 @@ Content-Type: application/json
 {"snippet": {"text" : "mysnippet"}}
 ```
 
-And then in the play gutter icon from the URL, you can perform the call, and get the response:
+Then with the URL's play icon in the gutter, you can perform the call and get the response:
 
 ![](/quickstart/guides/api/IU-http-response.png)
 
 And that's it!
 
-This allows you to define files (plain or scratches) that include definition for several HTTP requests,
-allowing to include headers, provide a payload inline, or from files, use environment variables defined in a JSON file,
-process the response using JavaScript to perform assertions, or to store some environment variables like
-authentication credentials so they are available to other requests. It supports autocompletion, templates, and
-automatic language injection based on Content-Type, including JSON, XML, etc..
+This allows you to define files (plain or scratches) that include definitions for several HTTP requests, allowing you to include headers, provide a payload inline or from files, use environment variables defined in a JSON file, process the response using JavaScript to perform assertions, or to store some environment variables like authentication credentials so they are available to other requests. It supports autocompletion, templates, and
+automatic language injection based on Content-Type, including JSON, XML, etc.
 {: .note}
 
-In addition to easily test your backends inside your editor, it also helps your to document your APIs
-by including a file with the endpoints on it.
-And allows you fetch and locally store responses and visually compare them.
+In addition to easily testing your backends inside your editor, it also helps you document your APIs by including a file with the endpoints in it. It also allows you to fetch and store responses locally and then visually compare them.
 {: .note}
 
 ### CURL:
@@ -216,12 +201,11 @@ Let's do the GET request again:
 
 Nice!
 
-## Grouping routes together
+## Grouping Routes Together
 
-Now we have two separate routes that share the path (but not the method) and we don't want to repeat ourselves.
+Now we have two separate routes that share the path (but not the method), and we don't want to repeat ourselves.
 
-We can group routes with the same prefix, using the `route(path) { }` block. For each HTTP method, there is an
-overload without the route path argument that we can use at routing leaf nodes:
+We can group routes with the same prefix, using the `route(path) { }` block. For each HTTP method, there is an overload without the route path argument that we can use at routing leaf nodes:
 
 ```kotlin
 routing {
@@ -240,8 +224,7 @@ routing {
 
 ## Authentication
 
-It would be a good idea to prevent everyone from posting snippets. For now, we are going to limit it using
-http's basic authentication with a fixed user and password. To do it, we are going to use the authentication feature.
+It would be a good idea to prevent just anyone from posting snippets. For now, we are going to limit it using HTTP's basic authentication with a fixed user and password. We are going to use the authentication feature to accomplish this.
 
 ```kotlin
 fun Application.module() {
@@ -255,10 +238,9 @@ fun Application.module() {
 }
 ```
 
-After installing and configuring the feature, we can group some routes together to be authenticated with the
-`authenticate { }` block.
+After installing and configuring the feature, we can group the routes we want authenticated with the `authenticate { }` block.
 
-In our case, we are going to keep the get call unauthenticated, and going to require authentication for the post one:
+In our case, we are going to keep the GET call unauthenticated and require authentication for the POST call:
 
 ```kotlin
 routing {
@@ -279,13 +261,11 @@ routing {
 
 ## JWT Authentication
 
-Instead of using a fixed authentication, we are going to use JWT tokens.
+Instead of using fixed authentication, we are going to use JWT tokens.
 
-We are going to add a login-register route. That route will register a user if it doesn't exist,
-and for a valid login or register it will return a JWT token.
-The JWT token will hold the user name, and posting will link a snippet to the user.
+We are going to add a login-register route. This route will register a user if it doesn't exist, and if it's a valid login or registration, it will return a JWT token. The JWT token will hold the user name, and posting a snippet will link it to the user.
 
-We will need to install and configure JWT (replacing the basic auth):
+We will need to install and configure JWT (replacing basic auth):
 
 ```kotlin
 open class SimpleJWT(val secret: String) {
@@ -322,7 +302,7 @@ class LoginRegister(val user: String, val password: String)
 
 ```
 
-With all this, we can already create a route for logging or registering users:
+Now we have enough functionality to create a route for logging or registering users:
 
 ```kotlin
 routing {
@@ -335,15 +315,13 @@ routing {
 }
 ```
 
-With all this, we can already try to obtain a JWT token for our user:
+We are now ready to try and obtain a JWT token for our user:
 
 {% comment %}
 ### IntelliJ
 {% endcomment %}
 
-Using the Editor-Based HTTP client for IntelliJ IDEA Ultimate,
-you can make the POST request, and check that the content is valid,
-and store the token in an environment variable:
+Using the editor-based HTTP client for IntelliJ IDEA Ultimate, you can make the POST request, check that the content is valid, and store the token in an environment variable:
 
 ![](/quickstart/guides/api/IU-http-login-register-request.png)
 
@@ -355,19 +333,20 @@ Now you can make a request using the environment variable `{% raw %}{{auth_token
 
 ![](/quickstart/guides/api/IU-http-snippets-env-auth_token-response.png)
 
-If you want to easily test different endpoints in addition to localhost,
-you can create a `http-client.env.json` file and put a map with environments
-and variables like this:
+If you want to easily test different endpoints in addition to localhost, you can create a `http-client.env.json` file and put a map with environments and variables in it like this:
 
 ![](/quickstart/guides/api/IU-env/http-client.env.json.png)
 
 After this, you can start using the user-defined `{% raw %}{{host}}{% endraw %}` env variable:
+
 ![](/quickstart/guides/api/IU-env/use_host_env.png)
 
-When trying to run a request, you will be able to choose the environment to use:
+When running a request, you will be able to choose the environment to use:
+
 ![](/quickstart/guides/api/IU-env/select_env_for_running.png)
 
 {% comment %}
+
 ### Curl
 
 <table class="compare-table"><thead><tr><th>Bash:</th><th>Response:</th></tr></thead><tbody><tr><td markdown="1">
@@ -390,7 +369,7 @@ curl -v \
 
 </td></tr></tbody></table>
 
-And with that token, we can already publish snippets:
+And with that token, we are ready to publish snippets:
 
 <table class="compare-table"><thead><tr><th>Bash:</th><th>Response:</th></tr></thead><tbody><tr><td markdown="1">
 
@@ -415,12 +394,11 @@ curl -v \
 
 {% endcomment %}
 
-## Associating user to snippets
+## Associating a User with Snippets
 
-Since we are posting snippets with an authenticated route, we have access to the generated `Principal` that includes
-the username. So we should be able to access that user and associate it to the snippet.
+Since we are posting snippets with an authenticated route, we have access to the generated `Principal` that includes the username. We should be able to access that user and associate it with the snippet.
 
-First of all, we will need to associate user information to snippets:
+First of all, we will need to associate user information with snippets:
 
 ```kotlin
 data class Snippet(val user: String, val text: String)
@@ -431,8 +409,7 @@ val snippets = Collections.synchronizedList(mutableListOf(
 ))
 ```
 
-Now we can use the principal information (that is generated by the authentication feature when authenticating JWT)
-when inserting new snippets:
+Now we can use the principal information (generated by the authentication feature when authenticating the JWT) when inserting new snippets:
 
 ```kotlin
 routing {
@@ -491,10 +468,7 @@ Awesome!
 
 ## StatusPages
 
-Now let's refine things a bit. A HTTP API should use Http Status codes to provide semantic information about errors.
-Right now, when an exception is thrown (for example when trying to get a JWT token from an user that already exists,
-but with a wrong password), a 500 server error is returned. We can do it better, and the StatusPages features
-will allow you to do this by capturing specific exceptions and generating the result.
+Now let's refine things a bit. An HTTP API should use HTTP status codes to provide semantic information about errors. Right now, when an exception is thrown (for example when trying to get a JWT token from a user that already exists but with a wrong password), a 500 server error is returned. We can do it better, and the StatusPages feature will allow you to do this by capturing specific exceptions and generating the result.
 
 Let's create a new exception type:
 
@@ -569,8 +543,7 @@ Things are getting better!
 
 ## CORS
 
-Now suppose we need this API to be accessible via JavaScript from another domain. We will need to configure CORS.
-And Ktor has a feature to configure this:
+Now suppose we need this API to be accessible via JavaScript from another domain. We will need to configure CORS, and Ktor has a feature to configure this:
 
 ```kotlin
 fun Application.module() {
@@ -757,12 +730,11 @@ Content-Type: application/json
 
 ## Exercises
 
-After following this guide, as an exercise, you can try to do the following exercises:
+Now that you've finished reading this guide, you can try the following exercises:
 
 ### Exercise 1
 
-Add unique ids to each snippet and add a DELETE http verb to /snippets allowing an authenticated user to delete
-her snippets.  
+Add unique ids to each snippet and add a DELETE HTTP verb to /snippets allowing an authenticated user to delete her snippets.  
 
 ### Exercise 2
 

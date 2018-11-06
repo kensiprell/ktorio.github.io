@@ -12,14 +12,13 @@ Ktor as well as other official Kotlin libraries use the [official Coding Convent
 
 You can use the official coding standard by adding `kotlin.code.style=official` to your `gradle.properties` file.
 
-### With Star Imports
+### Star Imports
 
-The Official Coding Conventions dont't define what's the recommended way of using imports.
-The IntelliJ default is to include star (`*`) imports after importing at least 5 symbols from a package. But in Ktor we use and recommend using star imports always.
+The Official Coding Conventions don't define a recommended way of using imports.
+The IntelliJ default is to include star (`*`) imports after importing at least 5 symbols from a package. However, in Ktor we always use them internally and recommend that you do as well.
 
-The rationale behind it is that usually when you include a class, you will probably want to include all the extension methods and properties declared for that class.
-That's specially convenient for operator extension methods.
+The rationale behind it is that usually when you include a class, you will probably want to include all the extension methods and properties declared for that class. That's especially convenient for operator extension methods.
 
-And then you can change the import configuration in `Preferences... -> Editor -> Code Style -> Kotlin -> Imports`:
+You can change the import configuration in `Preferences... -> Editor -> Code Style -> Kotlin -> Imports`:
 
 ![](/quickstart/code-style/code-style-imports.png)

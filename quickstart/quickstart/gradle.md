@@ -9,20 +9,17 @@ redirect_from:
 priority: 0
 ---
 
-In this guide, we will show you how to create a `build.gradle` file
-and how to configure it to support Ktor.
+In this guide we will show you how to create a `build.gradle` file and how to configure it to support Ktor.
 
 **Table of contents:**
 
 * TOC
 {:toc}
 
-## Basic Kotlin `build.gradle` file (without Ktor)
+## Basic Kotlin `build.gradle` File (without Ktor)
 {: #initial }
 
-First of all, you need a skeleton `build.gradle` file including Kotlin.
-You can create it with any text editor, or you can use IntelliJ to create
-it following the [IntelliJ guide](/quickstart/quickstart/intellij-idea.html).
+First of all you need a skeleton `build.gradle` file including Kotlin. You can create it with any text editor, or you can use IntelliJ to create it following the [IntelliJ guide](/quickstart/quickstart/intellij-idea.html).
 
 The initial file looks like this:
 
@@ -59,12 +56,10 @@ dependencies {
 ```
 {: .compact}
 
-## Add Ktor dependencies and configure build settings
+## Add Ktor Dependencies and Configure Build Settings
 {: #ktor-dependencies}
 
-Ktor artifacts are located in a specific repository on bintray.
-And its core has dependencies on the `kotlinx.coroutines` library that
-can be found on `jcenter`.
+Ktor artifacts are located in a specific repository on `bintray`. Its core has dependencies on the `kotlinx.coroutines` library that can be found on `jcenter`.
 
 You have to add both to the `repositories` block in the `build.gradle` file:
 
@@ -73,12 +68,9 @@ jcenter()
 maven { url "https://dl.bintray.com/kotlin/ktor" }
 ```
 
-Visit [Bintray](https://bintray.com/kotlin/ktor/ktor) and determine the latest version of ktor.
-In this case it is `{{site.ktor_version}}`.
+Visit [Bintray](https://bintray.com/kotlin/ktor/ktor) to determine the latest version of Ktor. In this case it is `{{site.ktor_version}}`.
 
-You have to specify that version in each Ktor artifact reference,
-and to avoid repetitions, you can specify that version in an extra property
-in the `buildscript` block (or in a `gradle.properties` file) for using it later:
+You have to specify that version in each Ktor artifact reference, and to avoid repetition you can specify that version in an extra property in the `buildscript` block (or in a `gradle.properties` file) for later use:
 
 ```groovy
 ext.ktor_version = '{{site.ktor_version}}'
@@ -90,14 +82,10 @@ Now you have to add the `ktor-server-core` artifact, referencing the `ktor_versi
 compile "io.ktor:ktor-server-core:$ktor_version"
 ```
 
-In groovy, there are single-quoted strings (instead of characters)
-and double-quoted strings, to be able to interpolate variables like
-versions, you have to use double-quoted strings.
+In groovy there are single-quoted strings (instead of characters) and double-quoted strings. In order to interpolate variables like versions, you have to use double-quoted strings.
 {: .note.tip }
 
-As for Kotlin 1.2x, coroutines are still an experimental feature, 
-so you will need to tell the compiler that it is okay
-to use them to avoid warnings:
+Coroutines were an experimental feature in Kotlin 1.2x and below, so you have to tell the compiler that it is okay to use them to avoid warnings:
 
 ```groovy
 kotlin {
@@ -107,8 +95,7 @@ kotlin {
 }
 ```
 
-You also need to tell the Kotlin compiler to generate bytecode
-compatible with Java 8:
+You also need to tell the Kotlin compiler to generate bytecode compatible with Java 8:
 {: #java8}
 
 ```groovy
@@ -120,20 +107,14 @@ compileTestKotlin {
 }
 ```
 
-## Choose your engine and configure it
+## Choose and Configure an Engine
 {: #engine}
 
-Ktor can run in many environments, such as Netty, Jetty or any other
-Servlet-compatible Application Container such as Tomcat.
+Ktor can run in many environments, such as Netty, Jetty, or any other Servlet-compatible Application Container such as Tomcat.
 
-This example shows you how to configure Ktor with Netty.
-For other engines see [artifacts](/quickstart/artifacts.html) for a list of
-available artifacts.
+This example shows you how to configure Ktor with Netty. For other engines see [artifacts](/quickstart/artifacts.html) for a list of available artifacts.
 
-You will add a dependency for `ktor-server-netty` using the
-`ktor_version` property you have created. This module provides
-a Netty web server and all the required code to run Ktor
-application on top of it:
+You have to add a dependency for `ktor-server-netty` using the `ktor_version` property you created. This module provides a Netty web server and all the required code to run a Ktor application on top of it:
 
 ```groovy
 compile "io.ktor:ktor-server-netty:$ktor_version"
@@ -142,7 +123,7 @@ compile "io.ktor:ktor-server-netty:$ktor_version"
 ## Final `build.gradle` (with Ktor)
 {: #complete}
 
-When you are done, the `build.gradle` file should look like this:
+When you are done the `build.gradle` file should look like this:
 
 ```groovy
 group 'Example'
@@ -191,11 +172,9 @@ dependencies {
 }
 ```
 
-You can now run Gradle (just `gradle` or `./gradlew` if using the wrapper)
-to fetch dependencies and verify everything is set up correctly.
+You can now run Gradle (just `gradle` or `./gradlew` if using the wrapper) to fetch dependencies and verify everything is set up correctly.
 
-## Configure logging
+## Configure Logging
 {: #logging}
 
-If you want to log application events and useful information,
-you can read about it further in the [logging](/servers/logging.html) page.
+If you want to log application events and other useful information, you can find out how on the [logging](/servers/logging.html) page.

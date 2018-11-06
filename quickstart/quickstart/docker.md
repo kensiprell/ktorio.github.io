@@ -8,30 +8,27 @@ redirect_from:
 priority: 0
 ---
 
-[Docker](https://www.docker.com) is a container platform:
-it allows packaging software in a format that can then be run in isolation in any supported operating system.
+[Docker](https://www.docker.com) is a container platform that allows packaging software in a format that can then be run in isolation on any supported operating system.
 
-Publishing a Ktor application to docker is very easy and only takes a few steps:
+Publishing a Ktor application to Docker is very easy and only takes a few steps:
 
 * Install [Docker](https://www.docker.com)
-* A JAR packaging tool
+* Use a JAR packaging tool
 
-In this page we will guide you through creating a docker image and publishing an application to it.
+In this tutorial we will guide you through creating a docker image and publishing an application to it.
 
 **Table of contents:**
 
 * TOC
 {:toc}
 
-### Package an application using Gradle
+### Package an Application Using Gradle
 
-In this tutorial, we will use the Gradle [shadow plugin](https://github.com/johnrengelman/shadow).
-It packages all the output classes, resources, and all the required dependencies into a single JAR file,
-and appends a manifest file to tell Java which is the entry-point main class containing the main method. 
+In this tutorial we will use the Gradle [shadow plugin](https://github.com/johnrengelman/shadow). It packages all output classes, resources, and all required dependencies into a single JAR file and appends a manifest file that points Java to the entry-point main class containing the main method.
 
-First, you need to add the shadow plugin dependency in your `build.gradle` file:
+First, you need to add the shadow plugin dependency to your `build.gradle` file:
 
-```groovy 
+```groovy
 buildscript {
     ...
     repositories {
@@ -50,17 +47,15 @@ After that, you have to apply it, along with the application plugin:
 ```groovy
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: 'application'
-``` 
+```
 
-Then specify the main class, so it knows what to run when running the java's JAR inside Docker:
+Then specify the main class, so it knows what to run when running the JAR inside Docker:
 
 ```groovy
 mainClassName = 'org.sample.ApplicationKt'
 ```
 
-The string is the fully qualified name of the class containing your `main` function. When `main` function is a top-level
-function in a file, the class name is the file name with the `Kt` suffix. In the example above, `main` function is in the
-file `Application.kt` in package `org.sample`.
+The string is the fully qualified name of the class containing your `main` function. When the `main` function is a top-level function in a file, the class name is the file name with the `kt` suffix. In the example above, the `main` function is in the file `Application.kt` in package `org.sample`.
 
 Finally, you have to configure the shadow plugin:
 
@@ -72,12 +67,11 @@ shadowJar {
 }
 ```
 
-Now you can run `./gradlew build` to build and package your application.
-You should get `my-application.jar` in `build/libs` folder.  
+Now you can run `./gradlew build` to build and package your application. You should see `my-application.jar` in the `build/libs` folder.
 
-For more information about configuring this plugin see [documentation for the plugin](http://imperceptiblethoughts.com/shadow/)
+For more information about configuring this plugin see [documentation for the plugin](http://imperceptiblethoughts.com/shadow/).
 
-So a full `build.gradle` file would look like this:
+So a complete `build.gradle` file would look like this:
 
 
 **`build.gradle`**:
@@ -177,10 +171,10 @@ fun Application.main() {
 ```
 {: .compact}
 
-You can check this [full example](https://github.com/ktorio/ktor-samples/tree/master/deployment/docker) at the ktor-samples repository.
+You can check this [full example](https://github.com/ktorio/ktor-samples/tree/master/deployment/docker) in the ktor-samples repository.
 {: .note }
 
-### Prepare Docker image
+### Prepare the Docker Image
 
 In the root folder of your project create a file named `Dockerfile` with the following contents:
 
@@ -193,9 +187,7 @@ Let's see what is what:
 FROM openjdk:8-jre-alpine
 ```
 
-This line tells Docker to base an image on a pre-built image with [Alpine Linux](https://alpinelinux.org/). You can use other images 
-from [OpenJDK registry](https://hub.docker.com/_/openjdk/). Alpine Linux benefit is that the image is pretty small. 
-We also select JRE-only image since we don't need to compile code on the image, only run precompiled classes.
+This line tells Docker to base an image on a pre-built image with [Alpine Linux](https://alpinelinux.org/). You can use other images from the [OpenJDK registry](https://hub.docker.com/_/openjdk/). The main Alpine Linux benefit is that the image is relatively small. We also select the JRE-only image since we don't need to compile code on the image, only run precompiled classes.
 
 ```text
 RUN mkdir /app
@@ -203,15 +195,15 @@ COPY ./build/libs/my-application.jar /app/my-application.jar
 WORKDIR /app
 ```
 
-These lines copy your packaged application into the Docker image and sets the working directory to where we copied it.
+These lines copy your packaged application into the Docker image and set the working directory to where we copied it.
 
 ```text
 CMD ["java", "-server", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-XX:InitialRAMFraction=2", "-XX:MinRAMFraction=2", "-XX:MaxRAMFraction=2", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=100", "-XX:+UseStringDeduplication", "-jar", "my-application.jar"]
 ```
 
-The last line instructs Docker to run `java` with G10s GC, 4G of memory and your packaged application. 
+The last line instructs Docker to run `java` with G10s GC, 4G of memory, and your packaged application.
 
-### Building and running the Docker image
+### Building and Running the Docker Image
 
 Build an application package:
 
@@ -231,39 +223,30 @@ Start an image:
 docker run -m512M --cpus 2 -it -p 8080:8080 --rm ktor-docker-sample-application
 ```
 
-With this command, we start Docker in a foreground mode. It will wait for the server to exit, it
-will also respond to `Ctrl+C` to stop it. `-it` instructs Docker to allocate a terminal (*tty*) to pipe the stdout
-and to respond to the interrupt key sequence. 
+With this command, we start Docker in foreground mode. It will wait for the server to exit, and it will also respond to `Ctrl+C` to stop it. `-it` instructs Docker to allocate a terminal (*tty*) to pipe the stdout and to respond to the interrupt key sequence.
 
-Since our server is running in an isolated container now, we should tell Docker to expose a port so we can
-actually access the server port. Parameter `-p 8080:8080` tells Docker to publish port 8080 from inside a container as a port 8080 on a local
-machine. Thus, when you tell your browser to visit `localhost:8080` it will first reach out to Docker, and it will bridge
-it into internal port `8080` for your application. 
+Since our server is running in an isolated container now, we should tell Docker to expose a port so we can actually access the server port. Parameter `-p 8080:8080` tells Docker to publish port 8080 from inside a container as a port 8080 on a local machine. Thus, when you navigate your browser to  `localhost:8080` it will first reach out to Docker, and it will bridge it to internal port `8080` for your application.
 
-You can adjust memory with `-m512M` and number of exposed cpus with `--cpus 2`. 
+You can adjust memory with `-m512M` and the number of exposed CPUs with `--cpus 2`.
 
-By default a container’s file system persists even after the container exits, so we supply `--rm` option to prevent
-garbage piling up.
+By default, a container’s file system persists even after the container exits, so we supply the `--rm` option to prevent garbage piling up.
 
-For more information about running a docker image please consult [docker run](https://docs.docker.com/engine/reference/run) 
-documentation.
+For more information about running a Docker image, please consult the [docker run](https://docs.docker.com/engine/reference/run) documentation.
 
-### Pushing docker image 
+### Pushing a Docker Image
 
-Once your application is running locally successfully, it might be a time to deploy it:
+Once your application is running successfully on your local machine, it might be time to deploy it:
 
 ```text
 docker tag my-application hub.example.com/docker/registry/tag
 docker push hub.example.com/docker/registry/tag
 ```
- 
-These commands will tag your application for a registry and push an image. 
-Of course, you need to replace `hub.example.com/docker/registry/tag` with an actual URL for your registry.
 
-We won't go into details here since your configuration might require authentication, specific configuration options 
-and even special tools. Please consult your organization or cloud platform, or 
-check [docker push](https://docs.docker.com/engine/reference/commandline/push/) documentation.
+These commands will tag your application for a registry and push an image. Of course, you need to replace `hub.example.com/docker/registry/tag` with an actual URL for your registry.
+
+We won't go into details here since your configuration might require authentication, specific configuration options, or even special tools. Please consult your organization or cloud platform, or
+check the [docker push](https://docs.docker.com/engine/reference/commandline/push/) documentation.
 
 ### Sample
 
-You can check a [full sample](https://github.com/ktorio/ktor-samples/tree/master/deployment/docker) at the ktor-samples repository.
+You can see a [full sample](https://github.com/ktorio/ktor-samples/tree/master/deployment/docker) in the ktor-samples repository.

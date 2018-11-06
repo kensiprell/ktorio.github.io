@@ -7,10 +7,10 @@ redirect_from:
   - /advanced/kotlinx.coroutines.html
 ---
 
-Ktor makes heavy use of Kotlin coroutines for linear-like asynchronous programming.
+Ktor makes heavy use of Kotlin Coroutines for linear-like asynchronous programming.
 Ktor uses and exposes [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines).
 
-So it is a good idea to familiarize yourself with a few concepts.
+It is a good idea to familiarize yourself with a few concepts.
 
 ## Official Documentation
 

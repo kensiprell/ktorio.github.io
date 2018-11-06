@@ -15,38 +15,23 @@ keywords: tls ssl https let's encrypt letsencrypt
 * TOC
 {:toc}
 
-You can buy a certificate and configure Ktor to use it,
-**or** you can use Let's Encrypt to automatically get a **free certificate** to serve `https://` and `wss://` requests
-with Ktor.
-In this page you will discover how to do it, by either configuring Ktor to directly serve the SSL certificate
-for a single domain or by using Docker with nginx to serve different applications in different machines on
-a single machine easily.
+You can buy a certificate and configure Ktor to use it, **or** you can use Let's Encrypt to automatically get a **free certificate** to serve `https://` and `wss://` requests with Ktor. On this page you will discover how to do it, either by configuring Ktor to directly serve the SSL certificate for a single domain or by using Docker with Nginx to serve different applications on different machines from a single machine.
 
-## Option1: With Ktor serving SSL directly
+## Option 1: Ktor Serving SSL Directly
 {: #ktor}
 
-### Configuring an `A` register pointing to the machine
+### Configuring an `A` Register Pointing to the Machine
 
-First of all, you have to configure your domain or subdomain to point to the IP of the machine that
-you are going to use for the certificate. You have to put the public IP of the machine here.
-If that machine is behind routers, you will need to configure the router to DMZ the machine with the host,
-or to redirect at least the port 80 (HTTP) to that machine, and later you will probably want to configure the
-port 443 (HTTPS) too.
+First of all you have to configure your domain or subdomain to point to the IP of the machine that you are going to use for the certificate. If that machine is behind routers, you will need to configure the router to DMZ the machine with the host or to redirect at least port 80 (HTTP) to that machine, and later you will probably want to configure port 443 (HTTPS) as well.
 
-Let's Encrypt can always access the PORT 80 of your public IP, even if you configure Ktor to bind to another port,
-you have to configure your routes to redirect the port 80 to the correct local ip and port of the machine
-hosting ktor.
+Let's Encrypt can always access port 80 of your public IP, even if you configure Ktor to bind to another port. You have to configure your routes to redirect port 80 to the correct local IP and port of the machine hosting Ktor.
 {: .note }
 
-### Generating a certificate
+### Generating a Certificate
 
-The Ktor server must not be running, and you have to execute the following command
-(changing `my.example.com`, `root@example.com` and `8889`).
+The Ktor server must not be running, and you have to execute the following command (changing `my.example.com`, `root@example.com` and `8889`).
 
-This command will start a HTTP web server in the specified port (that must be available as port 80 in the
-public network, or you can forward ports in your router to 80:8889, and the domain must point to your public IP),
-it will then request a challenge, expose the `/.well-known/acme-challenge/file` with the proper content, generate a 
-domain private key, and retrieve the certificate chain:  
+This command will start an HTTP web server listening on the specified port (must be available as port 80 in the public network or you can forward ports in your router to 80:8889; the domain must point to your public IP). It will then request a challenge, expose the `/.well-known/acme-challenge/file` with the proper content, generate a domain private key, and retrieve the certificate chain:
 
 ```
 export DOMAIN=my.example.com
@@ -124,7 +109,7 @@ IMPORTANT NOTES:
 </tr>
 </table>
 
-### Converting the private key and certificate for Ktor
+### Converting the Private Key and Certificate for Ktor
 
 Now you have to convert the private key and certificates written by `certbot` to a format that Ktor understands.
 
@@ -141,16 +126,16 @@ Enter Export Password: mypassword
 Verifying - Enter Export Password: mypassword
 ```
 
-With th p12 file, we can use the `keytool` cli to generate a JKS file: 
+With the p12 file, we can use the `keytool` cli to generate a JKS file:
 
 ```
 keytool -importkeystore -alias $ALIAS -destkeystore /etc/letsencrypt/live/$DOMAIN/keystore.jks -srcstoretype PKCS12 -srckeystore /etc/letsencrypt/live/$DOMAIN/keystore.p12
 ```
 
-### Configuring Ktor to use the generated JKS
+### Configuring Ktor to Use the Generated JKS
 
-Now you have to update your `application.conf` HOCON file, to configure the SSL port, the keyStore, alias, and passwords.
-You have to set the correct values for your specific case: 
+Now you have to update your `application.conf` HOCON file to configure the SSL port, the keyStore, alias, and passwords.
+You have to set the correct values for your specific case:
 
 ```groovy
 ktor {
@@ -174,33 +159,29 @@ ktor {
 }
 ```
 
-If everything went well, Ktor should be listening on port 8889 in HTTP and listening on port 8890 in HTTPS.
+If everything went well, Ktor should be listening on port 8889 for HTTP and listening on port 8890 for HTTPS.
 
-## Option2: With Docker and Nginx as reverse proxy
+## Option 2: Docker and Nginx as a Reverse Proxy
 {: #docker}
 
-When using Docker with multiple domains, you might want to use the [nginx-proxy] image and the [letsencrypt-nginx-proxy-companion]
-image to serve multiple domains/subdomains in a single machine/ip and to automatically provide HTTPS, using let’s encrypt.
+When using Docker with multiple domains, you might want to use the [nginx-proxy] image and the [letsencrypt-nginx-proxy-companion] image to serve multiple domains and subdomains on a single machine/IP and to automatically provide HTTPS using Let’s Encrypt.
 
-In this case you create a container with NGINX, potentially listening to port 80 and 443, an internal network
-accessible only between containers so nginx can connect and reverse proxy your websites (including websockets),
-and a NGINX companion handling the domain certificates by introspecting the configured Docker containers. 
+In this case you create a container with Nginx, potentially listening on port 80 and 443, an internal network accessible only between containers so Nginx can connect and reverse proxy your websites (including websockets), and an Nginx companion handling the domain certificates by introspecting the configured Docker containers.
 
 [nginx-proxy]: https://github.com/jwilder/nginx-proxy
 [letsencrypt-nginx-proxy-companion]: https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
 
-### Creating a internal docker network
+### Creating an Internal Docker Network
 
-The first step is to create a bridge network that we will use so nginx can connect to other containers
-to reverse proxy a user's HTTP, HTTPS, WS, and WSS requests:
+The first step is to create a bridge network that we will use so Nginx can connect to other containers to reverse proxy a user's HTTP, HTTPS, WS, and WSS requests:
 
 ```bash
 docker network create --driver bridge reverse-proxy
 ```
 
-### Creating an Nginx container
+### Creating an Nginx Container
 
-Now we have to create a container running NGINX doing the reverse proxy:
+Now we have to create a container running Nginx doing the reverse proxy:
 
 ```bash
 docker rm -f nginx
@@ -218,19 +199,18 @@ docker run -d -p 80:80 -p 443:443 \
 	jwilder/nginx-proxy
 ```
 
-* `--restart=always` so the docker daemon restarts the container when the machine is restarted.
-* `--network=reverse-proxy` so NGINX is in that network and can connect to other containers in the same network.
-* `-v certs:ro` this volume will be shared with the letsencrypt-companion to access the certificates per domain.
-* `-v conf, vhost` so this configuration is persistent and accessible from outside in the case you have to do some tweaks.
-* `-v /var/run/docker.sock` this allows this image to get notified / introspect about new containers running in the daemon.
-* `-e --label` used by the companion by identify this image as NGINX.
+* `--restart=always` so the docker daemon restarts the container when the machine is restarted
+* `--network=reverse-proxy` so Nginx is in the network and can connect to other containers in the same network
+* `-v certs:ro` this volume will be shared with the letsencrypt-companion to access the certificates per domain
+* `-v conf, vhost` so this configuration is persistent and accessible from outside in the case you have to do some tweaks
+* `-v /var/run/docker.sock` allows this image to get notified / introspect about new containers running in the daemon
+* `-e --label` used by the companion to identify this image as Nginx
 
 You can adjust `/home/virtual/nginx*` paths to the path you prefer.
 
-### Creating a Nginx Let's Encrypt companion container
+### Creating an Nginx Let's Encrypt Companion Container
 
-With the nginx-proxy container, now we can create a companion container,
-that will request and renew certificates:
+With the nginx-proxy container, now we can create a companion container that will request and renew certificates:
 
 ```bash
 docker rm -f nginx-letsencrypt
@@ -244,16 +224,15 @@ docker run -d \
     jrcs/letsencrypt-nginx-proxy-companion
 ```
 
-* `--restart=always` as NGINX image, to restart on boot.
-* `--network=reverse-proxy` it need to be on the same network as the NGINX proxy container to communicate with it.
-* `--volumes-from nginx` it makes accessible the same volumes as the NGINX container so it can write the `.well-known` challenge inside `/usr/share/nginx/html`.
-* `-v certs:rw` it requires write access to write the private key and certificates to be available from NGINX.
-* `-v /var/run/docker.sock` requires access to docker events and introspection to determine which certificates to request.
+* `--restart=always` Nginx image should restart on boot
+* `--network=reverse-proxy` needs to be on the same network as the Nginx proxy container to communicate with it
+* `--volumes-from nginx` makes the same volumes accessible as the Nginx container so it can write the `.well-known` challenge inside `/usr/share/nginx/html`
+* `-v certs:rw` requires write access to write the private key and certificates to be available from Nginx
+* `-v /var/run/docker.sock` requires access to Docker events and introspection to determine which certificates to request
 
-### Creating a service
+### Creating a Service
 
-Now we have NGINX and Let's Encrypt companion configured so they will automatically reverse-proxy your websites and
-request and serve certificates for them based on the environment variables `VIRTUAL_HOST`, `VIRTUAL_PORT` and `LETSENCRYPT_HOST`, `LETSENCRYPT_EMAIL`.
+Now we have Nginx and the Let's Encrypt companion configured so they will automatically reverse-proxy your websites and request and serve certificates for them based on the environment variables `VIRTUAL_HOST`, `VIRTUAL_PORT`, `LETSENCRYPT_HOST`, and `LETSENCRYPT_EMAIL`.
 
 Using docker-compose, you can create a `docker-compose.yml` file (without additional services) that could look like this:
 
@@ -289,9 +268,9 @@ networks:
 {% capture my_include %}{% include docker-sample.md %}{% endcapture %}
 {{ my_include | markdownify }}
 
-You can find more information about [how to deploy a docker and the Dockerfile in the deploy section](/servers/deploy.html#docker).
+You can find more information about [how to deploy a Docker and the Dockerfile in the deploy section](/servers/deploy.html#docker).
 
-### Simplified overview
+### Simplified Overview
 
 ```nomnoml
 #direction: right

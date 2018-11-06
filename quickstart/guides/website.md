@@ -6,12 +6,9 @@ category: quickstart
 
 {::options toc_levels="1..2" /}
 
-In this guide you will learn how to create an HTML Website using Ktor.
-We are going to create a simple website with HTML rendered at the back-end with users, a login form,
-and keeping a persistent session.
+In this guide you will learn how to create an HTML Website using Ktor. We are going to create a simple website with HTML rendered on the back-end with users, a login form, and persistent sessions.
 
-To achieve this, we are going to use the [Routing], [StatusPages], [Authentication], [Sessions], [StaticContent],
-[FreeMarker], and [HTML DSL] features.
+To achieve this we are going to use the [Routing], [StatusPages], [Authentication], [Sessions], [StaticContent], [FreeMarker], and [HTML DSL] features.
 
 [Routing]: /servers/features/routing.html
 [StatusPages]: /servers/features/status-pages.html
@@ -26,20 +23,19 @@ To achieve this, we are going to use the [Routing], [StatusPages], [Authenticati
 * TOC
 {:toc}
 
-## Setting up the project
+## Setting Up the Project
 
-The first step is to set up a project. You can follow the [Quick Start](/quickstart/index.html) guide, or use the following form to create one:
+The first step is to set up a project. You can follow the [Quick Start](/quickstart/index.html) guide or use the following tool to create one:
 
 {% include preconfigured-form.html hash="dependency=html-dsl&dependency=css-dsl&dependency=freemarker&dependency=static-content&dependency=auth&dependency=ktor-sessions&dependency=status-pages&dependency=routing&artifact-name=website-example" %}
 
-## Simple routing
+## Simple Routing
 
-First of all, we are going to use the routing feature. This feature is part of the Ktor's core, so you won't need
-to include any additional artifacts.
+First of all, we are going to use the routing feature. This feature is part of the Ktor's core, so you won't need to include any additional artifacts.
 
 This feature is installed automatically when using the `routing { }` block.
 
-Let's start creating a simple GET route that responds with 'OK':
+Let's start by creating a simple GET route that responds with 'OK':
 
 ```kotlin
 fun Application.module() {
@@ -53,12 +49,11 @@ fun Application.module() {
 
 ## Serving HTML with FreeMarker
 
-Apache FreeMarker is a template engine for the JVM, and thus you can use it with Kotlin.
-There is a Ktor feature supporting it.
+Apache FreeMarker is a template engine for the JVM, and thus you can use it with Kotlin. There is a Ktor feature supporting it.
 
 For now, we are going to store the templates embedded as part of the resources in a `templates` folder.
 
-Create a file called `resources/templates/index.ftl` and put in the following content to create a simple HTML list:
+Create a file called `resources/templates/index.ftl` and insert the following content to create a simple HTML list:
 
 ```freemarker
 <#-- @ftlvariable name="data" type="com.example.IndexData" -->
@@ -85,7 +80,7 @@ fun Application.module() {
     install(FreeMarker) {
         templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
     }
-    
+
     routing {
         get("/") {
             call.respond(FreeMarkerContent("index.ftl", mapOf("data" to IndexData(listOf(1, 2, 3))), ""))
@@ -100,16 +95,13 @@ Now you can run the server and open a browser pointing to <http://127.0.0.1:8080
 
 Nice!
 
-## Serving static files: styles, scripts, images... 
+## Serving Static Files: Styles, Scripts, Images ...
 
-In addition to templates, you will want to serve static content.
-Static content will serve faster, and is compatible with other features like Partial Content that allows
-you to resume downloads or partially download files.
+In addition to templates, you will want to serve static content. Static content will serve faster and is compatible with other features like Partial Content that allows you to resume downloads or partially download files.
 
 For now, we are going to serve a simple `styles.css` file to apply styles to our simple page.
 
-Serving static files doesn't require installing any features, but it is a plain Route handler.
-To serve static files at the `/static` url, from `/resources/static`, you would write the following code:
+Serving static files doesn't require installing any features; it is a plain Route handler. To serve static files at the `/static` url from `/resources/static` you would write the following code:
 
 ```kotlin
 routing {
@@ -150,11 +142,9 @@ Now we have a colorful website from 1990!
 Static files are not only text files! Try to add an image (what about a fancy animated blinking gif file? 👩🏻‍🎨) to the `static` folder, and include a `<img src="...">` tag to the HTML template.
 {: .note.exercise}
 
-## Enabling partial content: large files and videos
+## Enabling Partial Content: Large Files and Videos
 
-Though not really needed for this specific case, if you enable partial content support, people will be able
-to resume larger static files on connections with frequent problems, or allow seeking support when
-serving and watching videos.
+Though not really needed for this specific case, if you enable partial content support, people will be able to resume downloading larger static files on connections with frequent problems or allow support sessions while serving and watching videos.
 
 Enabling partial content is straightforward:
 
@@ -163,10 +153,9 @@ install(PartialContent) {
 }
 ```
 
-## Creating a form
+## Creating a Form
 
-Now we are going to create a fake login form. To make it simple, we are going to accept users with the same password,
-and we are not going to implement a registration form.
+Now we are going to create a fake login form. To make it simple, we are going to accept users with the same password, and we are not going to implement a registration form.
 
 Create a `resources/templates/login.ftl`:
 
@@ -208,14 +197,11 @@ route("/login") {
 }
 ```
 
-As we said, we are accepting `username` with the same `password`, but we are not accepting null values.
-If the login is valid, we respond with a single OK for now, while we reuse the template if the login fails
-to display the same form but with an error.
+As we said, we are accepting `username` with the same `password`, but we are not accepting null values. If the login is valid, we respond with a single OK for now, while we reuse the template if the login fails to display the same form but with an error.
 
 ## Redirections
 
-In some cases, like route refactoring or forms, we will want to perform redirections (either temporary or permanent).
-In this case, we want to temporarily redirect to the homepage upon successful login, instead of replying with plain text.
+In some cases, like route refactoring or forms, we will want to perform redirections (either temporary or permanent). In this case, we want to temporarily redirect to the homepage upon successful login instead of replying with plain text.
 
 <table class="compare-table"><thead><tr><th>Original:</th><th>Change:</th></tr></thead><tbody><tr><td markdown="1">
 
@@ -231,10 +217,9 @@ call.respondRedirect("/", permanent = false)
 
 </td></tr></tbody></table>
 
-## Using the Form authentication
+## Using Form Authentication
 
-To illustrate how to receive POST parameters we have handled the login manually, but we can also use the authentication
-feature with a form provider:
+To illustrate how to receive POST parameters we handled the login manually, but we can also use the authentication feature with a form provider:
 
 ```kotlin
 install(Authentication) {
@@ -260,8 +245,7 @@ route("/login") {
 
 ## Sessions
 
-To prevent having to authenticate all the pages, we are going to store the user in a session, and that session will
-be propagated to all the pages using a session cookie.
+To prevent having to authenticate for each individual page, we are going to store the user in a session, and that session will be propagated to all pages using a session cookie.
 
 ```kotlin
 data class MySession(val username: String)
@@ -277,10 +261,10 @@ fun Application.module() {
             call.respondRedirect("/", permanent = false)
         }
     }
-} 
+}
 ```
 
-Inside our pages, we can try to get the session and produce different results:
+Inside our pages we can try to get the session and produce different responses:
 
 ```kotlin
 fun Application.module() {
@@ -296,15 +280,13 @@ fun Application.module() {
 }
 ```
 
-## Using HTML DSL instead of FreeMarker
+## Using HTML DSL Instead of FreeMarker
 
-You can choose to generate HTML directly from the code instead of using a Template Engine.
-For that you can use the HTML DSL. This DSL doesn't require installation, but requires an additional artifact.
-This artifact provides an extension to respond with HTML blocks:
+You can choose to generate HTML directly from code instead of using a Template Engine. For that you can use the HTML DSL. This DSL doesn't require installation, but it requires an additional artifact. This artifact provides an extension to respond with HTML blocks:
 
 ```kotlin
-get("/") { 
-    val data = IndexData(listOf(1, 2, 3)))  
+get("/") {
+    val data = IndexData(listOf(1, 2, 3)))
     call.respondHtml {
         head {
             link(rel = "stylesheet", href = "/static/styles.css")
@@ -312,7 +294,7 @@ get("/") {
         body {
             ul {
                 for (item in data.items) {
-                    li { +"$item" }                
+                    li { +"$item" }
                 }
             }
         }
@@ -320,18 +302,15 @@ get("/") {
 }
 ```
 
-The main benefits of an HTML DSL is that you have full statically typed access to variables and it is thoroughly integrated
-with the code base.
+The main benefits of the HTML DSL is that you have full statically typed access to variables and it is thoroughly integrated with the code base.
 
-The downside of all this is that you have to recompile to change the HTML, and you can't search complete HTML blocks.
-But it is lightning fast, and you can use the [autoreload feature](https://ktor.io/servers/autoreload.html) to recompile
-on change and reload the relevant JVM classes.
+The downside of all this is that you have to recompile to change the HTML, and you can't search complete HTML blocks. However, it is lightning fast, and you can use the [autoreload feature](https://ktor.io/servers/autoreload.html) to recompile on change and reload the relevant JVM classes.
 
 ## Exercises
 
 ### Exercise 1
 
-Make a registeration page and store the user/password datasource in memory in a hashmap.
+Create a registration page and store the user/password datasource in memory in a hashmap.
 
 ### Exercise 2
 

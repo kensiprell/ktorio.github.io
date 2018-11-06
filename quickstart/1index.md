@@ -10,13 +10,9 @@ priority: -100
 
 ![Ktor logo](/assets/images/ktor_logo.svg){:style="width:134px;height:56px;"}
  
-Ktor is a framework to easily build connected applications – web applications, HTTP services, mobile and browser applications.
-Modern connected applications need to be asynchronous to provide the best experience to users, and Kotlin coroutines provide
-awesome facilities to do it in an easy and straightforward way. 
+Ktor is a framework to easily build connected applications – web applications, HTTP services, mobile and browser applications. Modern connected applications need to be asynchronous to provide the best experience to users, and Kotlin coroutines provide awesome facilities to do it in an easy and straightforward way. 
 
-While not yet entirely there, the goal of Ktor is to provide an end-to-end multiplatform application framework for connected applications. 
-Currently, JVM client and server scenarios are supported, and we are working on bringing server facilities to native
-environments, and client facilities to native and JavaScript.
+While not yet entirely there, the goal of Ktor is to provide an end-to-end multiplatform application framework for connected applications. Currently, JVM client and server scenarios are supported, and we are working on bringing server facilities to native environments, and client facilities to native and JavaScript.
 
 {::comment}
 Ktor embraces the strongly typed nature of the Kotlin programming language and provides [strongly typed end-points (Locations)](/servers/features/locations.html) and
@@ -146,8 +142,7 @@ dependencies {
 Text version:
 {% include gradle.html gradle-kotlin=gradle-kotlin-build gradle-groovy=gradle-groovy-build %}
 
-Since Ktor is not yet 1.0, we have custom Maven repositories for distributing our early preview artifacts.
-You have to set up a couple of repositories as shown below, so your tools can find Ktor artifacts and dependencies.
+Since Ktor is not yet 1.0, we have custom Maven repositories for distributing our early preview artifacts. You have to set up a couple of repositories as shown below, so your tools can find Ktor artifacts and dependencies.
 
 Of course, don't forget to include the actual artifact! For our quickstart, we are using the `ktor-server-netty` artifact.
 That includes Ktor's core, netty, and the ktor-netty connector as transitive dependencies.
