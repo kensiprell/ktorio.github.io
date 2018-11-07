@@ -6,7 +6,7 @@ caption: Interception per route
 
 If you just want to intercept some calls for a specific route, you have to create a `Route` node and intercept that node.
 
-For example, for creating a timeout for a route, you could do the following:
+For example, you could do the following to create a timeout for a route:
 
 ```kotlin
 fun Route.routeTimeout(time: Long, unit: TimeUnit = TimeUnit.SECONDS, callback: Route.() -> Unit): Route {
@@ -39,12 +39,12 @@ The `Route` class defines an intercept method that applies to that route node or
 fun Route.intercept(phase: PipelinePhase, block: PipelineInterceptor<Unit, ApplicationCall>)
 ```
 
-## Getting the route being handled
+## Get the Route Being Handled
 {: #route-from-call }
 
 You can get the route being handled by casting the `call: ApplicationCall` to `RoutingApplicationCall` that has a `route: Route` property.
 
-## Getting the route path
+## Get the Route Path
 {: #route-path }
 
 `Route` overrides the `toString()` method to generate a path to the route, something like:
@@ -75,7 +75,7 @@ override fun Route.toString() = when {
     }
 ```
 
-## Hooking before and after routing
+## Hooking Before and After Routing
 
 You can globally intercept the routing calls by using the events `Routing.RoutingCallStarted` and `Routing.RoutingCallFinished`:
 

@@ -23,7 +23,7 @@ environments, and client facilities to native and JavaScript.
 * TOC
 {:toc}
 
-## Set a Ktor project
+## Ktor Project Setup
 
 You can set up a Ktor project using [Maven](/quickstart/quickstart/maven.html), [Gradle](/quickstart/quickstart/gradle.html), [start.ktor.io](/quickstart/generator.html#) and the [IntelliJ Plugin](/quickstart/quickstart/intellij-idea/plugin.html).
 
@@ -80,7 +80,7 @@ fun main(args: Array<String>) {
 %}
 
 
-## Accessing your application
+## Accessing Your Application
 
 Since you have a main method, you can execute it with your IDE.
 That will open a HTTP server, listening on [http://127.0.0.1:8080](http://127.0.0.1:8080/).
@@ -98,7 +98,7 @@ Since you have configured a Gradle project with the application plugin and the `
 {:.note}
 
 {::comment}
-## Next step
+## Next Step
 
 Now we are ready for the next step.
 *What kind of application are you developing?*

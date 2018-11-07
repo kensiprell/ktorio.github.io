@@ -22,7 +22,7 @@ In this tutorial we will guide you through creating a docker image and publishin
 * TOC
 {:toc}
 
-## Package an application using Gradle
+## Package an Application Using Gradle
 
 In this tutorial we will use the Gradle [shadow plugin](https://github.com/johnrengelman/shadow).
 It packages all output classes, resources, and all required dependencies into a single JAR file and appends a manifest file that points Java to the entry-point main class containing the main method.
@@ -182,7 +182,7 @@ fun Application.main() {
 You can check this [full example](https://github.com/ktorio/ktor-samples/tree/master/deployment/docker) in the ktor-samples repository.
 {: .note }
 
-## Prepare Docker image
+## Prepare Docker Image
 
 In the root folder of your project create a file named `Dockerfile` with the following contents:
 
@@ -217,7 +217,7 @@ CMD ["java", "-server", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemor
 
 The last line instructs Docker to run `java` with G10s GC, 4G of memory, and your packaged application.
 
-## Building and running the Docker image
+## Building and Running the Docker Image
 
 Build an application package:
 
@@ -251,7 +251,7 @@ By default, a container’s file system persists even after the container exits,
 
 For more information about running a Docker image, please consult the [docker run](https://docs.docker.com/engine/reference/run) documentation.
 
-## Pushing docker image
+## Push Docker Image
 
 Once your application is running successfully on your local machine, it might be time to deploy it:
 

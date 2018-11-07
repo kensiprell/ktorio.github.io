@@ -65,7 +65,7 @@ val charsetEncoder = charset.newEncoder()
 charsetEncoder.encode("HELLO", 1, 2, output)
 ```
 
-## Further details about Charsets
+## Further Details about Charsets
 
 Some charsets represent characters as single-byte, others represent characters with several fixed bytes per character, and others are variable.
 Not all the charsets can represent the whole of Unicode character sets.

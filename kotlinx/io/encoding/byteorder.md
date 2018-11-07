@@ -38,7 +38,7 @@ Some CPUs used it as native endian in the past including Motorola, some MIPS and
 
 ## Tools
 
-### Converting values between endians:
+### Converting Values Between Endians:
 
 You can, of course, serialize the value in a view or a packet with one endian and then deserialize it with another endian.
 
@@ -59,7 +59,7 @@ For `Short`, `Int`, and `Long`, you have:
 > In octets: `seeeeeee-efffffff-ffffffff-ffffffff`, and thus reversing bytes would produce very strange
 > floating point values.
 
-### Extensions methods in pure Kotlin for byte-reversing integral types
+### Extension Methods in Pure Kotlin for Byte-reversing Integral Types
 {: kotlin-byte-reversing }
 
 ```kotlin
