@@ -24,7 +24,8 @@ In this tutorial we will guide you through creating a docker image and publishin
 
 ### Package an Application Using Gradle
 
-In this tutorial we will use the Gradle [shadow plugin](https://github.com/johnrengelman/shadow). It packages all output classes, resources, and all required dependencies into a single JAR file and appends a manifest file that points Java to the entry-point main class containing the main method.
+In this tutorial we will use the Gradle [shadow plugin](https://github.com/johnrengelman/shadow).
+It packages all output classes, resources, and all required dependencies into a single JAR file and appends a manifest file that points Java to the entry-point main class containing the main method.
 
 First, you need to add the shadow plugin dependency to your `build.gradle` file:
 
@@ -55,7 +56,9 @@ Then specify the main class, so it knows what to run when running the JAR inside
 mainClassName = 'org.sample.ApplicationKt'
 ```
 
-The string is the fully qualified name of the class containing your `main` function. When the `main` function is a top-level function in a file, the class name is the file name with the `kt` suffix. In the example above, the `main` function is in the file `Application.kt` in package `org.sample`.
+The string is the fully qualified name of the class containing your `main` function.
+When the `main` function is a top-level function in a file, the class name is the file name with the `kt` suffix.
+In the example above, the `main` function is in the file `Application.kt` in package `org.sample`.
 
 Finally, you have to configure the shadow plugin:
 
@@ -67,7 +70,8 @@ shadowJar {
 }
 ```
 
-Now you can run `./gradlew build` to build and package your application. You should see `my-application.jar` in the `build/libs` folder.
+Now you can run `./gradlew build` to build and package your application.
+You should see `my-application.jar` in the `build/libs` folder.
 
 For more information about configuring this plugin see [documentation for the plugin](http://imperceptiblethoughts.com/shadow/).
 
@@ -187,7 +191,10 @@ Let's see what is what:
 FROM openjdk:8-jre-alpine
 ```
 
-This line tells Docker to base an image on a pre-built image with [Alpine Linux](https://alpinelinux.org/). You can use other images from the [OpenJDK registry](https://hub.docker.com/_/openjdk/). The main Alpine Linux benefit is that the image is relatively small. We also select the JRE-only image since we don't need to compile code on the image, only run precompiled classes.
+This line tells Docker to base an image on a pre-built image with [Alpine Linux](https://alpinelinux.org/).
+You can use other images from the [OpenJDK registry](https://hub.docker.com/_/openjdk/).
+The main Alpine Linux benefit is that the image is relatively small.
+We also select the JRE-only image since we don't need to compile code on the image, only run precompiled classes.
 
 ```text
 RUN mkdir /app
@@ -223,9 +230,13 @@ Start an image:
 docker run -m512M --cpus 2 -it -p 8080:8080 --rm ktor-docker-sample-application
 ```
 
-With this command, we start Docker in foreground mode. It will wait for the server to exit, and it will also respond to `Ctrl+C` to stop it. `-it` instructs Docker to allocate a terminal (*tty*) to pipe the stdout and to respond to the interrupt key sequence.
+With this command, we start Docker in foreground mode.
+It will wait for the server to exit, and it will also respond to `Ctrl+C` to stop it. 
+`-it` instructs Docker to allocate a terminal (*tty*) to pipe the stdout and to respond to the interrupt key sequence.
 
-Since our server is running in an isolated container now, we should tell Docker to expose a port so we can actually access the server port. Parameter `-p 8080:8080` tells Docker to publish port 8080 from inside a container as a port 8080 on a local machine. Thus, when you navigate your browser to  `localhost:8080` it will first reach out to Docker, and it will bridge it to internal port `8080` for your application.
+Since our server is running in an isolated container now, we should tell Docker to expose a port so we can actually access the server port.
+Parameter `-p 8080:8080` tells Docker to publish port 8080 from inside a container as a port 8080 on a local machine.
+Thus, when you navigate your browser to  `localhost:8080` it will first reach out to Docker, and it will bridge it to internal port `8080` for your application.
 
 You can adjust memory with `-m512M` and the number of exposed CPUs with `--cpus 2`.
 
@@ -242,10 +253,11 @@ docker tag my-application hub.example.com/docker/registry/tag
 docker push hub.example.com/docker/registry/tag
 ```
 
-These commands will tag your application for a registry and push an image. Of course, you need to replace `hub.example.com/docker/registry/tag` with an actual URL for your registry.
+These commands will tag your application for a registry and push an image.
+Of course, you need to replace `hub.example.com/docker/registry/tag` with an actual URL for your registry.
 
-We won't go into details here since your configuration might require authentication, specific configuration options, or even special tools. Please consult your organization or cloud platform, or
-check the [docker push](https://docs.docker.com/engine/reference/commandline/push/) documentation.
+We won't go into details here since your configuration might require authentication, specific configuration options, or even special tools.
+Please consult your organization or cloud platform, or check the [docker push](https://docs.docker.com/engine/reference/commandline/push/) documentation.
 
 ### Sample
 

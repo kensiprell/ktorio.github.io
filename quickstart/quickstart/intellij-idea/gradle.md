@@ -64,7 +64,8 @@ For a more detailed guide on setting up the `build.gradle` file, check the [Gett
 
 ## Create the App
 
-Select the `src/main/kotlin` directory and create a new package.  We will call it `blog`.
+Select the `src/main/kotlin` directory and create a new package.
+ We will call it `blog`.
 
 Select that directory and create a new Kotlin file under it named `BlogApp`.
 
@@ -105,13 +106,15 @@ This will also create a run configuration in the upper-right part of IntelliJ th
 
 ![Ktor IntelliJ: Program Run Config](/quickstart/intellij-idea/program-run-config.png)
 
-This will start the Netty web server. In your browser enter the URL `localhost:8080` and you should see your example blog page.
+This will start the Netty web server.
+In your browser enter the URL `localhost:8080` and you should see your example blog page.
 
 ![Ktor IntelliJ: Website](/quickstart/intellij-idea/website.png)
 
 ## Improve the App with the Application Object
 
-The setup above has a lot of nested blocks and is not ideal for adding functionality to your app.  We can improve it by using the Application object and referring to that from an embeddedServer call in the main function.
+The setup above has a lot of nested blocks and is not ideal for adding functionality to your app.
+We can improve it by using the Application object and referring to that from an embeddedServer call in the main function.
 
 Change your code in BlogApp.kt to the following:
 
@@ -143,7 +146,8 @@ fun main(args: Array<String>) {
 
 ## Extract Out Configuration Data
 
-Although we can designate some application configuration data in the main function embeddedServer call, we can provide more flexibility for future deployments and changes by extracting this out to a separate configuration file.  In the `src/main/resources` directory we will create a new text file named `application.conf` with the following content:
+Although we can designate some application configuration data in the main function embeddedServer call, we can provide more flexibility for future deployments and changes by extracting this out to a separate configuration file.
+In the `src/main/resources` directory we will create a new text file named `application.conf` with the following content:
 
 ```kotlin
 ktor {
@@ -157,9 +161,11 @@ ktor {
 }
 ```
 
-Then we delete the main function from `BlogApp.kt` and change `fun Application.module()` to `fun Application.main()`.  However, if we run the application now, it will fail with an error message like "Top-level function 'main' not found in package blog."  Our `Application.main()` function is now a function extension and does not qualify as a top-level main function.
+Then we delete the main function from `BlogApp.kt` and change `fun Application.module()` to `fun Application.main()`.
+However, if we run the application now, it will fail with an error message like "Top-level function 'main' not found in package blog."  Our `Application.main()` function is now a function extension and does not qualify as a top-level main function.
 
-This requires us to indicate a new main class as IntelliJ IDEA will no longer be able to find it automatically.  In `build.gradle` we add:
+This requires us to indicate a new main class as IntelliJ IDEA will no longer be able to find it automatically.
+In `build.gradle` we add:
 
 {% capture gradle-groovy-build %}
 ```groovy

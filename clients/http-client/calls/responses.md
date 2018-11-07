@@ -8,8 +8,8 @@ permalink: /clients/http-client/calls/responses.html
 ## Receiving the Body of a Response
 {: #receive}
 
-By default you can use `HttpResponse` or `String` as possible types for typed
-`HttpClient` requests. For example:
+By default you can use `HttpResponse` or `String` as possible types for typed `HttpClient` requests.
+For example:
 
 ```kotlin
 val htmlContent = client.get<String>("https://en.wikipedia.org/wiki/Main_Page")

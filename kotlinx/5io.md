@@ -8,12 +8,15 @@ permalink: /kotlinx/io.html
 priority: 1
 ---
 
-The official multiplatform asynchronous I/O for Kotlin. It depends on [kotlinx.coroutines] and [kotlinx.atomicfu].
+The official multiplatform asynchronous I/O for Kotlin.
+It depends on [kotlinx.coroutines] and [kotlinx.atomicfu].
 
 [kotlinx.atomicfu]: /kotlinx/atomicfu.html
 [kotlinx.coroutines]: /kotlinx/coroutines.html
 
-Kotlin provides two killer features: multiplatform projects (including common projects) and coroutines. Multiplatform doesn't provide any special functionality; it only allows you to use the exposed APIs from each platform. Coroutine support is also provided at the language level.
+Kotlin provides two killer features: multiplatform projects (including common projects) and coroutines.
+Multiplatform doesn't provide any special functionality; it only allows you to use the exposed APIs from each platform.
+Coroutine support is also provided at the language level.
 
 This project exposes common functionality for doing I/O in a way that works in all targets and uses coroutines to expose a non-blocking API that can be written as easily as plain synchronous code.
 

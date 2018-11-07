@@ -19,7 +19,8 @@ Ktor applications can be built using common build systems such as [Maven](https:
 
 Ktor is divided into several groups of modules, allowing you to include only the functionality that you will need.
  
-For a list of these modules, please check the [Artifacts](/quickstart/artifacts.html) page. For this tutorial, you will only need to include `ktor-server-netty`.  
+For a list of these modules, please check the [Artifacts](/quickstart/artifacts.html) page.
+For this tutorial, you will only need to include `ktor-server-netty`.  
 
 These dependencies are hosted on [Bintray](https://bintray.com/kotlin/ktor), and therefore the correct repositories must be added to your build script.
 
@@ -35,8 +36,8 @@ Ktor allows applications to run within an Application Server compatible with Ser
 
 In this tutorial, you will learn how to self-host an application using Netty.
 
-You can start by creating an `embeddedServer`, passing in the engine factory as the first argument, the port as the second argument, and the actual application code as the fourth argument. The third argument
-is the host, which is 0.0.0.0 by default.
+You can start by creating an `embeddedServer`, passing in the engine factory as the first argument, the port as the second argument, and the actual application code as the fourth argument.
+The third argument is the host, which is 0.0.0.0 by default.
 
 The code below defines a single route that responds to the `GET` verb on the URL `/` with the text `Hello, world!`
 
@@ -75,7 +76,8 @@ Checking the `localhost:8080` page in your browser, you should see the `Hello, w
 ## Next Steps
 {: #next-steps }
 
-This is the simplest example of getting a self-hosted Ktor application up and running. We recommend the following tour to continue learning about Ktor servers:
+This is the simplest example of getting a self-hosted Ktor application up and running.
+We recommend the following tour to continue learning about Ktor servers:
 
 * [What is an Application?](/servers/application.html)
 * [Features](/features)

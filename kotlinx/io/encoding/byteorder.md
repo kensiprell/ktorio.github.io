@@ -42,7 +42,8 @@ Some CPUs used it as native endian in the past including Motorola, some MIPS and
 
 You can, of course, serialize the value in a view or a packet with one endian and then deserialize it with another endian.
 
-However, there are more efficient ways. For `Short`, `Int`, and `Long`, you have:
+However, there are more efficient ways.
+For `Short`, `Int`, and `Long`, you have:
 
 * `java.lang.Short.reverseBytes(10.toShort())` - `(16 bits, 2 octets) AA BB <-> BB AA`
 * `java.lang.Integer.reverseBytes(10)` - `(32 bits, 4 octets) AA BB CC DD <-> DD CC BB AA`

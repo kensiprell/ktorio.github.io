@@ -19,5 +19,6 @@ val client = HttpClient(HttpClientEngine) {
 }
 ```
 
-Use this if you are only interested in the response headers and you cannot use the HEAD verb. This will use less memory and will execute faster.
+Use this if you are only interested in the response headers and you cannot use the HEAD verb. 
+This will use less memory and will execute faster.
 {: .note}

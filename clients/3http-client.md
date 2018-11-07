@@ -11,7 +11,8 @@ caption: Http Client
 In addition to HTTP serving, Ktor also includes a flexible asynchronous HTTP client.
 This client supports several [configurable engines](/clients/http-client/engines.html) and has its own set of [features](#features).
 
-The main functionality is available through the `io.ktor:ktor-client-core:$ktor_version` artifact. Each engine is provided in [separate artifacts](/clients/http-client/engines.html).
+The main functionality is available through the `io.ktor:ktor-client-core:$ktor_version` artifact.
+Each engine is provided in [separate artifacts](/clients/http-client/engines.html).
 {: .note.artifact }
 
 **Table of contents:**
@@ -22,12 +23,13 @@ The main functionality is available through the `io.ktor:ktor-client-core:$ktor_
 ## Calls: Requests and Responses
 {: #requests-responses }
 
-You can check [how to make requests](/clients/http-client/calls/requests.html)
-and [how to receive responses](/clients/http-client/calls/responses.html) in their respective sections.
+You can check [how to make requests](/clients/http-client/calls/requests.html) and [how to receive responses](/clients/http-client/calls/responses.html) in their respective sections.
 
 ## Concurrency
 
-Remember that requests are asynchronous, but when performing requests, the API suspends further requests, and your function will be suspended until done. If you want to perform several requests at once in the same block, you can use `launch` or `async` functions and get the results later. For example:
+Remember that requests are asynchronous, but when performing requests, the API suspends further requests, and your function will be suspended until done.
+If you want to perform several requests at once in the same block, you can use `launch` or `async` functions and get the results later.
+For example:
 
 *Sequential requests:*
 

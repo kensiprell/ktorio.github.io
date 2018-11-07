@@ -17,7 +17,8 @@ URL-encoded strings look like: `param=value&other=hi`.
 ### Parsing:
 {: #url-encoded-parse}
 
-There is an extension method for `String` that allows you to get a parsed `Parameters` object from it. You can limit the maximum number of parsed parameters with the optional `limit` parameter.
+There is an extension method for `String` that allows you to get a parsed `Parameters` object from it.
+You can limit the maximum number of parsed parameters with the optional `limit` parameter.
 
 ```kotlin
 fun String.parseUrlEncodedParameters(defaultEncoding: Charset = Charsets.UTF_8, limit: Int = 1000): Parameters
@@ -70,7 +71,8 @@ mapOf(
 ).toList().formUrlEncode()
 ```
 
-URL-encoded strings allow you to have repeated keys. If you use a `Map<String, String>` as base, you won't be able to represent repeated keys.
+URL-encoded strings allow you to have repeated keys.
+If you use a `Map<String, String>` as base, you won't be able to represent repeated keys.
 {: .note}
 
 You can also construct it from a `Map<String, List<String>>` by *flatMapping* it first:

@@ -10,13 +10,15 @@ priority: -100
 
 ![Ktor logo](/assets/images/ktor_logo.svg){:style="width:134px;height:56px;"}
  
-Ktor is a framework to easily build connected applications – web applications, HTTP services, mobile and browser applications. Modern connected applications need to be asynchronous to provide the best experience to users, and Kotlin coroutines provide awesome facilities to do it in an easy and straightforward way. 
+Ktor is a framework to easily build connected applications – web applications, HTTP services, mobile and browser applications.
+Modern connected applications need to be asynchronous to provide the best experience to users, and Kotlin coroutines provide awesome facilities to do it in an easy and straightforward way.
 
-While not yet entirely there, the goal of Ktor is to provide an end-to-end multiplatform application framework for connected applications. Currently, JVM client and server scenarios are supported, and we are working on bringing server facilities to native environments, and client facilities to native and JavaScript.
+
+While not yet entirely there, the goal of Ktor is to provide an end-to-end multiplatform application framework for connected applications.
+Currently, JVM client and server scenarios are supported, and we are working on bringing server facilities to native environments and client facilities to native and JavaScript.
 
 {::comment}
-Ktor embraces the strongly typed nature of the Kotlin programming language and provides [strongly typed end-points (Locations)](/servers/features/locations.html) and
-the ability to exchange data with classes shared across platforms.
+Ktor embraces the strongly typed nature of the Kotlin programming language and provides [strongly typed end-points (Locations)](/servers/features/locations.html) and the ability to exchange data with classes shared across platforms.
 {:/comment}
 
 **Table of contents:**
@@ -34,8 +36,8 @@ Ktor has a [start.ktor.io](https://soywiz.github.io/start-ktor-io-proposal/) web
 
 ## Gradle Setup
 
-This section assumes you have some basic knowledge of Gradle. If you have never used Gradle,
-gradle.org provides [several guides](https://guides.gradle.org/building-java-applications/) to help you get started.
+This section assumes you have some basic knowledge of Gradle.
+If you have never used Gradle, gradle.org provides [several guides](https://guides.gradle.org/building-java-applications/) to help you get started.
 {: .note}
 
 You can set-up a simple Ktor application using Gradle like this:
@@ -142,15 +144,15 @@ dependencies {
 Text version:
 {% include gradle.html gradle-kotlin=gradle-kotlin-build gradle-groovy=gradle-groovy-build %}
 
-Since Ktor is not yet 1.0, we have custom Maven repositories for distributing our early preview artifacts. You have to set up a couple of repositories as shown below, so your tools can find Ktor artifacts and dependencies.
+Since Ktor is not yet 1.0, we have custom Maven repositories for distributing our early preview artifacts.
+You have to set up a couple of repositories as shown below, so your tools can find Ktor artifacts and dependencies.
 
 Of course, don't forget to include the actual artifact! For our quickstart, we are using the `ktor-server-netty` artifact.
 That includes Ktor's core, netty, and the ktor-netty connector as transitive dependencies.
 You can, of course, include any additional dependencies that you need.
 
-Since Ktor is designed to be modular, you will require additional artifacts and potentially other repositories
-for specific features. You can find the required artifacts (and repositories where required) for each feature in the
-specific feature documentation.
+Since Ktor is designed to be modular, you will require additional artifacts and potentially other repositories for specific features.
+You can find the required artifacts (and repositories where required) for each feature in the specific feature documentation.
 {:.note}
 
 ## Hello World
@@ -192,26 +194,26 @@ fun main(args: Array<String>) {
 
 ## Accessing your application
 
-Since you have a main method, you can execute it with your IDE. That will open a HTTP server,
-listening on [http://127.0.0.1:8080](http://127.0.0.1:8080/), You can try opening it with your favorite web browser.
+Since you have a main method, you can execute it with your IDE.
+That will open a HTTP server, listening on [http://127.0.0.1:8080](http://127.0.0.1:8080/).
+You can try opening it with your favorite web browser.
 
-If that doesn't work, maybe you are using that port already. You can try changing the
-port 8080 (in line 10) and adjust it as needed.
+If that doesn't work, maybe you are using that port already.
+You can try changing the port 8080 (in line 10) and adjust it as needed.
 {: .note}
 
 ![Ktor Hello World Browser](/quickstart/1/screenshot.png){: width="50%""}
 
-At this point you should have a very simple Web Back-end running, so you can make changes,
-and see the results in your browser.
+At this point you should have a very simple Web Back-end running, so you can make changes, and see the results in your browser.
 
-Since you have configured a Gradle project with the application plugin and the `mainClassName`,
-you can also run it from a terminal using `./gradlew run` on Linux/Mac, or `gradlew run` on a Windows machine.
+Since you have configured a Gradle project with the application plugin and the `mainClassName`, you can also run it from a terminal using `./gradlew run` on Linux/Mac, or `gradlew run` on a Windows machine.
 {:.note}
 
 {::comment}
 ## Next step
 
-Now we are ready for the next step. *What kind of application are you developing?*
+Now we are ready for the next step.
+*What kind of application are you developing?*
 
 1. [RESTful API: Let's serve a *data class* as JSON](/quickstart/restful.html)
 2. Web Application:

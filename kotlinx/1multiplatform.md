@@ -10,7 +10,9 @@ Kotlin Multi-Platform Projects (also called Kotlin MPP)
 
 Reference: <https://kotlinlang.org/docs/reference/multiplatform.html>
 
-Starting with Kotlin 1.2 there is experimental multiplatform support. The idea behind it is the ability to write common code with a subset of common APIs available on all platforms. Kotlin also offers specific functionality per platform.
+Starting with Kotlin 1.2 there is experimental multiplatform support.
+The idea behind it is the ability to write common code with a subset of common APIs available on all platforms.
+Kotlin also offers specific functionality per platform.
 
 Multiplatform projects add a couple of new keywords, expect and actual:
 * expect is available for common projects to define APIs that will be available in common projects but will have specific implementations per platform.

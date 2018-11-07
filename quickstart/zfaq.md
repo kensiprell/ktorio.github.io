@@ -36,29 +36,38 @@ Depending on the content, you might consider several channels:
 
 For questions or troubleshooting we highly recommend you use Slack or StackOverflow.
 
-Imagine using GitHub issues for questions and troubleshooting. Everyone subscribed to a repository would be notified of each and every comment. Troubleshooting usually requires several questions and answers, and that would result in a lot of emails just for a single question. The people who only want to keep up with bugs, fixes, new or proposed features, etc. would be overwhelmed.
+Imagine using GitHub issues for questions and troubleshooting.
+Everyone subscribed to a repository would be notified of each and every comment.
+Troubleshooting usually requires several questions and answers, and that would result in a lot of emails just for a single question.
+The people who only want to keep up with bugs, fixes, new or proposed features, etc. would be overwhelmed.
 
-If you have enough time or you prefer not to join Slack, you can also ask questions at StackOverflow. However, with Slack being a hybrid between chat and forum, we can contact each other faster and troubleshoot things in less time.
+If you have enough time or you prefer not to join Slack, you can also ask questions at StackOverflow.
+However, with Slack being a hybrid between chat and forum, we can contact each other faster and troubleshoot things in less time.
 
-When troubleshooting, if you determine that there is a bug or something to improve, you can report it at GitHub. Since a bug (once confirmed) reported only on Slack could be forgotten or overlooked, please use GitHub for confirmed issues.
+When troubleshooting, if you determine that there is a bug or something to improve, you can report it at GitHub.
+Since a bug (once confirmed) reported only on Slack could be forgotten or overlooked, please use GitHub for confirmed issues.
 
 **Pull Requests:**
 
 If you have a bugfix or functionality you think would be worth including in Ktor, you can create a PR.
 
-Keep in mind that we usually review and merge PRs in batches, so the PR could be outstanding for a few weeks. We encourage you to contribute if you can!
+Keep in mind that we usually review and merge PRs in batches, so the PR could be outstanding for a few weeks.
+We encourage you to contribute if you can!
 
-If you have a bugfix that you need to use right away, we recommend you fork Ktor, apply your fix, compile it yourself, and temporarily publish a patched version in your own artifactory, bintray or similar and use that version until it is merged and a new version is released or prereleased (since the timing might not be aligned with your needs).
+If you have a bugfix that you need to use right away, we recommend you fork Ktor, apply your fix, and compile it yourself.
+You can temporarily publish a patched version in your own artifactory, bintray or similar and use that version until it is merged and a new version is released or prereleased (since the timing might not be aligned with your needs).
 
 ## What does CIO mean?
 {: #cio }
 
-CIO stands for Coroutine-based I/O. Usually we call it an engine that uses Kotlin and Coroutines to implement the logic implementing an IETF RFC or another protocol without relying on external JVM libraries.
+CIO stands for Coroutine-based I/O.
+Usually we call it an engine that uses Kotlin and Coroutines to implement the logic implementing an IETF RFC or another protocol without relying on external JVM libraries.
 
 ## Ktor imports are not being resolved. Imports are red.
 {: #ktor-artifact }
 
-Ensure that you are including the ktor artifact. For example, for Gradle and the Netty engine it would be:
+Ensure that you are including the ktor artifact.
+For example, for Gradle and the Netty engine it would be:
 ```kotlin
 dependencies {
   compile("io.ktor:ktor-server-netty:$ktor_version")
@@ -83,12 +92,14 @@ The property `call.request.origin` gives connection information about the origin
 ## I get the error 'java.lang.IllegalStateException: No instance for key AttributeKey: Locations'
 {: #no-attribute-key-locations }
 
-You get this error if you try to use the locations feature without actually installing it. Check the locations feature: <https://ktor.io/features/locations.html>
+You get this error if you try to use the locations feature without actually installing it.
+Check the locations feature: <https://ktor.io/features/locations.html>
 
 ## I get a 406 error with a client not sending an Accept header. With WRK I'm getting Non-2xx responses after adding JSON support
 {: #missing-accept-issue }
 
-There is a [known issue](https://github.com/ktorio/ktor/issues/38) in Ktor <= 0.9.1, that when a client does not send an Accept header, the content negotiation assumes that nothing should be accepted. Since 0.9.2-alpha-1, Ktor assumes it should accept everything when no Accept header is sent.
+There is a [known issue](https://github.com/ktorio/ktor/issues/38) in Ktor <= 0.9.1, that when a client does not send an Accept header, the content negotiation assumes that nothing should be accepted.
+Since 0.9.2-alpha-1, Ktor assumes it should accept everything when no Accept header is sent.
 
 ## How can I test the latest commits on master?
 {: #bleeding-edge }
@@ -99,30 +110,39 @@ Also you can [build Ktor from source](/advanced/building-from-source.html) and u
 ## How can I be sure of which version of Ktor am I using?
 {: #ktor-version-used }
 
-You can use the [`DefaultHeaders` feature](/servers/features/default-headers.html) that will send a server header with the Ktor version in it. Something like this should be sent as part of the response headers: `Server: ktor-server-core/0.9.2-alpha-3 ktor-server-core/0.9.2-alpha-3`
+You can use the [`DefaultHeaders` feature](/servers/features/default-headers.html) that will send a server header with the Ktor version in it.
+Something like this should be sent as part of the response headers: `Server: ktor-server-core/0.9.2-alpha-3 ktor-server-core/0.9.2-alpha-3`
 
 ## Website accessibility tips and tricks
 {: #website-tricks }
 
-You can use the keys <kbd>s</kbd> (search), <kbd>t</kbd> (Github file finder flavor) or <kbd>#</kbd> to access the search function on any page of the documentation website. The <kbd>#</kbd> version will limit the search to the sections in the current page.
+You can use the keys <kbd>s</kbd> (search), <kbd>t</kbd> (Github file finder flavor) or <kbd>#</kbd> to access the search function on any page of the documentation website.
+The <kbd>#</kbd> version will limit the search to the sections in the current page.
 
 In the search function you can either select the options with your mouse or fingers or use the keyboard arrows <kbd>↑</kbd> <kbd>↓</kbd> and the return key <kbd>⏎</kbd> to go to the currently selected page.
 
-The search function only uses page titles and keywords for the search. It is also possible to do a Google search on the `ktor.io` domain to do a full text search on all of its contents.
+The search function only uses page titles and keywords for the search.
+It is also possible to do a Google search on the `ktor.io` domain to do a full text search on all of its contents.
 
-Long code fragments that are folded can be expanded by either clicking on the `'+'`/`'-'` symbol that always appears in the top left corner of mobile devices or on hover on devices with a mouse. You can also double click the fragment to expand it. In addition to expanding it, this action selects the text so you can easily copy the fragments with <kbd>cmd</kbd> + <kbd>c</kbd> on mac, or <kbd>ctrl</kbd> + <kbd>c</kbd> on other operating systems.
+Long code fragments that are folded can be expanded by either clicking on the `'+'`/`'-'` symbol that always appears in the top left corner of mobile devices or on hover on devices with a mouse.
+You can also double click the fragment to expand it.
+In addition to expanding it, this action selects the text so you can easily copy the fragments with <kbd>cmd</kbd> + <kbd>c</kbd> on mac, or <kbd>ctrl</kbd> + <kbd>c</kbd> on other operating systems.
 
-You can click on the headings and notes to get an anchored link to the sections. After clicking, you can copy the new URL in your browser, including the `#` to link to a specific section.
+You can click on the headings and notes to get an anchored link to the sections.
+After clicking, you can copy the new URL in your browser, including the `#` to link to a specific section.
 
 ## My route is not being executed, how can I debug it?
 {: #route-not-executing }
 
-Ktor provides a tracing mechanism for the routing feature to help troubleshooting routing decisions. Check the [Tracing the routing decisions](/servers/features/routing.html#tracing) section on the Routing page.
+Ktor provides a tracing mechanism for the routing feature to help troubleshooting routing decisions.
+Check the [Tracing the routing decisions](/servers/features/routing.html#tracing) section on the Routing page.
 
 ## I get a `io.ktor.pipeline.InvalidPhaseException: Phase Phase('YourPhase') was not registered for this pipeline`.
 {: #invalid-phase }
 
-This means that you are trying to use a phase that is not registered as a reference for another phase. This might happen for example in the Routing feature if you try to register a phase relation inside a node, but the phase referenced is defined in another ancestor Route node. Since route phases and interceptors are later merged, it should work, but you need to register it in your Route node:
+This means that you are trying to use a phase that is not registered as a reference for another phase.
+This might happen for example in the Routing feature if you try to register a phase relation inside a node, but the phase referenced is defined in another ancestor Route node.
+Since route phases and interceptors are later merged, it should work, but you need to register it in your Route node:
 
 ```kotlin
 route.addPhase(PhaseDefinedInAncestor)
@@ -143,12 +163,15 @@ There is a page [explaining the Ktor's application-level event system](/advanced
 ## I get an `Exception in thread "main" com.typesafe.config.ConfigException$Missing: No configuration setting found for key 'ktor'` exception
 {: #cannot-find-application-conf }
 
-This means that Ktor was not able to find the `application.conf` file. Re-check that it is in the `resources` folder and that the resources folder is marked as such. You should consider setting up a project using the [project generator](/quickstart/generator.html) or the [IntelliJ plugin](/quickstart/quickstart/intellij-idea/plugin.html) to get a working project as a base.
+This means that Ktor was not able to find the `application.conf` file.
+Re-check that it is in the `resources` folder and that the resources folder is marked as such.
+You should consider setting up a project using the [project generator](/quickstart/generator.html) or the [IntelliJ plugin](/quickstart/quickstart/intellij-idea/plugin.html) to get a working project as a base.
 
 ## Can I use Ktor on Android?
 {: #android-support }
 
-Ktor 0.9.3 and lower is known to work on Android 7 or greater (API 24). It will fail in lower versions like Android 5.
+Ktor 0.9.3 and lower is known to work on Android 7 or greater (API 24).
+It will fail in lower versions like Android 5.
 
 In unsupported versions it would fail with an exception similar to:
 
@@ -191,10 +214,11 @@ Ktor can automatically handle `HEAD` requests but requires you to first install 
 ## I get an infinite redirect when using the `HttpsRedirect` feature
 {: #infinite-redirect }
 
-The most probable cause is that your backend is behind a reverse-proxy or a load balancer, and the reverse-proxy is making normal HTTP requests to your backend. Therefore, the HttpsRedirect feature inside your Ktor backend believes that it is a normal HTTP request and responds with the redirect.
+The most probable cause is that your backend is behind a reverse-proxy or a load balancer, and the reverse-proxy is making normal HTTP requests to your backend.
+Therefore, the HttpsRedirect feature inside your Ktor backend believes that it is a normal HTTP request and responds with the redirect.
 
-Normally, reverse-proxies send some headers describing the original request (like it was https or the original IP address), and there is the feature [`XForwardedHeaderSupport`](/servers/features/forward-headers.html)
-to parse those headers so the [`HttpsRedirect`](/servers/features/https-redirect.html) feature knows that the original request was HTTPS.
+Normally, reverse-proxies send some headers describing the original request (like it was https or the original IP address).
+The feature [`XForwardedHeaderSupport`](/servers/features/forward-headers.html) can parse those headers so the [`HttpsRedirect`](/servers/features/https-redirect.html) feature knows that the original request was HTTPS.
 
 
 ## I get a `UnsafeHeaderException: Header Content is controlled by the engine and cannot be set explicitly` exception

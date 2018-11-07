@@ -9,10 +9,11 @@ keywords: >-
     subscribing unsubscribing raising raise events dispatching
 ---
 
-On the server-side, in addition to handling requests, Ktor exposes a mechanism to produce and consume
-global events.
+On the server-side, in addition to handling requests, Ktor exposes a mechanism to produce and consume global events.
 
-For example, when the application is starting, has started, or has stopped, an event is produced. You can subscribe to or unsubscribe from these events and trigger code execution. The `monitor: ApplicationEvents` instance, associated with the application environment, acts as the event dispatcher.
+For example, when the application is starting, has started, or has stopped, an event is produced.
+You can subscribe to or unsubscribe from these events and trigger code execution.
+The `monitor: ApplicationEvents` instance, associated with the application environment, acts as the event dispatcher.
 
 The `ApplicationEvents` dispatches typed `EventDefinition<T>` along with an object `T`.
 
@@ -52,7 +53,9 @@ val ApplicationStopped: EventDefinition<Application>
 
 ### Subscribing to events and raising them
 
-You can subscribe to events by calling the `subscribe` method from the monitor. The subscribe method returns a `DisposableHandle` that you can call to cancel the subscription. Additionally, you can call the `unsubscribe` method with the same method handle to cancel the subscription.
+You can subscribe to events by calling the `subscribe` method from the monitor.
+The subscribe method returns a `DisposableHandle` that you can call to cancel the subscription.
+Additionally, you can call the `unsubscribe` method with the same method handle to cancel the subscription.
 
 Using the disposable:
 

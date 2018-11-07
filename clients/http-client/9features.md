@@ -6,7 +6,8 @@ permalink: /clients/http-client/features.html
 children: /clients/http-client/features/
 ---
 
-Similar to the server, Ktor also supports features for the client. It shares the same design: a pipeline for client HTTP requests, interceptors, and installable features.
+Similar to the server, Ktor also supports features for the client.
+It shares the same design: a pipeline for client HTTP requests, interceptors, and installable features.
 
 {% include children_list.html context=page.children %}
 

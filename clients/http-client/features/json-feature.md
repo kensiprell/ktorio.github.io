@@ -21,8 +21,7 @@ See the [complete example using JSON](/clients/http-client/examples.html#example
 
 ## Serializers
 
-The `JsonFeature` has a default serializer based on a ServiceLoader on the JVM
-and a serializer based on [kotlinx.serialization](/kotlinx/serialization.html) for Native.
+The `JsonFeature` has a default serializer based on a ServiceLoader on the JVM and a serializer based on [kotlinx.serialization](/kotlinx/serialization.html) for Native.
 
 You can also get the default serializer by calling `io.ktor.client.features.json.defaultSerializer()`
 

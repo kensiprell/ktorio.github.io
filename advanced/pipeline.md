@@ -16,7 +16,8 @@ All the functions are suspending blocks/lambdas, thus the whole pipeline is asyn
 
 Since pipelines contain blocks of code, they can be nested, effectively creating sub-pipelines.
 
-Pipelines are used in Ktor as an extension mechanism to plug functionality in at the right place. For example, a Ktor application defines five main phases: Setup, Monitoring, Features, Call and Fallback. The routing feature defines its own nested pipeline inside the application's call phase.
+Pipelines are used in Ktor as an extension mechanism to plug functionality in at the right place. For example, a Ktor application defines five main phases: Setup, Monitoring, Features, Call and Fallback.
+The routing feature defines its own nested pipeline inside the application's call phase.
 
 ## API
 
@@ -53,9 +54,9 @@ val myPipelinePhase = PipelinePhase("MyPipelinePhase")
 
 You can register phases when constructing the pipeline: `Pipeline(phase1, phase2, phase3...)`
 
-You can also register your phase later in a pipeline by calling the `Pipeline.addPhase` method, or register it by defining a relation to another phase, adjusting the order of the phases by using the
-`Pipeline.insertPhaseAfter` and `Pipeline.insertPhaseBefore` methods, thereby defining relations for phases
-to be topologically sorted.
+You can also register your phase later in a pipeline by calling the `Pipeline.addPhase` method.
+You can register it by defining a relation to another phase, adjusting the order of the phases by using the `Pipeline.insertPhaseAfter` and `Pipeline.insertPhaseBefore` methods.
+This defines that the relations for phases should be topologically sorted.
 
 For example, if you define two phases and want them to be executed in order, you can:
 ```kotlin
@@ -89,18 +90,19 @@ pipeline.execute(context, subject)
 ```
 
 You can omit calling the `addPhase` method when using the `insertPhase*` methods unless you need to register a Phase that would otherwise be included by calling `Pipeline.merge` later.
-<br/>
+
 
 For example if you define a Phase inside a node in the routing feature, and then, in an inner node, try to insert a phase using that one as reference, you would get an exception similar to `io.ktor.pipeline.InvalidPhaseException: Phase Phase('YourPhase') was not registered for this pipeline`.
-<br/>
+
+
 In this case you can just call `addPhase`, so the phase is referenced before merging.
 {: .note}
 
 ## Interceptors and the PipelineContext
 
-When calling `Pipeline.intercept` you provide a phase where the interception will be appended,
-and you also have to provide a function/lambda that receives a `this: PipelineContext`,
-so you can handle whatever you need. Inside that context, you have access to a properly typed context (usually the `ApplicationCall`) and an optional `Subject`, so you can pass information to other interceptors.
+When calling `Pipeline.intercept` you provide a phase where the interception will be appended.
+You also have to provide a function or lambda that receives a `this: PipelineContext`, so you can handle whatever you need.
+Inside that context, you have access to a properly typed context (usually the `ApplicationCall`) and an optional `Subject`, so you can pass information to other interceptors.
 
 The context API:
 
@@ -118,7 +120,8 @@ class PipelineContext<TSubject : Any, out TContext : Any>() {
 This way, the interceptors can control the flow in the following ways:
 
 * Throwing an exception: The exception propagates back, and the pipeline is canceled.
-* Calling the `proceed` or `proceedWith` functions: The interceptor is suspended, while the rest of the pipeline is executed. Once completed the function is resumed, and the `proceed`/`proceedWith` code block is executed.
+* Calling the `proceed` or `proceedWith` functions: The interceptor is suspended, while the rest of the pipeline is executed.
+Once completed the function is resumed, and the `proceed`/`proceedWith` code block is executed.
 * Calling the `finish()` function: The pipeline finishes without any exceptions and without executing the rest of the pipeline.
 * In other cases: The next function is called, or the pipeline finishes if it was the last function.
 
@@ -143,19 +146,21 @@ For a pipeline without a subject you can use `Unit`, for example, since the `App
 
 ## Merging  
 
-Pipelines of the same type can be merged. This is done with the `merge` function on a receiving pipeline. 
+Pipelines of the same type can be merged.
+This is done with the `merge` function on a receiving pipeline. 
 
 All interceptors from pipeline merging are added to the receiving pipeline according to their phases.  
 
-Pipelines are merged when there are different points where interceptors can be installed. One example is the response pipeline that can be intercepted at the application level, call level, or per route. Before we execute a response pipeline, we merge them all.
+Pipelines are merged when there are different points where interceptors can be installed.
+One example is the response pipeline that can be intercepted at the application level, call level, or per route.
+Before we execute a response pipeline, we merge them all.
 
 ## Ktor Pipelines
 
 ### ApplicationCallPipeline
 {: #ApplicationCallPipeline }
 
-Ktor defines a pipeline without a subject, and the `ApplicationCall` as a context
-defining five phases (`Setup`, `Monitoring`, `Features`, `Call` and `Fallback`) to be executed in this order:
+Ktor defines a pipeline without a subject, and the `ApplicationCall` as a context defining five phases (`Setup`, `Monitoring`, `Features`, `Call` and `Fallback`) to be executed in this order:
 
 ```nomnoml
 #direction: right
@@ -204,8 +209,8 @@ This base pipeline is used by the `Application` and the `Routing` features.
 
 ### Application
 
-A Ktor `Application` is an `ApplicationCallPipeline`. This is the main pipeline used for web backend
-applications handling http requests.
+A Ktor `Application` is an `ApplicationCallPipeline`.
+This is the main pipeline used for web backend applications handling http requests.
 
 ### Routing
 

@@ -5,7 +5,8 @@ permalink: /clients/http-client/engines.html
 caption: HTTP Client Engines 
 ---
 
-The Ktor HTTP Client has a common interface for performing HTTP requests, but it allows you to specify an engine that does the internal work. Different engines have different configurations, dependencies, and supporting features.
+The Ktor HTTP Client has a common interface for performing HTTP requests, but it allows you to specify an engine that does the internal work.
+Different engines have different configurations, dependencies, and supporting features.
 
 **Table of contents:**
 
@@ -21,7 +22,8 @@ When calling an `HttpClient` method without specifying an engine, it uses a defa
 val client = HttpClient()
 ```
 
-In the case of the JVM, the default engine is resolved using a ServiceLoader, getting the first one available. It therefore depends on the artifacts you have included.
+In the case of the JVM, the default engine is resolved using a ServiceLoader, getting the first one available.
+It therefore depends on the artifacts you have included.
 
 For native, it uses a predefined one.
 
@@ -51,7 +53,9 @@ You can also adjust the maximum total connections and maximum connections per ro
 ### Apache
 {: #apache}
 
-Apache is currently the most configurable HTTP client. It supports HTTP/1.1 and HTTP/2. It is the only one that supports following redirects, and it allows you to configure timeouts and proxies among other things. It is supported by `org.apache.httpcomponents:httpasyncclient`.
+Apache is currently the most configurable HTTP client.
+It supports HTTP/1.1 and HTTP/2. It is the only one that supports following redirects, and it allows you to configure timeouts and proxies among other things.
+It is supported by `org.apache.httpcomponents:httpasyncclient`.
 
 A sample configuration would look like:
 
@@ -85,7 +89,8 @@ val client = HttpClient(Apache) {
 ### CIO
 {: #cio}
 
-CIO (Coroutine-based I/O) is a Ktor implementation with no additional dependencies and is fully asynchronous. It only supports HTTP/1.x for now.
+CIO (Coroutine-based I/O) is a Ktor implementation with no additional dependencies and is fully asynchronous.
+It only supports HTTP/1.x for now.
 
 CIO provides `maxConnectionsCount` and a `endpointConfig` for configuration.
 
@@ -112,7 +117,8 @@ val client = HttpClient(CIO) {
 ### Jetty
 {: #jetty}
 
-Jetty provides an additional `sslContextFactory` for configuration. It only supports HTTP/2 for now.
+Jetty provides an additional `sslContextFactory` for configuration.
+It only supports HTTP/2 for now.
 
 A sample configuration would look like:
 
@@ -157,7 +163,8 @@ val client = HttpClient(OkHttp) {
 ## Android
 {: #android }
 
-The Android engine doesn't have additional dependencies and uses a ThreadPool with a normal HttpURLConnection to perform the requests. It can be configured like this:
+The Android engine doesn't have additional dependencies and uses a ThreadPool with a normal HttpURLConnection to perform the requests.
+It can be configured like this:
 
 ```kotlin
 val client = HttpClient(Android) {
@@ -173,7 +180,8 @@ val client = HttpClient(Android) {
 ## iOS
 {: #ios }
 
-The iOS engine uses the asynchronous `NSURLSession` internally. It has no additional configuration.
+The iOS engine uses the asynchronous `NSURLSession` internally.
+It has no additional configuration.
 
 ```kotlin
 val client = HttpClient(Ios) {

@@ -83,7 +83,8 @@ Each implementation of the `ApplicationEngineFactory` along with a subtyped `App
 fun ApplicationEngineFactory.create(environment: ApplicationEngineEnvironment, configure: TConfiguration.() -> Unit): TEngine
 ```
 
-The `ApplicationEngineFactory.create` instantiates the correct subtyped `ApplicationEngine.Configuration` and calls the provided `configure: TConfiguration.() -> Unit` lambda that should mutate the configuration object. It also constructs an implementation of the `ApplicationEngine`, most likely a subtype of `BaseApplicationEngine`.
+The `ApplicationEngineFactory.create` instantiates the correct subtyped `ApplicationEngine.Configuration` and calls the provided `configure: TConfiguration.() -> Unit` lambda that should mutate the configuration object.
+It also constructs an implementation of the `ApplicationEngine`, most likely a subtype of `BaseApplicationEngine`.
 
 For example:
 
@@ -107,14 +108,16 @@ class MyApplicationEngineFactory
 
 ### The `ApplicationEngine` and `BaseApplicationEngine`
 
-The interface `ApplicationEngine` with an abstract implementation of `BaseApplicationEngine` starts and stops the application. It holds the `ApplicationEngineEnvironment` as well as the constructed configuration of the application.
+The interface `ApplicationEngine` with an abstract implementation of `BaseApplicationEngine` starts and stops the application.
+It holds the `ApplicationEngineEnvironment` as well as the constructed configuration of the application.
 
 This class has two methods:
 
 * The `start` method: connects to the `ApplicationEngineEnvironment.connectors` (from the environment), starts the environment, and starts and configures the engine to trigger execution of the `application` pipeline for each HTTP request with an `ApplicationCall`
 * The `stop` method: stops the engine and the environment, and unregisters all items registered by the `start` method
 
-The `BaseApplicationEngine` exposes an `ApplicationEngineEnvironment` passed to the constructor and creates an `EnginePipeline`, which is used as an intermediary to pre-intercept the application pipeline. It also installs default transformations in the send and receive pipelines, and logs the defined connection endpoints.
+The `BaseApplicationEngine` exposes an `ApplicationEngineEnvironment` passed to the constructor and creates an `EnginePipeline`, which is used as an intermediary to pre-intercept the application pipeline.
+It also installs default transformations in the send and receive pipelines, and logs the defined connection endpoints.
 
 For example:
 

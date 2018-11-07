@@ -28,9 +28,9 @@ cd ktor
 ## Building
 {: #building}
 
-Ktor uses gradle for building. It should work with any gradle version
-greater than 4.3, but for best results we provide a gradle wrapper,
-which should work with any supported system with a JDK installed: 
+Ktor uses Gradle for building.
+It should work with any Gradle version greater than 4.3, but for best results we provide a Gradle wrapper.
+The wrapper should work with any supported system with a JDK installed: 
 
 ```
 ./gradlew build
@@ -42,8 +42,7 @@ Ktor doesn't yet compile with Java 9, so you should stick with Java 8.
 ## Installing Locally
 {: #installing}
 
-Ktor provides a gradle install task that installs Ktor artifacts in your
-local maven repository:
+Ktor provides a Gradle install task that installs Ktor artifacts in your local maven repository:
 
 ```
 ./gradlew install
@@ -64,7 +63,6 @@ An exception occurred applying plugin request [id: 'me.champeau.gradle.jmh', ver
    > Could not generate a proxy class for class me.champeau.gradle.JMHPluginExtension.
 ```
 
-You might have forgotten to use the gradle wrapper (`./gradlew`), or your default installed
-gradle version is lower than 4.3.
+You might have forgotten to use the Gradle wrapper (`./gradlew`), or your default installed Gradle version is lower than 4.3.
 
-Always use the gradle wrapper for best results!
+Always use the Gradle wrapper for best results!

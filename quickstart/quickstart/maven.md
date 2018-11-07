@@ -19,7 +19,9 @@ In this guide we will show you how to create a Maven `pom.xml` file and how to c
 ## Basic Kotlin `pom.xml` File (without Ktor)
 {: #initial }
 
-Maven is a build automation tool used primarily for Java projects. It reads project configuration from `pom.xml` files. Here is a basic `pom.xml` file for building Kotlin applications:
+Maven is a build automation tool used primarily for Java projects.
+It reads project configuration from `pom.xml` files.
+Here is a basic `pom.xml` file for building Kotlin applications:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -95,7 +97,8 @@ Maven is a build automation tool used primarily for Java projects. It reads proj
 ## Add Ktor Dependencies and Configure Build Settings
 {: #ktor-dependencies}
 
-Ktor artifacts are located in a specific repository on `bintray`. Its core has dependencies on the `kotlinx.coroutines` library that can be found on `jcenter`.
+Ktor artifacts are located in a specific repository on `bintray`.
+Its core has dependencies on the `kotlinx.coroutines` library that can be found on `jcenter`.
 
 You have to add both to the `repositories` block in the `pom.xml` file:
 
@@ -116,10 +119,10 @@ You have to add both to the `repositories` block in the `pom.xml` file:
 </repositories>
 ```
 
-Visit [Bintray](https://bintray.com/kotlin/ktor/ktor) to determine the latest version of Ktor. In this case it is `{{site.ktor_version}}`.
+Visit [Bintray](https://bintray.com/kotlin/ktor/ktor) to determine the latest version of Ktor.
+In this case it is `{{site.ktor_version}}`.
 
-You have to specify that version in each Ktor artifact reference, and to avoid repetition, you can specify that version in an extra property
-in the `properties` block for later use:
+You have to specify that version in each Ktor artifact reference, and to avoid repetition, you can specify that version in an extra property in the `properties` block for later use:
 
 ```xml
 <properties>
@@ -159,9 +162,11 @@ Coroutines were an experimental feature in Kotlin 1.2x and below, so you have to
 
 Ktor can run in many environments, such as Netty, Jetty, or any other Servlet-compatible Application Container such as Tomcat.
 
-This example shows you how to configure Ktor with Netty. For other engines see [artifacts](/quickstart/artifacts.html) for a list of available artifacts.
+This example shows you how to configure Ktor with Netty.
+For other engines see [artifacts](/quickstart/artifacts.html) for a list of available artifacts.
 
-You have to add a dependency for `ktor-server-netty` using the `ktor_version` property you created. This module provides a Netty web server and all the required code to run a Ktor application on top of it:
+You have to add a dependency for `ktor-server-netty` using the `ktor_version` property you created.
+This module provides a Netty web server and all the required code to run a Ktor application on top of it:
 
 ```xml
 <dependency>

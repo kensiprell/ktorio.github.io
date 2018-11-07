@@ -8,7 +8,8 @@ redirect_from:
   - /artifacts.html
 ---
 
-Ktor is divided into modules to allow fine-grained inclusion of dependencies based on the functionality required. The typical Ktor application requires `ktor-server-core` and a corresponding engine, depending on whether it's self-hosted or using an Application Server. 
+Ktor is divided into modules to allow fine-grained inclusion of dependencies based on the functionality required.
+The typical Ktor application requires `ktor-server-core` and a corresponding engine, depending on whether it's self-hosted or using an Application Server. 
 
 All artifacts in Ktor belong to the `io.ktor` group and are hosted on [Bintray](https://bintray.com/kotlin/ktor)
 
@@ -16,8 +17,7 @@ All artifacts in Ktor belong to the `io.ktor` group and are hosted on [Bintray](
     
 Ktor is split into several groups of modules:
 
-* `ktor-server` contains modules that support running the Ktor Application with different engines: Netty, Jetty, Tomcat, and 
-a generic servlet. It also contains a TestEngine for setting up application tests without starting the real server.
+* `ktor-server` contains modules that support running the Ktor Application with different engines: Netty, Jetty, Tomcat, and a generic servlet. It also contains a TestEngine for setting up application tests without starting the real server.
   * `ktor-server-core` is a core package where most of the application API and implementation is located .
   * `ktor-server-jetty` supports a deployed or embedded Jetty instance.
   * `ktor-server-netty` supports Netty in embedded mode.

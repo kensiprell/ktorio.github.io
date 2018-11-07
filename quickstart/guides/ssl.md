@@ -15,23 +15,27 @@ keywords: tls ssl https let's encrypt letsencrypt
 * TOC
 {:toc}
 
-You can buy a certificate and configure Ktor to use it, **or** you can use Let's Encrypt to automatically get a **free certificate** to serve `https://` and `wss://` requests with Ktor. On this page you will discover how to do it, either by configuring Ktor to directly serve the SSL certificate for a single domain or by using Docker with Nginx to serve different applications on different machines from a single machine.
+You can buy a certificate and configure Ktor to use it, **or** you can use Let's Encrypt to automatically get a **free certificate** to serve `https://` and `wss://` requests with Ktor.
+On this page you will discover how to do it, either by configuring Ktor to directly serve the SSL certificate for a single domain or by using Docker with Nginx to serve different applications on different machines from a single machine.
 
 ## Option 1: Ktor Serving SSL Directly
 {: #ktor}
 
 ### Configuring an `A` Register Pointing to the Machine
 
-First of all you have to configure your domain or subdomain to point to the IP of the machine that you are going to use for the certificate. If that machine is behind routers, you will need to configure the router to DMZ the machine with the host or to redirect at least port 80 (HTTP) to that machine, and later you will probably want to configure port 443 (HTTPS) as well.
+First of all you have to configure your domain or subdomain to point to the IP of the machine that you are going to use for the certificate.
+If that machine is behind routers, you will need to configure the router to DMZ the machine with the host or to redirect at least port 80 (HTTP) to that machine, and later you will probably want to configure port 443 (HTTPS) as well.
 
-Let's Encrypt can always access port 80 of your public IP, even if you configure Ktor to bind to another port. You have to configure your routes to redirect port 80 to the correct local IP and port of the machine hosting Ktor.
+Let's Encrypt can always access port 80 of your public IP, even if you configure Ktor to bind to another port.
+You have to configure your routes to redirect port 80 to the correct local IP and port of the machine hosting Ktor.
 {: .note }
 
 ### Generating a Certificate
 
 The Ktor server must not be running, and you have to execute the following command (changing `my.example.com`, `root@example.com` and `8889`).
 
-This command will start an HTTP web server listening on the specified port (must be available as port 80 in the public network or you can forward ports in your router to 80:8889; the domain must point to your public IP). It will then request a challenge, expose the `/.well-known/acme-challenge/file` with the proper content, generate a domain private key, and retrieve the certificate chain:
+This command will start an HTTP web server listening on the specified port (must be available as port 80 in the public network or you can forward ports in your router to 80:8889; the domain must point to your public IP).
+It will then request a challenge, expose the `/.well-known/acme-challenge/file` with the proper content, generate a domain private key, and retrieve the certificate chain:
 
 ```
 export DOMAIN=my.example.com

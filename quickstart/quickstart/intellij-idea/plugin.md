@@ -9,7 +9,8 @@ priority: 0
 
 Use the [IntelliJ Ktor framework integration plugin](https://plugins.jetbrains.com/plugin/10823-ktor){:target="_blank"} for adding a Ktor project with a wizard.
 
-It can set up a project for you. It will configure the Ktor features for you and will provide some sample code for them.
+It can set up a project for you.
+It will configure the Ktor features for you and will provide some sample code for them.
 
 ### Using the Plugin
 

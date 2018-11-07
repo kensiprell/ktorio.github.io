@@ -19,7 +19,10 @@ To achieve this we are going to use the [Routing], [StatusPages], [Authenticatio
 [ContentNegotiation]: /servers/features/content-negotiation.html
 [Jackson]: /servers/features/content-negotiation/jackson.html
 
-While many frameworks advocate how to create REST APIs, the majority aren't actually referring to REST APIs but HTTP APIs. Ktor, like many other frameworks, can be used to create systems that comply with REST constraints. However, this tutorial is not dealing with REST but HTTP APIs, i.e. endpoints using HTTP verbs that may or may not return JSON, XML, or any other format. If you want to learn more about RESTful systems, you can read about them using <https://en.wikipedia.org/wiki/Representational_state_transfer>{:target="_blank"}.
+While many frameworks advocate how to create REST APIs, the majority aren't actually referring to REST APIs but HTTP APIs.
+Ktor, like many other frameworks, can be used to create systems that comply with REST constraints.
+However, this tutorial is not dealing with REST but HTTP APIs, i.e. endpoints using HTTP verbs that may or may not return JSON, XML, or any other format.
+If you want to learn more about RESTful systems, you can read about them using <https://en.wikipedia.org/wiki/Representational_state_transfer>{:target="_blank"}.
 {: .note }
 
 **Table of contents:**
@@ -29,13 +32,16 @@ While many frameworks advocate how to create REST APIs, the majority aren't actu
 
 ## Setting Up the Project
 
-The first step is to set up a project. You can follow the [Quick Start](/quickstart/index.html) guide or use the following tool to create one:
+The first step is to set up a project.
+You can follow the [Quick Start](/quickstart/index.html) guide or use the following tool to create one:
 
 {% include preconfigured-form.html hash="dependency=auth&dependency=auth-jwt&dependency=ktor-jackson&dependency=cors&artifact-group=com.example&artifact-name=api-example" %}
 
 ## Simple Routing
 
-First of all, we are going to use the routing feature. This feature is part of Ktor's core, so you won't need to include any additional artifacts. This feature is installed automatically when using the `routing { }` block.
+First of all, we are going to use the routing feature.
+This feature is part of Ktor's core, so you won't need to include any additional artifacts.
+This feature is installed automatically when using the `routing { }` block.
 
 Let's start creating a simple GET route that responds with 'OK':
 
@@ -51,7 +57,8 @@ fun Application.module() {
 
 ## Serving JSON Content
 
-An HTTP API usually responds with JSON. You can use the *Content Negotiation* feature with *Jackson* for this:
+An HTTP API usually responds with JSON.
+You can use the *Content Negotiation* feature with *Jackson* for this:
 
 ```kotlin
 fun Application.module() {
@@ -80,7 +87,8 @@ Now the browser should respond to `http://127.0.0.1:8080/snippets` with `{"OK":t
 If you receive an error similar to `Response pipeline couldn't transform '...' to the OutgoingContent`, check that you have installed the ContentNegotiation feature with Jackson.
 {: .note}
 
-You can also use typed objects as part of the reply, but you should ensure that your classes are not defined inside a function or it won't work. For example:
+You can also use typed objects as part of the reply, but you should ensure that your classes are not defined inside a function or it won't work.
+For example:
 
 ```kotlin
 data class Snippet(val text: String)
@@ -110,7 +118,10 @@ Would reply with:
 
 ## Handling Other HTTP Methods
 
-HTTP APIs use most of the HTTP methods and verbs (_HEAD_, _GET_, _POST_, _PUT_, _PATCH_, _DELETE_, _OPTIONS_) to perform operations. Let's create a route to add new snippets. We will need to read the JSON body of the POST request. For this we will use `call.receive<Type>()`:
+HTTP APIs use most of the HTTP methods and verbs (_HEAD_, _GET_, _POST_, _PUT_, _PATCH_, _DELETE_, _OPTIONS_) to perform operations.
+Let's create a route to add new snippets.
+We will need to read the JSON body of the POST request.
+For this we will use `call.receive<Type>()`:
 
 ```kotlin
 data class PostSnippet(val snippet: PostSnippet.Text) {
@@ -163,11 +174,18 @@ Then with the URL's play icon in the gutter, you can perform the call and get th
 
 And that's it!
 
-This allows you to define files (plain or scratches) that include definitions for several HTTP requests, allowing you to include headers, provide a payload inline or from files, use environment variables defined in a JSON file, process the response using JavaScript to perform assertions, or to store some environment variables like authentication credentials so they are available to other requests. It supports autocompletion, templates, and
-automatic language injection based on Content-Type, including JSON, XML, etc.
+This allows you to define files (plain or scratches) that include definitions for several HTTP requests, allowing you to:
+* include headers
+* provide a payload inline or from files
+* use environment variables defined in a JSON file
+* process the response using JavaScript to perform assertions
+* store some environment variables like authentication credentials so they are available to other requests.
+
+It supports autocompletion, templates, andautomatic language injection based on Content-Type, including JSON, XML, etc.
 {: .note}
 
-In addition to easily testing your backends inside your editor, it also helps you document your APIs by including a file with the endpoints in it. It also allows you to fetch and store responses locally and then visually compare them.
+In addition to easily testing your backends inside your editor, it also helps you document your APIs by including a file with the endpoints in it.
+It also allows you to fetch and store responses locally and then visually compare them.
 {: .note}
 
 ### CURL:
@@ -205,7 +223,8 @@ Nice!
 
 Now we have two separate routes that share the path (but not the method), and we don't want to repeat ourselves.
 
-We can group routes with the same prefix, using the `route(path) { }` block. For each HTTP method, there is an overload without the route path argument that we can use at routing leaf nodes:
+We can group routes with the same prefix, using the `route(path) { }` block.
+For each HTTP method, there is an overload without the route path argument that we can use at routing leaf nodes:
 
 ```kotlin
 routing {
@@ -224,7 +243,9 @@ routing {
 
 ## Authentication
 
-It would be a good idea to prevent just anyone from posting snippets. For now, we are going to limit it using HTTP's basic authentication with a fixed user and password. We are going to use the authentication feature to accomplish this.
+It would be a good idea to prevent just anyone from posting snippets.
+For now, we are going to limit it using HTTP's basic authentication with a fixed user and password.
+We are going to use the authentication feature to accomplish this.
 
 ```kotlin
 fun Application.module() {
@@ -263,7 +284,9 @@ routing {
 
 Instead of using fixed authentication, we are going to use JWT tokens.
 
-We are going to add a login-register route. This route will register a user if it doesn't exist, and if it's a valid login or registration, it will return a JWT token. The JWT token will hold the user name, and posting a snippet will link it to the user.
+We are going to add a login-register route.
+This route will register a user if it doesn't exist, and if it's a valid login or registration, it will return a JWT token.
+The JWT token will hold the user name, and posting a snippet will link it to the user.
 
 We will need to install and configure JWT (replacing basic auth):
 
@@ -288,7 +311,8 @@ fun Application.module() {
 }
 ```
 
-We will also need a data source holding usernames and passwords. One simple option would be:
+We will also need a data source holding usernames and passwords.
+One simple option would be:
 
 ```kotlin
 class User(val name: String, val password: String)
@@ -396,7 +420,8 @@ curl -v \
 
 ## Associating a User with Snippets
 
-Since we are posting snippets with an authenticated route, we have access to the generated `Principal` that includes the username. We should be able to access that user and associate it with the snippet.
+Since we are posting snippets with an authenticated route, we have access to the generated `Principal` that includes the username.
+We should be able to access that user and associate it with the snippet.
 
 First of all, we will need to associate user information with snippets:
 
@@ -468,7 +493,10 @@ Awesome!
 
 ## StatusPages
 
-Now let's refine things a bit. An HTTP API should use HTTP status codes to provide semantic information about errors. Right now, when an exception is thrown (for example when trying to get a JWT token from a user that already exists but with a wrong password), a 500 server error is returned. We can do it better, and the StatusPages feature will allow you to do this by capturing specific exceptions and generating the result.
+Now let's refine things a bit.
+An HTTP API should use HTTP status codes to provide semantic information about errors.
+Right now, when an exception is thrown (for example when trying to get a JWT token from a user that already exists but with a wrong password), a 500 server error is returned.
+We can do it better, and the StatusPages feature will allow you to do this by capturing specific exceptions and generating the result.
 
 Let's create a new exception type:
 
@@ -543,7 +571,8 @@ Things are getting better!
 
 ## CORS
 
-Now suppose we need this API to be accessible via JavaScript from another domain. We will need to configure CORS, and Ktor has a feature to configure this:
+Now suppose we need this API to be accessible via JavaScript from another domain.
+We will need to configure CORS, and Ktor has a feature to configure this:
 
 ```kotlin
 fun Application.module() {

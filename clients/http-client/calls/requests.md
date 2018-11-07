@@ -46,7 +46,8 @@ After you finish working with the client, it should be closed in order to proper
 client.close()
 ```
 
-If you want to use a client to make only one request, consider `use`ing it. The client will be automatically closed once the passed block has been executed.
+If you want to use a client to make only one request, consider `use`ing it.
+The client will be automatically closed once the passed block has been executed.
 
 ```kotlin
 val bytes = HttpClient(Apache).use { client ->
@@ -56,16 +57,15 @@ val bytes = HttpClient(Apache).use { client ->
 
 ## Custom Requests
 
-We cannot rely only on *get* requests, and Ktor allows you to build complex
-requests with any of the HTTP verbs with the flexibility to process responses in many ways.
+We cannot rely only on *get* requests, and Ktor allows you to build complex requests with any of the HTTP verbs with the flexibility to process responses in many ways.
 
 ### The `call` Method
 {: #call-method }
 
-The HttpClient `call` method returns an `HttpClientCall` and allows you to perform
-simple untyped requests.
+The HttpClient `call` method returns an `HttpClientCall` and allows you to perform simple untyped requests.
 
-You can read the content using `response: HttpResponse`. For further information, check out the [receiving content using HttpResponse](/clients/http-client/calls/responses.html) section. 
+You can read the content using `response: HttpResponse`.
+For further information, check out the [receiving content using HttpResponse](/clients/http-client/calls/responses.html) section. 
 
 ```kotlin
 val call = client.call("http://127.0.0.1:8080/") {
@@ -77,8 +77,8 @@ println(call.response.readText())
 ### The `request` Method
 {: #request-method }
 
-In addition to `call`, there is a `request` method for performing a typed request,
-[receiving a specific type](/clients/http-client/calls/responses.html#receive) like String, HttpResponse, or an arbitrary class. You have to specify the URL and the method when building the request. 
+In addition to `call`, there is a `request` method for performing a typed request, [receiving a specific type](/clients/http-client/calls/responses.html#receive) like String, HttpResponse, or an arbitrary class.
+You have to specify the URL and the method when building the request. 
 
 ```kotlin
 val call = client.request<String> {
@@ -99,7 +99,8 @@ Similar to `request`, there are several extension methods to perform requests wi
 val text = client.post<String>("http://127.0.0.1:8080/")
 ```
 
-When calling request methods, you can provide a lambda to build the request parameters like the URL, the HTTP method (verb), the body, and the headers. The `HttpRequestBuilder` looks like this:
+When calling request methods, you can provide a lambda to build the request parameters like the URL, the HTTP method (verb), the body, and the headers.
+The `HttpRequestBuilder` looks like this:
 
 ```kotlin
 class HttpRequestBuilder : HttpMessageBuilder {
@@ -114,7 +115,8 @@ class HttpRequestBuilder : HttpMessageBuilder {
 }
 ```
 
-The `HttpClient` class only offers some basic functionality, and all the methods for building requests are exposed as extensions. You can check out the standard available [HttpClient build extension methods](https://github.com/ktorio/ktor/blob/master/ktor-client/ktor-client-core/src/io/ktor/client/request/builders.kt).
+The `HttpClient` class only offers some basic functionality, and all the methods for building requests are exposed as extensions.
+You can check out the standard available [HttpClient build extension methods](https://github.com/ktorio/ktor/blob/master/ktor-client/ktor-client-core/src/io/ktor/client/request/builders.kt).
 {: .note.api}
 
 ### The `submitForm` and `submitFormWithBinaryData` Methods
@@ -153,7 +155,8 @@ val data: List<PartData> = formData {
 {: #custom-headers}
 
 When building requests with `HttpRequestBuilder`, you can set custom headers.
-There is a final property `val headers: HeadersBuilder` that inherits from `StringValuesBuilder`. You can add or remove headers using it or with the `header` convenience methods.
+There is a final property `val headers: HeadersBuilder` that inherits from `StringValuesBuilder`.
+You can add or remove headers using it or with the `header` convenience methods.
 
 ```kotlin
 // this : HttpMessageBuilder
@@ -197,8 +200,7 @@ The `HttpRequestBuilder.body` property can be a subtype of `OutgoingContent` as 
 * `body = JarFileContent(File("myjar.jar"), "test.txt", ContentType.fromFileExtension("txt").first())`
 * `body = URIFileContent(URL("https://en.wikipedia.org/wiki/Main_Page"))`
 
-If you install the *JsonFeature* and set the content type to `application/json`,
-you can use arbitrary instances as the `body`, and they will be serialized as JSON:
+If you install the *JsonFeature* and set the content type to `application/json`, you can use arbitrary instances as the `body`, and they will be serialized as JSON:
 
 ```kotlin
 data class HelloWorld(val hello: String)
@@ -239,7 +241,8 @@ client.post<Unit> {
 }
 ```
 
-Remember that your classes must be *top-level* to be recognized by `Gson`. If you try to send a class that is inside a function, the feature will send a *null*.
+Remember that your classes must be *top-level* to be recognized by `Gson`.
+If you try to send a class that is inside a function, the feature will send a *null*.
 {: .note}
 
 ## Uploading multipart/form-data

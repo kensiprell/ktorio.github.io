@@ -7,8 +7,7 @@ priority: 1
 ---
 
 A Charset is a class that is in charge of serializing and deserializing characters.
-It mimics the Java [java.nio.charset.Charset](https://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html) class,
-and its equivalent in .NET would be the [Encoding](https://msdn.microsoft.com/es-es/library/system.text.encoding(v=vs.110).aspx) class.
+It mimics the Java [java.nio.charset.Charset](https://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html) class, and its equivalent in .NET would be the [Encoding](https://msdn.microsoft.com/es-es/library/system.text.encoding(v=vs.110).aspx) class.
 
 Some charset examples are `UTF-8`, `ASCII`, `ISO-8859-1`(`LATIN1`), and `SHIFT_JIS`, among others.
 
@@ -46,7 +45,6 @@ val string = String(utf8Encoded, charset = Charsets.UTF_8)
 val substring = String(utf8Encoded, 0, 10, charset = Charsets.UTF_8)
 ```
 
-
 Also from a String, you can generate a ByteArray representing it in a specific charset:
 
 ```kotlin
@@ -69,10 +67,11 @@ charsetEncoder.encode("HELLO", 1, 2, output)
 
 ### Further Details about Charsets
 
-Some charsets represent characters as single-byte, others represent characters with several fixed bytes per character, and others are variable. Not all the charsets can represent the whole of Unicode character sets.
+Some charsets represent characters as single-byte, others represent characters with several fixed bytes per character, and others are variable.
+Not all the charsets can represent the whole of Unicode character sets.
 
-The most widely used charset is UTF-8, which allows you to represent not only most 7-bit ASCII characters as a single byte, but it also allows you to represent the whole of Unicode character sets. By being encoded by a variable length of bytes, getting the length of a String represented as UTF-8 requires decoding the whole content, thus making
-seeking, slicing, and getting length time-linear.
+The most widely used charset is UTF-8, which allows you to represent not only most 7-bit ASCII characters as a single byte, but it also allows you to represent the whole of Unicode character sets.
+By being encoded by a variable length of bytes, getting the length of a String represented as UTF-8 requires decoding the whole content, thus making seeking, slicing, and getting length time-linear.
 
 JavaScript exposes Strings with 32-bit CodePoints, while Java and Native expose 16-bit Chars using [Surrogate Pairs](https://en.wikipedia.org/wiki/UTF-16#U+10000_to_U+10FFFF) for higher values.  
 

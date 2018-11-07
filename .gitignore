@@ -8,3 +8,4 @@ _pdf
 *.iml
 /.gradle
 *.pdf
+/TODO.txt

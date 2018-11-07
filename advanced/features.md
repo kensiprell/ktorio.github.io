@@ -6,7 +6,8 @@ keywords: plugins
 permalink: /advanced/features.html
 ---
 
-You can develop your own features and reuse them across all your Ktor applications, or you can share them with the community. A typical feature has the following structure:
+You can develop your own features and reuse them across all your Ktor applications, or you can share them with the community.
+A typical feature has the following structure:
 
 ```kotlin
 class CustomFeature(configuration: Configuration) {
@@ -40,7 +41,8 @@ class CustomFeature(configuration: Configuration) {
 }
 ```
 
-`CustomFeature` is a feature instance class, which should be immutable to avoid unintended side-effects in a highly concurrent environment. Feature implementation should be thread-safe as it will be called from multiple threads.
+`CustomFeature` is a feature instance class, which should be immutable to avoid unintended side-effects in a highly concurrent environment.
+Feature implementation should be thread-safe as it will be called from multiple threads.
 
 The `Configuration` instance is handed to the user installation script, allowing feature configuration. 
 

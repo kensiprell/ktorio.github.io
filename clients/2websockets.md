@@ -12,8 +12,7 @@ feature:
 
 Ktor provides a WebSocket client that only supports the CIO engine and [WebSockets on the server side](/servers/features/websockets.html). 
 
-Once connected, client and server WebSockets share the same [WebSocketSession](/servers/features/websockets.html#WebSocketSession)
-interface for communication.
+Once connected, client and server WebSockets share the same [WebSocketSession](/servers/features/websockets.html#WebSocketSession) interface for communication.
 
 Right now, client WebSockets are only available for the CIO Client Engine.
 

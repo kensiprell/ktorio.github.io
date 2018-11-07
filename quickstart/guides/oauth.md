@@ -17,8 +17,10 @@ This is an advanced tutorial, and you must understand some basic concepts about 
 
 ## Creating a Host Entry Pointing to 127.0.0.1
 
-Google's OAuth requires redirect URLs that can't be IP addresses or localhost. So for development purposes we will need a proper host pointing to 127.0.0.1.
-It is not required that this host be accessible from outside our computer, so we can just set it up for a local host. There is a public domain <http://lvh.me/> pointing to localhost/127.0.0.1, but you might want to provide your own host locally for security reasons.
+Google's OAuth requires redirect URLs that can't be IP addresses or localhost.
+So for development purposes we will need a proper host pointing to 127.0.0.1.
+It is not required that this host be accessible from outside our computer, so we can just set it up for a local host.
+There is a public domain <http://lvh.me/> pointing to localhost/127.0.0.1, but you might want to provide your own host locally for security reasons.
 
 You can add an entry in [the hosts file](https://en.wikipedia.org/wiki/Hosts_(file) of your machine.
 
@@ -30,12 +32,12 @@ For this guide we are going to associate `me.mydomain.com` with `127.0.0.1`, but
 
 ![](/quickstart/guides/oauth/etc_hosts.png){:.rounded-shadow}
 
-The structure of this file is simple: <kbd>#</kbd> character for comments and each non-empty and non-comment line should contain an IP address followed
-by several host names separated by spaces or tabs.
+The structure of this file is simple: <kbd>#</kbd> character for comments and each non-empty and non-comment line should contain an IP address followed by several host names separated by spaces or tabs.
 
 ### MacOS/Linux
 
-On MacOS and Linux computers you can find the host file at `/etc/hosts`. You will need root access to edit it.
+On MacOS and Linux computers you can find the host file at `/etc/hosts`.
+You will need root access to edit it.
 
 ```sudo nano /etc/hosts```
 or
@@ -43,13 +45,17 @@ or
 
 ### Windows
 
-On Windows the host file is located here `%SystemRoot%\System32\drivers\etc\hosts`. You will need admin privileges to edit this file. For example, you can use Notepad++ opened as an administrator.
+On Windows the host file is located here `%SystemRoot%\System32\drivers\etc\hosts`.
+You will need admin privileges to edit this file.
+For example, you can use Notepad++ opened as an administrator.
 
-You can also paste `%SystemRoot%\System32\drivers\etc` in the Windows Explorer address bar and then right click on the hosts file to edit it. The structure is the same as MacOS/Linux.
+You can also paste `%SystemRoot%\System32\drivers\etc` in the Windows Explorer address bar and then right click on the hosts file to edit it.
+The structure is the same as MacOS/Linux.
 
 ## Google Developers Console
 
-To be able to use OAuth with any provider, you will need a public `clientId` and a private `clientSecret`. Foe example, you can create a Google login using the Google Developers Console: <https://console.developers.google.com/>{:target="_blank"}
+To be able to use OAuth with any provider, you will need a public `clientId` and a private `clientSecret`.
+For example, you can create a Google login using the Google Developers Console: <https://console.developers.google.com/>{:target="_blank"}
 
 First you have to create a new project in the developers console:
 
@@ -88,7 +94,10 @@ OAuth Client
 
 ## Configuring Our Application
 
-First we have to define the settings for our OAuth provider. We have to replace the `clientId` and `clientSecret` with the values obtained from the previous step. Depending on what we need from the user, we can adjust the `defaultScopes` list to something else. For example, `google` will have access to id, full name, and picture but not to the email address or anything else:
+First we have to define the settings for our OAuth provider.
+We have to replace the `clientId` and `clientSecret` with the values obtained from the previous step.
+Depending on what we need from the user, we can adjust the `defaultScopes` list to something else.
+For example, `google` will have access to id, full name, and picture but not to the email address or anything else:
 
 ```kotlin
 val googleOauthProvider = OAuthServerSettings.OAuth2ServerSettings(
@@ -106,7 +115,8 @@ val googleOauthProvider = OAuthServerSettings.OAuth2ServerSettings(
 Remember to adjust the defaultScopes to request only what you really need for the sake of security, user privacy, and trust.
 {: .note}
 
-We also have to install the OAuth feature and configure it. We need to provide an HTTP client instance, a provider lookup where we determine the provider from the call (we don't need to put logic here since we are just supporting Google for this guide), and a urlProvider giving the redirection url that must match the one specified as an authorized redirection in the Google Developers Console, in this case `http://me.mydomain.com:8080/login`:
+We also have to install the OAuth feature and configure it.
+We need to provide an HTTP client instance, a provider lookup where we determine the provider from the call (we don't need to put logic here since we are just supporting Google for this guide), and a urlProvider giving the redirection url that must match the one specified as an authorized redirection in the Google Developers Console, in this case `http://me.mydomain.com:8080/login`:
 
 ```kotlin
 install(Authentication) {
@@ -126,9 +136,13 @@ private fun ApplicationCall.redirectUrl(path: String): String {
 
 ```
 
-Then we have to define the `/login` route that must be authenticated against our authentication provider. When no GET parameters are passed to that URL, the authentication feature will hook into the handler and redirect us to the OAuth Consent Screen from Google. It will then redirect us back to our `/login` route with the `status` and `code` arguments that will be used by the authentication provider to call back to Google to obtain an `accessToken` and attach a `OAuthAccessTokenResponse.OAuth2` principal to our call.
+Then we have to define the `/login` route that must be authenticated against our authentication provider.
+When no GET parameters are passed to that URL, the authentication feature will hook into the handler and redirect us to the OAuth Consent Screen from Google.
+It will then redirect us back to our `/login` route with the `status` and `code` arguments that will be used by the authentication provider to call back to Google to obtain an `accessToken` and attach a `OAuthAccessTokenResponse.OAuth2` principal to our call.
 
-We can retrieve the `accessToken` by getting the generated `OAuthAccessTokenResponse.OAuth2` principal and `accessToken`. Then we can use the <https://www.googleapis.com/userinfo/v2/me>{:target="_blank"} URL with our `accessToken` passed as `Authorization Bearer` to get a JSON response with the user information. You can check the contents of the JSON response by using the [Google OAuth playground](https://developers.google.com/oauthplayground){:target="_blank"}.
+We can retrieve the `accessToken` by getting the generated `OAuthAccessTokenResponse.OAuth2` principal and `accessToken`.
+Then we can use the <https://www.googleapis.com/userinfo/v2/me>{:target="_blank"} URL with our `accessToken` passed as `Authorization Bearer` to get a JSON response with the user information.
+You can check the contents of the JSON response by using the [Google OAuth playground](https://developers.google.com/oauthplayground){:target="_blank"}.
 
 Once we get the User ID we are going to store it in a session and then redirect to another URL.
 
@@ -157,10 +171,12 @@ authenticate("google-oauth") {
 }
 ```
 
-We have to install the Session feature first. Check the [Full Example](#full-example) for details:
+We have to install the Session feature first.
+Check the [Full Example](#full-example) for details:
 {: .note }
 
-The ID from the user information is a string that looks like a number. Remember that JSON does not define long types and that in cases like Twitter or Google that have tons and tons of users and entities, the ID could be greater than 31 bits for a signed integer or even greater than 51 bits of precision from a standard Double.
+The ID from the user information is a string that looks like a number.
+Remember that JSON does not define long types and that in cases like Twitter or Google that have tons and tons of users and entities, the ID could be greater than 31 bits for a signed integer or even greater than 51 bits of precision from a standard Double.
 
 As a rule of thumb you should always treat IDs and other number-like values as strings if you don't need to do arithmetic with them.
 {: .note }

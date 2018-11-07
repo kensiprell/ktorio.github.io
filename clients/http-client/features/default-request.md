@@ -8,13 +8,14 @@ feature:
   method: io.ktor.client.features.defaultRequest
 ---
 
-This feature allows you to configure some defaults for all requests for a specific client.  
+This feature allows you to configure some defaults for all requests for a specific client.
 
 {% include feature.html %}
 
 ### Installation
 
-When configuring the client, there is an extension method provided by this feature to set some defaults for the client. For example, if you want to add a header to all requests or just configure the host, port, or method: 
+When configuring the client, there is an extension method provided by this feature to set some defaults for the client.
+For example, if you want to add a header to all requests or just configure the host, port, or method: 
 
 ```kotlin
 val client = HttpClient(engine).config {

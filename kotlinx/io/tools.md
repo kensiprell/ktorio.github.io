@@ -8,7 +8,10 @@ toc: false
 ## ObjectPool
 {: #objectpool }
 
-`ObjectPool` is a general purpose, lock-free, concurrent-safe object pool. It is leak-safe: all objects that haven't been recycled but collected by GC do not cause any issues with a pool, only an allocation penalty. Note that it doesn't mean that leaking objects will not cause any issues at all as lost objects could hold some native or external resources. The only guarantee is that `ObjectPool` is not going to break
+`ObjectPool` is a general purpose, lock-free, concurrent-safe object pool.
+It is leak-safe: all objects that haven't been recycled but collected by GC do not cause any issues with a pool, only an allocation penalty.
+Note that it doesn't mean that leaking objects will not cause any issues at all as lost objects could hold some native or external resources.
+The only guarantee is that `ObjectPool` is not going to break
 if there are lost objects.
 
 ```kotlin
