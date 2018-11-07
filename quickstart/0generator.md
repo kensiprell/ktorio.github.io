@@ -1,17 +1,17 @@
 ---
 title: Generator
-caption: Generate a Ktor project 
+caption: Generate a Ktor project
 category: quickstart
 permalink: /quickstart/generator.html
 skip_pdf: true
 redirect_from:
   - /quickstart/quickstart/generator.html
-reviewed: 1.0.0
+ktor_version_review: 1.0.0-beta-3
 ---
 
 <!--<https://ktor.io/start>-->
 
-**NOTE: You can also use the [Ktor IntelliJ plugin](/quickstart/quickstart/intellij-idea/plugin.html) instead.**
+**NOTE: You can also use the [Ktor IntelliJ plugin](/quickstart/quickstart/intellij-idea/plugin.html) instead.** This page can also be accessed at [start.ktor.io](https://start.ktor.io/).
 
 <div id="generator_id"></div>
 

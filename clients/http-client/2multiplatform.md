@@ -10,7 +10,7 @@ that was introduced in [Kotlin 1.2](https://blog.jetbrains.com/kotlin/2017/11/ko
 
 Right now, the supported platforms are JVM, Android, and iOS, but in future versions, more platforms will be supported.
 
-### Android
+## Android
 
 For Android, you just have add the following artifact to your `dependencies` block in your project's `build.gradle` (or `build.gradle.kts`) :
 
@@ -24,7 +24,7 @@ dependencies {
 
 You can then use Android Studio or gradle to build your project.
 
-### iOS
+## iOS
 
 In the case of iOS, you have to use [Kotlin/Native](https://github.com/JetBrains/kotlin-native), and analogously to Android, you have to include this artifact as part of the `dependencies` block:
 
@@ -39,7 +39,7 @@ dependencies {
 In the case of iOS, we normally create a `.framework`, and the application project is a normal XCode project written either in Swift or Objective-C that includes that framework.
 You first have to build the framework using the gradle tasks exposed by Kotlin/Native and then open or build the XCode project. 
 
-### Common
+## Common
 
 For [multiplatform projects](https://kotlinlang.org/docs/reference/multiplatform.html) that, for example, share code between Android and iOS, we can create a common module.
 That common module can only access APIs that are available on all of the targets.
@@ -52,7 +52,7 @@ dependencies {
 }
 ```
 
-### Samples
+## Samples
 
 There is a full sample using the common client in the ktor-samples repository:
 
@@ -61,14 +61,14 @@ There is a full sample using the common client in the ktor-samples repository:
 You can use this project as a reference.
 This project also exposes some experimental gradle tasks to build, install, and run Android and iOS applications directly from gradle.
 
-Android:
+### Android:
 
 * `:client-mpp-android:emulatorList` - lists all the available emulators
 * `:client-mpp-android:emulatorStart` - starts the emulator (this would block gradle for now, so it's better to run it in a separate terminal)
 * `:client-mpp-android:emulatorInstall` - installs the application inside the emulator
 * `:client-mpp-android:emulatorRun` - executes the application inside the emulator
 
-iOS:
+### iOS:
 
 * `:client-mpp-ios:startSimulator` - starts the simulator
 * `:client-mpp-ios:shutdownSimulator` - shuts down the simulator

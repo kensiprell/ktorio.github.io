@@ -1993,3 +1993,33 @@ h3, h3 a, h3 a.anchored-heading {
 .search-section.Kotlinx { color: #58bbee; }
 .search-section.Samples { color: #40babd; }
 .search-section.Advanced { color: #f77b6b; }
+
+.code-scroll {
+    min-height: 200px;
+    max-height: 50vh;
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+.code-scroll-height {
+    height: 50vh;
+}
+
+.code-scroll pre.highlight {
+    border-left: none;
+}
+
+a.file-tab {
+    white-space: pre;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+}
+
+.tab-content-title {
+    display: none;
+}
+
+.doc-content ol, .doc-content ul {
+    padding-left: 1.1em;
+}

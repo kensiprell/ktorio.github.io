@@ -12,7 +12,7 @@ This feature allows you to configure some defaults for all requests for a specif
 
 {% include feature.html %}
 
-### Installation
+## Installation
 
 When configuring the client, there is an extension method provided by this feature to set some defaults for the client.
 For example, if you want to add a header to all requests or just configure the host, port, or method: 
@@ -28,7 +28,7 @@ val client = HttpClient(engine).config {
 }
 ```
 
-### Example
+## Example
 
 An example showing how to the client behaves using the [MockEngine](/clients/http-client/testing.html):
 

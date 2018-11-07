@@ -11,7 +11,7 @@ It also allows you to set a code block that can handle the request and generate 
 
 {% include artifact.html kind="engine" class="io.ktor.client.engine.mock.MockEngine" artifact="io.ktor:ktor-client-mock:$ktor_version" test="true" %}
 
-### Usage
+## Usage
 
 The usage is very simple.
 The `MockEngine` class has an [`operator invoke`](https://kotlinlang.org/docs/reference/operator-overloading.html#invoke) method

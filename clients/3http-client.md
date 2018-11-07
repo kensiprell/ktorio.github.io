@@ -31,7 +31,7 @@ Remember that requests are asynchronous, but when performing requests, the API s
 If you want to perform several requests at once in the same block, you can use `launch` or `async` functions and get the results later.
 For example:
 
-*Sequential requests:*
+### Sequential requests:
 
 ```kotlin
 suspend fun sequentialRequests() {
@@ -47,7 +47,7 @@ suspend fun sequentialRequests() {
 }
 ```
 
-*Parallel requests:*
+### Parallel requests:
 
 ```kotlin
 suspend fun parallelRequests() {

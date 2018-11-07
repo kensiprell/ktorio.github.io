@@ -1,20 +1,21 @@
 ---
 title: Artifacts
-caption: List of Artifacts  
+caption: List of Artifacts
 permalink: /quickstart/artifacts.html
 category: quickstart
 priority: 1
 redirect_from:
   - /artifacts.html
+ktor_version_review: 1.0.0-beta-3
 ---
 
 Ktor is divided into modules to allow fine-grained inclusion of dependencies based on the functionality required.
-The typical Ktor application requires `ktor-server-core` and a corresponding engine, depending on whether it's self-hosted or using an Application Server. 
+The typical Ktor application requires `ktor-server-core` and a corresponding engine, depending on whether it's self-hosted or using an Application Server.
 
-All artifacts in Ktor belong to the `io.ktor` group and are hosted on [Bintray](https://bintray.com/kotlin/ktor)
+All artifacts in Ktor belong to `io.ktor` group and hosted on JCenter and Maven Central. Pre-release versions are published at [Bintray](https://bintray.com/kotlin/ktor)
 
 [![Download](https://api.bintray.com/packages/kotlin/ktor/ktor/images/download.svg?version={{site.ktor_version}})](https://bintray.com/kotlin/ktor/ktor/{{site.ktor_version}})
-    
+
 Ktor is split into several groups of modules:
 
 * `ktor-server` contains modules that support running the Ktor Application with different engines: Netty, Jetty, Tomcat, and a generic servlet. It also contains a TestEngine for setting up application tests without starting the real server.
@@ -46,10 +47,9 @@ Ktor is split into several groups of modules:
   * `ktor-client-json` adds support for [json content negotiation](/clients/http-client/features/json-feature.html).
 * `ktor-network` includes [raw sockets](/servers/raw-sockets.html) for client/server and TCP/UDP.
   * `ktor-network-tls` contains TLS support for raw sockets.
- 
+
 See the instructions for setting up a project with:
 
 * [Maven](/quickstart/quickstart/maven.html)
 * [Gradle](/quickstart/quickstart/gradle.html)
 * [Generate a project online](/quickstart/generator.html)
-

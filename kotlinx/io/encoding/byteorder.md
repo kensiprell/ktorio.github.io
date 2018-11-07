@@ -19,15 +19,15 @@ expect enum class ByteOrder {
 }
 ```
 
-### LITTLE Endian
+## LITTLE Endian
 
 Little endian is the native order of x86 processors and most ARM processors.
 This is the most popular native order of CPUs.
 
-* **BENEFIT:** for small numbers, you get the most relevant information first, which can be read in a meaninful way without knowing the bit-width beforehand  
+* **BENEFIT:** for small numbers, you get the most relevant information first, which can be read in a meaninful way without knowing the bit-width beforehand
 * **DISADVANTAGE:** cannot be read naturally from left to right
 
-### BIG Endian
+## BIG Endian
 
 Big endian, also called the network endian or Motorola endian.
 This is the most used endian order for network protocols.
@@ -36,9 +36,9 @@ Some CPUs used it as native endian in the past including Motorola, some MIPS and
 * **BENEFIT:** can be read naturally from left to right even in HEX representation
 * **DISADVANTAGE:** you need to know the width of the data beforehand to be able to read it meaningfully
 
-### Tools
+## Tools
 
-#### Converting Values Between Endians:
+### Converting values between endians:
 
 You can, of course, serialize the value in a view or a packet with one endian and then deserialize it with another endian.
 
@@ -59,7 +59,7 @@ For `Short`, `Int`, and `Long`, you have:
 > In octets: `seeeeeee-efffffff-ffffffff-ffffffff`, and thus reversing bytes would produce very strange
 > floating point values.
 
-#### Extensions Methods in Pure Kotlin for Byte-reversing Integral Types
+### Extensions methods in pure Kotlin for byte-reversing integral types
 {: kotlin-byte-reversing }
 
 ```kotlin

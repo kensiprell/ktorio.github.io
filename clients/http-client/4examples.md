@@ -2,10 +2,10 @@
 title: Examples
 category: clients
 permalink: /clients/http-client/examples.html
-caption: HTTP Client Examples 
+caption: HTTP Client Examples
 ---
 
-### Interchanging JSON: Ktor Server and Ktor Client
+## Interchanging JSON: Ktor server / Ktor client
 {: #example-json }
 
 ```kotlin

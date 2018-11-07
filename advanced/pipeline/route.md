@@ -10,7 +10,7 @@ For example, for creating a timeout for a route, you could do the following:
 
 ```kotlin
 fun Route.routeTimeout(time: Long, unit: TimeUnit = TimeUnit.SECONDS, callback: Route.() -> Unit): Route {
-    // With createChild, we create a child node for this received Route  
+    // With createChild, we create a child node for this received Route
     val routeWithTimeout = this.createChild(object : RouteSelector(1.0) {
         override fun evaluate(context: RoutingResolveContext, segmentIndex: Int): RouteSelectorEvaluation =
             RouteSelectorEvaluation.Constant
@@ -22,7 +22,7 @@ fun Route.routeTimeout(time: Long, unit: TimeUnit = TimeUnit.SECONDS, callback: 
             proceed() // With proceed we can define code to be executed before and after the call
         }
     }
-    
+
     // Configure this route with the block provided by the user
     callback(routeWithTimeout)
 
@@ -39,12 +39,12 @@ The `Route` class defines an intercept method that applies to that route node or
 fun Route.intercept(phase: PipelinePhase, block: PipelineInterceptor<Unit, ApplicationCall>)
 ```
 
-### Get the Route Being Handled
+## Getting the route being handled
 {: #route-from-call }
 
 You can get the route being handled by casting the `call: ApplicationCall` to `RoutingApplicationCall` that has a `route: Route` property.
 
-### Get the Route Path
+## Getting the route path
 {: #route-path }
 
 `Route` overrides the `toString()` method to generate a path to the route, something like:
@@ -57,7 +57,7 @@ override fun Route.toString() = when {
 }
 ```
 
-### How to Intercept Route Truncation Processing
+## How to intercept route truncation processing
 ```kotlin
     intercept(ApplicationCallPipeline.Setup) {
 
@@ -70,12 +70,12 @@ override fun Route.toString() = when {
             the route /book will still respond to the processing, and the pipeline will be unwritable.
             */
             return@intercept finish()
-        } 
+        }
 
     }
 ```
 
-### Hooking Before and After Routing 
+## Hooking before and after routing
 
 You can globally intercept the routing calls by using the events `Routing.RoutingCallStarted` and `Routing.RoutingCallFinished`:
 
@@ -90,4 +90,3 @@ pipeline.environment.monitor.subscribe(Routing.RoutingCallFinished) { call: Rout
 ```
 
 You can see a full example of this in the [Metrics feature](https://github.com/ktorio/ktor/blob/master/ktor-features/ktor-metrics/src/io/ktor/metrics/Metrics.kt).
-

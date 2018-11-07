@@ -45,9 +45,7 @@ export ALIAS=myalias
 certbot certonly -n -d $DOMAIN --email "$EMAIL" --agree-tos --standalone --preferred-challenges http --http-01-port $PORT
 ```
 
-<table>
-<tr>
-<td markdown="1" style="width:50%;">
+{% capture left %}
 ❌ Error output sample:
 
 ```text
@@ -82,8 +80,10 @@ IMPORTANT NOTES:
    also contain certificates and private keys obtained by Certbot so
    making regular backups of this folder is ideal.
 ```
-</td>
-<td markdown="1" style="width:50%;">
+{: .error}
+{% endcapture %}
+
+{% capture right %}
 ✅ Working output sample:
 
 ```text
@@ -109,9 +109,10 @@ IMPORTANT NOTES:
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
 ```
-</td>
-</tr>
-</table>
+{: .success}
+{% endcapture %}
+
+{% include two-column.html left=left right=right %}
 
 ### Converting the Private Key and Certificate for Ktor
 
